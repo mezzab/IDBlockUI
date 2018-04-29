@@ -1,0 +1,11 @@
+# Dependency directory
+node_modules
+node_modules*
+.idea
+.eslintcache
+.tags
+npm-debug.log
+yarn-error.log
+
+.vscode
+samples/

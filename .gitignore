@@ -6,6 +6,7 @@ node_modules*
 .tags
 npm-debug.log
 yarn-error.log
+package-lock.json
 
 .vscode
 samples/

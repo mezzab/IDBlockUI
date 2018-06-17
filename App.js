@@ -7,8 +7,10 @@ import store from "./store";
 import styled from "styled-components";
 import { StackNavigator } from "react-navigation";
 import TextButton from "./src/components/Button";
+import MailInput from "./src/components/Mail";
+import { Pages } from "./src/utils/constants";
 
-const Container = styled.View`
+export const Container = styled.View`
   flex: 1;
   flex-direction: column;
   align-items: center;
@@ -26,7 +28,7 @@ class HomeScreen extends Component {
             flex={0.5}
             margin="10px 10px 10px 10px"
             value="ESCANEAR CODIGO"
-            onPress={() => this.props.navigation.navigate("QRScanner")}
+            onPress={() => this.props.navigation.navigate(Pages.QRScanner)}
           />
         </Container>
       </Provider>
@@ -36,11 +38,14 @@ class HomeScreen extends Component {
 
 const App = StackNavigator(
   {
-    Home: {
+    HomeScreen: {
       screen: HomeScreen
     },
     QRScanner: {
       screen: QRScanner
+    },
+    MailInput: {
+      screen: MailInput
     }
   },
   {

@@ -11,29 +11,159 @@ import {
   TouchableOpacity
 } from "react-native";
 import { BarCodeScanner, Permissions } from "expo";
+import { StackNavigator } from "react-navigation";
+import { Pages, Keys } from "../../utils/constants";
+import { AsyncStorage } from "react-native";
+
+const windowHeight = Dimensions.get("window").height;
+const windowWidth = Dimensions.get("window").width;
+
+const opacity = "rgba(0, 0, 0, .6)";
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column"
+  },
+  bottomBar: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    padding: 15,
+    flexDirection: "row"
+  },
+  Data: {
+    flex: 1
+  },
+  DataText: {
+    position: "absolute",
+    color: "#fff",
+    fontSize: 20
+  },
+  cancelButton: {
+    marginLeft: 10,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  cancelButtonText: {
+    color: "rgba(255,255,255,0.8)",
+    fontSize: 18
+  },
+  topOverlay: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    padding: windowHeight * 0.1,
+    flexDirection: "row"
+  },
+  bottomOverlay: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    padding: windowHeight * 0.2,
+    flexDirection: "row"
+  },
+  leftOverlay: {
+    position: "absolute",
+    right: 0,
+    bottom: windowHeight * 0.4,
+    top: windowHeight * 0.2,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    padding: windowWidth * 0.1,
+    flexDirection: "row"
+  },
+  rightOverlay: {
+    position: "absolute",
+    left: 0,
+    bottom: windowHeight * 0.4,
+    top: windowHeight * 0.2,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    padding: windowWidth * 0.1,
+    flexDirection: "row"
+  }
+});
 
 export default class QRScanner extends Component {
   state = {
     hasCameraPermission: null,
-    lastScannedUrl: null
+    lastScannedData: null
   };
 
   componentDidMount() {
-    this._requestCameraPermission();
+    this.requestCameraPermission();
   }
 
-  _requestCameraPermission = async () => {
+  componentWillUpdate(nextProps, nextState) {
+    const scannedData = nextState.lastScannedData;
+    if (scannedData && this.checkValidJson(scannedData)) {
+      AsyncStorage.setItem(Keys.EntityJSON, scannedData);
+      return this.props.navigation.navigate(Pages.MailInput);
+    }
+  }
+
+  requestCameraPermission = async () => {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     this.setState({
       hasCameraPermission: status === "granted"
     });
   };
 
-  _handleBarCodeRead = result => {
-    if (result.data !== this.state.lastScannedUrl) {
+  handleBarCodeRead = result => {
+    if (result.data !== this.state.lastScannedData) {
       LayoutAnimation.spring();
-      this.setState({ lastScannedUrl: result.data });
+      this.setState({ lastScannedData: result.data });
     }
+  };
+
+  handlePressData = () => {
+    Alert.alert(
+      "Open this Data?",
+      this.state.lastScannedData,
+      [
+        {
+          text: "Yes",
+          onPress: () => Linking.openData(this.state.lastScannedData)
+        },
+        { text: "No", onPress: () => {} }
+      ],
+      { cancellable: false }
+    );
+  };
+
+  handlePressCancel = () => {
+    this.setState({ lastScannedData: null });
+  };
+
+  checkValidJson = scannedData => {
+    //Todo: check if the scannedData is a valid json
+    return true;
+  };
+
+  maybeRenderData = () => {
+    const scannedData = this.state.lastScannedData;
+    if (!scannedData) {
+      return;
+    }
+
+    // return (
+    //   <View style={styles.bottomBar}>
+    //     <Text numberOfLines={1} style={styles.DataText}>
+    //       Invalid QR
+    //     </Text>
+    //     <TouchableOpacity
+    //       style={styles.cancelButton}
+    //       onPress={this.handlePressCancel}
+    //     >
+    //       <Text style={styles.cancelButtonText}>Cancel</Text>
+    //     </TouchableOpacity>
+    //   </View>
+    // );
   };
 
   render() {
@@ -46,94 +176,27 @@ export default class QRScanner extends Component {
             Camera permission is not granted
           </Text>
         ) : (
-          <BarCodeScanner
-            onBarCodeRead={this._handleBarCodeRead}
-            style={{
-              height: Dimensions.get("window").height,
-              width: Dimensions.get("window").width
-            }}
-          />
+          <View>
+            <BarCodeScanner
+              onBarCodeRead={this.handleBarCodeRead}
+              style={{
+                height: windowHeight,
+                width: windowWidth
+              }}
+            />
+
+            <View style={styles.topOverlay} />
+            <View style={styles.leftOverlay} />
+            <View style={styles.rightOverlay} />
+            <View style={styles.bottomOverlay} />
+            <Text style={styles.DataText}> Scan QR Code</Text>
+          </View>
         )}
 
-        {this._maybeRenderUrl()}
+        {this.maybeRenderData()}
 
         <StatusBar hidden />
       </View>
     );
   }
-
-  _handlePressUrl = () => {
-    Alert.alert(
-      "Open this URL?",
-      this.state.lastScannedUrl,
-      [
-        {
-          text: "Yes",
-          onPress: () => Linking.openURL(this.state.lastScannedUrl)
-        },
-        { text: "No", onPress: () => {} }
-      ],
-      { cancellable: false }
-    );
-  };
-
-  _handlePressCancel = () => {
-    this.setState({ lastScannedUrl: null });
-  };
-
-  _maybeRenderUrl = () => {
-    if (!this.state.lastScannedUrl) {
-      return;
-    }
-
-    return (
-      <View style={styles.bottomBar}>
-        <TouchableOpacity style={styles.url} onPress={this._handlePressUrl}>
-          <Text numberOfLines={1} style={styles.urlText}>
-            {this.state.lastScannedUrl}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.cancelButton}
-          onPress={this._handlePressCancel}
-        >
-          <Text style={styles.cancelButtonText}>Cancel</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#000"
-  },
-  bottomBar: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: "rgba(0,0,0,0.5)",
-    padding: 15,
-    flexDirection: "row"
-  },
-  url: {
-    flex: 1
-  },
-  urlText: {
-    color: "#fff",
-    fontSize: 20
-  },
-  cancelButton: {
-    marginLeft: 10,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  cancelButtonText: {
-    color: "rgba(255,255,255,0.8)",
-    fontSize: 18
-  }
-});

@@ -11,11 +11,12 @@
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts start",
+    "start": "react-native-scripts start && ",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js"
+    "test": "node node_modules/jest/bin/jest.js",
+    "devtools": "react-devtools"
   },
   "jest": {
     "preset": "jest-expo"
@@ -33,6 +34,7 @@
     "expo": "^25.0.0",
     "prop-types": "^15.5.10",
     "react": "16.2.0",
+    "react-devtools": "^3.2.3",
     "react-dom": "16.2.0",
     "react-native": "0.52.0",
     "react-navigation": "^1.5.11",

@@ -14,7 +14,7 @@ export const Container = styled.View`
   flex: 1;
   flex-direction: column;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #000;
 `;
 
 class HomeScreen extends Component {
@@ -24,9 +24,9 @@ class HomeScreen extends Component {
         <Container>
           <Logo />
           <TextButton
-            color="black"
+            color="white"
             flex={0.5}
-            margin="10px 10px 10px 10px"
+            margin="10px 10px 0px 10px"
             value="ESCANEAR CODIGO"
             onPress={() => this.props.navigation.navigate(Pages.QRScanner)}
           />

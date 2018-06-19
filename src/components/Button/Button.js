@@ -5,6 +5,7 @@ import styled, { css } from "styled-components";
 const StyledButton = styled.TouchableHighlight`
   background-color: ${({ color }) => color};
   margin: ${({ margin }) => margin};
+  height: 10px;
   border-radius: 10px;
   ${({ flex }) =>
     flex &&
@@ -44,7 +45,7 @@ export class Button extends React.Component {
 
 const StyledText = styled.Text`
   align-self: center;
-  color: #fff;
+  color: #000;
   font-size: 16px;
   font-weight: bold;
   padding: 10px;

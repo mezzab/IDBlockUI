@@ -37,7 +37,6 @@ class HomeScreen extends Component {
           <Logo />
           {this.state.fontLoaded ? (
             <TextButton
-              color="white"
               flex={0.5}
               margin="10px 10px 0px 10px"
               value="ESCANEAR CODIGO"

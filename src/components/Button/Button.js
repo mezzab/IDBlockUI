@@ -31,7 +31,7 @@ export class Button extends React.Component {
   };
 
   static defaultProps = {
-    color: "#b7b158",
+    color: "white",
     margin: "10px 0",
     flex: undefined
   };
@@ -56,6 +56,7 @@ export class TextButton extends React.Component {
     value: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired
   };
+
   render() {
     return (
       <Button {...this.props}>

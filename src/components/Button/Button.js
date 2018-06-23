@@ -1,12 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+import { lightBlue, darkBackground, blue } from "../../utils/constants";
 
 const StyledButton = styled.TouchableHighlight`
   background-color: ${({ color }) => color};
   margin: ${({ margin }) => margin};
-  height: 10px;
+  height: 42px;
   border-radius: 10px;
+  max-height: 42px;
+  margin-top: 10%;
   ${({ flex }) =>
     flex &&
     css`
@@ -45,7 +48,7 @@ export class Button extends React.Component {
 
 const StyledText = styled.Text`
   align-self: center;
-  color: #000;
+  color: ${darkBackground};
   font-size: 16px;
   font-weight: bold;
   padding: 10px;

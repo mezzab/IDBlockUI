@@ -8,13 +8,13 @@ import styled from "styled-components";
 import { StackNavigator } from "react-navigation";
 import TextButton from "./src/components/Button";
 import MailInput from "./src/components/Mail";
-import { Pages } from "./src/utils/constants";
+import { Pages, darkBackground, lightBlue } from "./src/utils/constants";
 
 export const Container = styled.View`
   flex: 1;
   flex-direction: column;
   align-items: center;
-  background-color: #000;
+  background-color: ${darkBackground};
 `;
 
 class HomeScreen extends Component {

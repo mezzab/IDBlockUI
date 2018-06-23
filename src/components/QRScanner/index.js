@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0,
     backgroundColor: "rgba(0,0,0,0.5)",
-    padding: windowHeight * 0.1,
+    padding: windowHeight * 0.1,w
     flexDirection: "row"
   },
   bottomOverlay: {

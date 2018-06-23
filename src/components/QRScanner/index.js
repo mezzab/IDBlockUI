@@ -45,10 +45,10 @@ export const TopContainer = styled.View`
 
 const StyledText = styled.Text`
   color: #fff;
+  margin-top: 20%;
   font-size: 25px;
   font-weight: bold;
   text-align: center;
-  margin-top: 20%;
 `;
 
 const TopLimits = styled.Text`
@@ -164,14 +164,35 @@ export default class QRScanner extends Component {
                 width: windowWidth
               }}
             />
-            <StyledText> Scan QR Code</StyledText>
+            <Text
+              style={{
+                fontFamily: "msyi",
+                fontSize: 30,
+                alignSelf: "center",
+                padding: 10,
+                paddingTop: 7,
+                color: '#fff',
+                marginTop: '15%'
+              }}
+            > Scan QR Code</Text>
             <TopLimits>┌                                                      ┐</TopLimits>
             <BottomLimits>└                                                      ┘</BottomLimits>
           </StyledView>
         )}
 
         {this.maybeRenderData()}
-        <StyledText onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}> Cancel </StyledText>
+        <Text
+          style={{
+            fontFamily: "msyi",
+            fontSize: 30,
+            alignSelf: "center",
+            padding: 10,
+            paddingTop: 7,
+            color: '#fff',
+            marginTop: '20%'
+          }}
+          onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
+        > Cancel </Text>
         <StatusBar hidden />
       </Container>
     );

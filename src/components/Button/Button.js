@@ -1,14 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+import { Text } from "react-native";
 import { lightBlue, darkBackground, blue } from "../../utils/constants";
+import { Font } from "expo";
 
 const StyledButton = styled.TouchableHighlight`
   background-color: ${({ color }) => color};
   margin: ${({ margin }) => margin};
   height: 42px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
   border-radius: 10px;
-  max-height: 42px;
+  max-height: 50px;
   margin-top: 10%;
   ${({ flex }) =>
     flex &&
@@ -46,24 +51,25 @@ export class Button extends React.Component {
   }
 }
 
-const StyledText = styled.Text`
-  align-self: center;
-  color: ${darkBackground};
-  font-size: 16px;
-  font-weight: bold;
-  padding: 10px;
-`;
-
 export class TextButton extends React.Component {
   static propTypes = {
     value: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired
   };
-
   render() {
     return (
       <Button {...this.props}>
-        <StyledText>{this.props.value}</StyledText>
+        <Text
+          style={{
+            fontFamily: "msyi",
+            fontSize: 30,
+            alignSelf: "center",
+            padding: 10,
+            paddingTop: 7
+          }}
+        >
+          {this.props.value}
+        </Text>
       </Button>
     );
   }

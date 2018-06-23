@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
+import { Font } from "expo";
 import { View } from "react-native";
 import Logo from "./src/components/Logo";
 import QRScanner from "./src/components/QRScanner";
@@ -18,18 +19,31 @@ export const Container = styled.View`
 `;
 
 class HomeScreen extends Component {
+  state = {
+    fontLoaded: false
+  };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      msyi: require("./msyi.ttf")
+    });
+    this.setState({ fontLoaded: true });
+  }
+
   render() {
     return (
       <Provider store={store}>
         <Container>
           <Logo />
-          <TextButton
-            color="white"
-            flex={0.5}
-            margin="10px 10px 0px 10px"
-            value="ESCANEAR CODIGO"
-            onPress={() => this.props.navigation.navigate(Pages.QRScanner)}
-          />
+          {this.state.fontLoaded ? (
+            <TextButton
+              color="white"
+              flex={0.5}
+              margin="10px 10px 0px 10px"
+              value="ESCANEAR CODIGO"
+              onPress={() => this.props.navigation.navigate(Pages.QRScanner)}
+            />
+          ) : null}
         </Container>
       </Provider>
     );

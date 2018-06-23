@@ -10,84 +10,63 @@ import {
   StyleSheet,
   TouchableOpacity
 } from "react-native";
+import styled from "styled-components";
 import { BarCodeScanner, Permissions } from "expo";
 import { StackNavigator } from "react-navigation";
 import { Pages, Keys } from "../../utils/constants";
 import { AsyncStorage } from "react-native";
+import { headerLogoImage } from "../Logo/logo.png";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
 
 const opacity = "rgba(0, 0, 0, .6)";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column"
-  },
-  bottomBar: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: "rgba(0,0,0,0.5)",
-    padding: 15,
-    flexDirection: "row"
-  },
-  Data: {
-    flex: 1
-  },
-  DataText: {
-    position: "absolute",
-    color: "#fff",
-    fontSize: 20
-  },
-  cancelButton: {
-    marginLeft: 10,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  cancelButtonText: {
-    color: "rgba(255,255,255,0.8)",
-    fontSize: 18
-  },
-  topOverlay: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-    backgroundColor: "rgba(0,0,0,0.5)",
-    padding: windowHeight * 0.1,w
-    flexDirection: "row"
-  },
-  bottomOverlay: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "rgba(0,0,0,0.5)",
-    padding: windowHeight * 0.2,
-    flexDirection: "row"
-  },
-  leftOverlay: {
-    position: "absolute",
-    right: 0,
-    bottom: windowHeight * 0.4,
-    top: windowHeight * 0.2,
-    backgroundColor: "rgba(0,0,0,0.5)",
-    padding: windowWidth * 0.1,
-    flexDirection: "row"
-  },
-  rightOverlay: {
-    position: "absolute",
-    left: 0,
-    bottom: windowHeight * 0.4,
-    top: windowHeight * 0.2,
-    backgroundColor: "rgba(0,0,0,0.5)",
-    padding: windowWidth * 0.1,
-    flexDirection: "row"
-  }
-});
+export const Container = styled.View`
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const StyledView = styled.View`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const TopContainer = styled.View`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 20%;
+  background-color: red;
+`;
+
+const StyledText = styled.Text`
+  color: #fff;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20%;
+`;
+
+const TopLimits = styled.Text`
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 22%;
+  margin-bottom: 30%;
+`;
+
+const BottomLimits = styled.Text`
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 30%;
+`;
 
 export default class QRScanner extends Component {
   state = {
@@ -168,7 +147,7 @@ export default class QRScanner extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <Container>
         {this.state.hasCameraPermission === null ? (
           <Text>Requesting for camera permission</Text>
         ) : this.state.hasCameraPermission === false ? (
@@ -176,27 +155,25 @@ export default class QRScanner extends Component {
             Camera permission is not granted
           </Text>
         ) : (
-          <View>
+          <StyledView>
             <BarCodeScanner
               onBarCodeRead={this.handleBarCodeRead}
               style={{
+                position: "absolute",
                 height: windowHeight,
                 width: windowWidth
               }}
             />
-
-            <View style={styles.topOverlay} />
-            <View style={styles.leftOverlay} />
-            <View style={styles.rightOverlay} />
-            <View style={styles.bottomOverlay} />
-            <Text style={styles.DataText}> Scan QR Code</Text>
-          </View>
+            <StyledText> Scan QR Code</StyledText>
+            <TopLimits>┌                                                      ┐</TopLimits>
+            <BottomLimits>└                                                      ┘</BottomLimits>
+          </StyledView>
         )}
 
         {this.maybeRenderData()}
-
+        <StyledText onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}> Cancel </StyledText>
         <StatusBar hidden />
-      </View>
+      </Container>
     );
   }
 }

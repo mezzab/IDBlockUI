@@ -6,7 +6,8 @@ export const grey = "#CCC";
 export const Pages = Object.freeze({
   HomeScreen: "HomeScreen",
   QRScanner: "QRScanner",
-  MailInput: "MailInput"
+  MailInput: "MailInput",
+  MailCheck: "MailCheck"
 });
 
 export const Keys = Object.freeze({

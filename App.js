@@ -8,7 +8,8 @@ import store from "./store";
 import styled from "styled-components";
 import { StackNavigator } from "react-navigation";
 import TextButton from "./src/components/Button";
-import MailInput from "./src/components/Mail";
+import MailInput from "./src/components/Mail/MailInput";
+import MailCheck from "./src/components/Mail/MailCheck";
 import { Pages, darkBackground, lightBlue } from "./src/utils/constants";
 
 export const Container = styled.View`
@@ -59,6 +60,9 @@ const App = StackNavigator(
     },
     MailInput: {
       screen: MailInput
+    },
+    MailCheck: {
+      screen: MailCheck
     }
   },
   {

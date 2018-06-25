@@ -2,9 +2,24 @@ import React from "react";
 import PropTypes from "prop-types";
 import { AsyncStorage } from "react-native";
 import { Text, View, StyleSheet } from "react-native";
-import { Pages, Keys } from "../../../utils/constants";
+import { Pages, Keys, darkBackground } from "../../../utils/constants";
 import TextButton from "../../Button";
+import styled from "styled-components";
 import { TextInput } from "react-native-gesture-handler";
+
+export const Container = styled.View`
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${darkBackground};
+`;
+
+export const MailInputText = styled.TextInput`
+  margin-top: 20%;
+  height: 40;
+  width: 75%;
+  color: white;
+`;
 
 export class MailInput extends React.Component {
   state = {
@@ -32,10 +47,9 @@ export class MailInput extends React.Component {
     );
 
     return (
-      <View>
-        <TextInput
+      <Container>
+        <MailInputText
           ref="mail"
-          style={{ height: 40 }}
           placeholder="tumail@mail.com"
           onChangeText={this.validarMail}
           value={this.state.email}
@@ -52,7 +66,7 @@ export class MailInput extends React.Component {
           value="Go back to home"
           onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
         />
-      </View>
+      </Container>
     );
   }
 }

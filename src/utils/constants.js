@@ -2,6 +2,20 @@ export const blue = "#00B4E1";
 export const lightBlue = "#ABCED7";
 export const darkBackground = "#222";
 export const grey = "#CCC";
+export const warning = "#FF915C";
+export const error = "#D90000";
+export const success = "#85DB41";
+
+export const Colors = {
+  blue: "#00B4E1",
+  lightBlue: "#ABCED7",
+  darkBackground: "#222",
+  grey: "#CCC",
+  warning: "#FF915C",
+  error: "#D90000",
+  success: "#85DB41",
+  caution: "#FFD300"
+};
 
 export const Pages = Object.freeze({
   HomeScreen: "HomeScreen",
@@ -15,4 +29,9 @@ export const Keys = Object.freeze({
   Mail: "Mail",
   Telephone: "Telephone",
   Name: "Name"
+});
+
+export const IconsType = Object.freeze({
+  warning: "warning",
+  check: "check"
 });

@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { View } from "react-native";
 import headerLogoImage from "./logo.png";
 import headerLogoText from "./logo-texto.png";
-import { darkBackground } from "../../utils/constants";
+import { Colors } from "../../utils/constants";
 
 const StyledHeaderLogo = styled.Image`
   display: flex;
   justify-content: center;
-  background-color: ${darkBackground};
+  background-color: ${Colors.darkBackground};
   flex-direction: column;
   align-items: center;
   align-content: center;
@@ -18,7 +18,7 @@ const StyledHeaderLogo = styled.Image`
 const StyledHeaderText = styled.Image`
   display: flex;
   justify-content: center;
-  background-color: ${darkBackground};
+  background-color: ${Colors.darkBackground};
   flex-direction: column;
   align-items: center;
   align-content: center;
@@ -29,7 +29,7 @@ export const Container = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${darkBackground};
+  background-color: ${Colors.darkBackground};
   width: 100%;
 `;
 

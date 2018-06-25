@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { Text } from "react-native";
-import { lightBlue, darkBackground, blue } from "../../utils/constants";
 import { Font } from "expo";
 
 const StyledButton = styled.TouchableHighlight`
@@ -27,7 +26,8 @@ export class Button extends React.Component {
     color: PropTypes.string,
     margin: PropTypes.string,
     flex: PropTypes.number,
-    onPress: PropTypes.func.isRequired
+    onPress: PropTypes.func.isRequired,
+    disable: PropTypes.bool.isRequired
   };
 
   static defaultProps = {
@@ -35,6 +35,8 @@ export class Button extends React.Component {
     margin: "10px 0",
     flex: undefined
   };
+
+  //TODO: use the disable prop to disable the button.
 
   render() {
     return (
@@ -54,7 +56,12 @@ export class Button extends React.Component {
 export class TextButton extends React.Component {
   static propTypes = {
     value: PropTypes.string.isRequired,
-    onPress: PropTypes.func.isRequired
+    onPress: PropTypes.func.isRequired,
+    disable: PropTypes.bool
+  };
+
+  static defaultProps = {
+    disable: false
   };
 
   render() {

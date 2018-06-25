@@ -2,10 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { AsyncStorage } from "react-native";
 import { Text, View, StyleSheet, TextInput } from "react-native";
-import { Pages, Keys } from "../../../utils/constants";
+import { Pages, Keys, Colors, IconsType } from "../../../utils/constants";
 import TextButton from "../../Button";
 import styled from "styled-components";
-import { InputText, Container } from "../../shared";
+import { InputText, Container, InputField } from "../../shared";
+
+export const getColorByIconType = type =>
+  type === IconsType.warning ? Colors.caution : Colors.success;
 
 export class MailInput extends React.Component {
   state = {
@@ -22,16 +25,10 @@ export class MailInput extends React.Component {
   };
 
   handleContinue = () => {
-    if (!this.state.isValid) return this.showErrorMessage();
-
     //here we'll call the API to send a mail to the user
 
     AsyncStorage.setItem(Keys.Mail, this.state.email);
     return this.props.navigation.navigate(Pages.MailCheck);
-  };
-
-  showErrorMessage = () => {
-    //here we'll show a notification
   };
 
   render() {
@@ -39,16 +36,23 @@ export class MailInput extends React.Component {
       this.setState({ entityJSON })
     );
 
+    const type = !this.state.email
+      ? ""
+      : this.state.isValid
+        ? IconsType.check
+        : IconsType.warning;
+
     return (
       <Container>
-        <InputText
-          ref="mail"
-          placeholder="Ingresa tu mail"
-          onChangeText={this.validarMail}
+        <InputField
+          name="Insert your mail:"
           value={this.state.email}
+          onChange={this.validarMail}
+          placeholder="yourMail@xxxx.com"
+          type={type}
         />
-
         <TextButton
+          disable={this.state.isValid}
           margin="10px 0  10px 0"
           value="Continue"
           onPress={this.handleContinue}

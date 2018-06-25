@@ -16,7 +16,7 @@ export class MailCheck extends React.Component {
       <Container>
         <InputText
           ref="celphone"
-          placeholder="Ingresa tu celular"
+          placeholder="Ingresa el codigo de verificacion"
           onChangeText={this.validarMail}
           value={this.state.email}
         />

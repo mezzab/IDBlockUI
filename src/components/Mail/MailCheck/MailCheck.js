@@ -2,23 +2,37 @@ import React from "react";
 import PropTypes from "prop-types";
 import { AsyncStorage } from "react-native";
 import { Text, View, StyleSheet } from "react-native";
-import { Pages, Keys } from "../../../utils/constants";
+import { Pages, Keys, IconsType } from "../../../utils/constants";
 import TextButton from "../../Button";
-import { Container, InputText } from "../../shared";
+import { Container, InputText, InputField } from "../../shared";
 
 export class MailCheck extends React.Component {
   state = {
-    celphone: ""
+    code: "",
+    isValid: true
+  };
+
+  onCodeChange = value => {
+    if (value !== "HAT-314")
+      return this.setState({ code: value, isValid: false });
+    else return this.setState({ code: value, isValid: true });
   };
 
   render() {
+    const type = !this.state.code
+      ? ""
+      : this.state.isValid
+        ? IconsType.check
+        : IconsType.warning;
+
     return (
       <Container>
-        <InputText
-          ref="celphone"
-          placeholder="Ingresa el codigo de verificacion"
-          onChangeText={this.validarMail}
-          value={this.state.email}
+        <InputField
+          name="Insert the verification code:"
+          value={this.state.code}
+          onChange={this.onCodeChange}
+          placeholder="XXX-XXX"
+          type={type}
         />
         <TextButton
           margin="10px 0  10px 0"

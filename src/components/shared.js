@@ -87,7 +87,7 @@ export class InputField extends React.Component {
               marginLeft: "5%" /*,*/
               /*color: getColorByIconType(type)*/
             }}
-            placeholder="yourName@xxx.com"
+            placeholder={this.props.placeholder}
             onChangeText={this.props.onChange}
             value={this.props.value}
           />

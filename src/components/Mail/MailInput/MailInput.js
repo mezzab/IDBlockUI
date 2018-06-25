@@ -14,14 +14,14 @@ export class MailInput extends React.Component {
   state = {
     email: "",
     entityJSON: "",
-    isValid: false
+    isValid: true
   };
 
   validarMail = text => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (reg.test(text) === false)
       return this.setState({ email: text, isValid: false });
-    return this.setState({ email: text, isValid: true });
+    else return this.setState({ email: text, isValid: true });
   };
 
   handleContinue = () => {
@@ -51,6 +51,7 @@ export class MailInput extends React.Component {
           placeholder="yourMail@xxxx.com"
           type={type}
         />
+
         <TextButton
           disable={this.state.isValid}
           margin="10px 0  10px 0"

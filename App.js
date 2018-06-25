@@ -11,13 +11,7 @@ import TextButton from "./src/components/Button";
 import MailInput from "./src/components/Mail/MailInput";
 import MailCheck from "./src/components/Mail/MailCheck";
 import { Pages, darkBackground, lightBlue } from "./src/utils/constants";
-
-export const Container = styled.View`
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  background-color: ${darkBackground};
-`;
+import { Container } from "./src/components/shared";
 
 class HomeScreen extends Component {
   state = {
@@ -41,8 +35,8 @@ class HomeScreen extends Component {
               flex={0.5}
               margin="10px 10px 0px 10px"
               value="ESCANEAR CODIGO"
-              // onPress={() => this.props.navigation.navigate(Pages.QRScanner)}
-              onPress={() => this.props.navigation.navigate(Pages.MailInput)} //this is how we can avoid do all the cicle in development
+              onPress={() => this.props.navigation.navigate(Pages.QRScanner)}
+              // onPress={() => this.props.navigation.navigate(Pages.MailInput)} //this is how we can avoid do all the cicle in development
             />
           ) : null}
         </Container>

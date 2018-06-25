@@ -1,31 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { AsyncStorage } from "react-native";
-import { Text, View, StyleSheet } from "react-native";
-import { Pages, Keys, darkBackground } from "../../../utils/constants";
+import { Text, View, StyleSheet, TextInput } from "react-native";
+import { Pages, Keys } from "../../../utils/constants";
 import TextButton from "../../Button";
 import styled from "styled-components";
-import { TextInput } from "react-native-gesture-handler";
-
-export const Container = styled.View`
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  background-color: ${darkBackground};
-`;
-
-export const MailInputText = styled.TextInput`
-  margin-top: 20%;
-  height: 40;
-  width: 75%;
-  color: white;
-`;
+import { InputText, Container } from "../../shared";
 
 export class MailInput extends React.Component {
   state = {
     email: "",
     entityJSON: "",
-    isValid: true
+    isValid: false
   };
 
   validarMail = text => {
@@ -36,9 +22,16 @@ export class MailInput extends React.Component {
   };
 
   handleContinue = () => {
-    //here we'll call the API
+    if (!this.state.isValid) return this.showErrorMessage();
+
+    //here we'll call the API to send a mail to the user
+
     AsyncStorage.setItem(Keys.Mail, this.state.email);
     return this.props.navigation.navigate(Pages.MailCheck);
+  };
+
+  showErrorMessage = () => {
+    //here we'll show a notification
   };
 
   render() {
@@ -48,9 +41,9 @@ export class MailInput extends React.Component {
 
     return (
       <Container>
-        <MailInputText
+        <InputText
           ref="mail"
-          placeholder="tumail@mail.com"
+          placeholder="Ingresa tu mail"
           onChangeText={this.validarMail}
           value={this.state.email}
         />

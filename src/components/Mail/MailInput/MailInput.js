@@ -14,7 +14,7 @@ export class MailInput extends React.Component {
   state = {
     email: "",
     entityJSON: "",
-    isValid: true
+    isValid: false
   };
 
   validarMail = text => {
@@ -50,10 +50,10 @@ export class MailInput extends React.Component {
           onChange={this.validarMail}
           placeholder="yourMail@xxxx.com"
           type={type}
-        />
+        />  
 
         <TextButton
-          disable={this.state.isValid}
+          disable={!this.state.isValid}
           margin="10px 0  10px 0"
           value="Continue"
           onPress={this.handleContinue}
@@ -62,6 +62,7 @@ export class MailInput extends React.Component {
         <TextButton
           margin="10px 0  10px 0"
           value="Go back to home"
+          disable={false}
           onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
         />
       </Container>

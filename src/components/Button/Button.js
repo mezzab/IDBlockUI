@@ -39,6 +39,7 @@ export class Button extends React.Component {
   //TODO: use the disable prop to disable the button.
 
   render() {
+    if(!this.props.disable) {
     return (
       <StyledButton
         color={this.props.color}
@@ -46,11 +47,24 @@ export class Button extends React.Component {
         underlayColor={this.props.color}
         margin={this.props.margin}
         onPress={this.props.onPress}
+        
       >
         {this.props.children}
       </StyledButton>
     );
-  }
+  } else {
+    return (
+      <StyledButton
+        color={"grey"}
+        flex={this.props.flex}
+        underlayColor={this.props.color}
+        margin={this.props.margin}      
+      >
+        {this.props.children}
+      </StyledButton>
+    );
+  }  
+}
 }
 
 export class TextButton extends React.Component {
@@ -82,3 +96,5 @@ export class TextButton extends React.Component {
     );
   }
 }
+
+

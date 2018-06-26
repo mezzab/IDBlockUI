@@ -15,7 +15,10 @@ export class PhoneCheck extends React.Component {
   onCodeChange = value => {
     if (value !== "123123")
       return this.setState({ code: value, isValid: false });
-    else return this.setState({ code: value, isValid: true });
+    else {
+      this.setState({ code: value, isValid: true });
+      return this.props.navigation.navigate(Pages.HomeScreen);
+    }
   };
 
   render() {

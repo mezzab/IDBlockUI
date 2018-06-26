@@ -10,24 +10,24 @@ import { InputText, Container, InputField } from "../../shared";
 export const getColorByIconType = type =>
   type === IconsType.warning ? Colors.caution : Colors.success;
 
-export class MailInput extends React.Component {
+export class PhoneInput extends React.Component {
   state = {
-    email: "",
+    phone: "",
     isValid: false
   };
 
-  validarMail = text => {
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (reg.test(text) === false)
-      return this.setState({ email: text, isValid: false });
-    else return this.setState({ email: text, isValid: true });
+  onChange = phone => {
+    if (false)
+      //Add validation
+      return this.setState({ phone: phone, isValid: false });
+    else return this.setState({ phone: phone, isValid: true });
   };
 
   handleContinue = () => {
-    //here we'll call the API to send a mail to the user
+    //here we'll call the API to send a sms to the user
 
-    AsyncStorage.setItem(Keys.Mail, this.state.email);
-    return this.props.navigation.navigate(Pages.MailCheck);
+    AsyncStorage.setItem(Keys.Phone, this.state.phone);
+    return this.props.navigation.navigate(Pages.PhoneCheck);
   };
 
   render() {
@@ -35,7 +35,7 @@ export class MailInput extends React.Component {
       this.setState({ entityJSON })
     );
 
-    const type = !this.state.email
+    const type = !this.state.phone
       ? ""
       : this.state.isValid
         ? IconsType.check
@@ -44,11 +44,13 @@ export class MailInput extends React.Component {
     return (
       <Container>
         <InputField
-          name="Insert your mail:"
-          value={this.state.email}
-          onChange={this.validarMail}
-          placeholder="yourMail@xxxx.com"
+          name="Insert your phone:"
+          value={this.state.phone}
+          onChange={this.onChange}
+          placeholder="11-44445555"
           type={type}
+          textContentType="telephoneNumber"
+          keyboardType="numeric"
         />
 
         <TextButton

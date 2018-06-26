@@ -21,13 +21,18 @@ export const Pages = Object.freeze({
   HomeScreen: "HomeScreen",
   QRScanner: "QRScanner",
   MailInput: "MailInput",
-  MailCheck: "MailCheck"
+  MailCheck: "MailCheck",
+  PhoneInput: "PhoneInput",
+  PhoneCheck: "PhoneCheck",
+  FrontalDNIScanner: "FrontalDNIScanner",
+  BackDNIScanner: "BackDNIScanner",
+  SelfiePhoto: "SelfiePhoto"
 });
 
 export const Keys = Object.freeze({
   EntityJSON: "EntityJSON",
   Mail: "Mail",
-  Telephone: "Telephone",
+  Phone: "Phone",
   Name: "Name"
 });
 

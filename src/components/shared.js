@@ -52,13 +52,17 @@ export class InputField extends React.Component {
     value: PropTypes.string.isRequired,
     name: PropTypes.string,
     placeholder: PropTypes.string,
-    type: PropTypes.string
+    type: PropTypes.string,
+    keyboardType: PropTypes.string,
+    textContentType: PropTypes.string
   };
 
   static defaultProps = {
     name: "",
     placeholder: "",
-    type: ""
+    type: "",
+    keyboardType: "default",
+    textContentType: "none"
   };
 
   render() {
@@ -90,9 +94,12 @@ export class InputField extends React.Component {
               marginLeft: "5%" /*,*/
               /*color: getColorByIconType(type)*/
             }}
+            autoFocus
             placeholder={this.props.placeholder}
             onChangeText={this.props.onChange}
             value={this.props.value}
+            keyboardType={this.props.keyboardType}
+            textContentType={this.props.textContentType}
           />
           <InputIcon type={this.props.type} />
         </InputBox>

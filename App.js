@@ -10,6 +10,8 @@ import { StackNavigator } from "react-navigation";
 import TextButton from "./src/components/Button";
 import MailInput from "./src/components/Mail/MailInput";
 import MailCheck from "./src/components/Mail/MailCheck";
+import PhoneInput from "./src/components/Phone/PhoneInput";
+import PhoneCheck from "./src/components/Phone/PhoneCheck";
 import { Pages } from "./src/utils/constants";
 import { Container } from "./src/components/shared";
 
@@ -47,17 +49,23 @@ class HomeScreen extends Component {
 
 const App = StackNavigator(
   {
-    HomeScreen: {
+    [Pages.HomeScreen]: {
       screen: HomeScreen
     },
-    QRScanner: {
+    [Pages.QRScanner]: {
       screen: QRScanner
     },
-    MailInput: {
+    [Pages.MailInput]: {
       screen: MailInput
     },
-    MailCheck: {
+    [Pages.MailCheck]: {
       screen: MailCheck
+    },
+    [Pages.PhoneInput]: {
+      screen: PhoneInput
+    },
+    [Pages.PhoneCheck]: {
+      screen: PhoneCheck
     }
   },
   {

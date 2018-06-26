@@ -9,7 +9,7 @@ import { Container, InputText, InputField } from "../../shared";
 export class MailCheck extends React.Component {
   state = {
     code: "",
-    isValid: true
+    isValid: false
   };
 
   onCodeChange = value => {
@@ -37,6 +37,7 @@ export class MailCheck extends React.Component {
         <TextButton
           margin="10px 0  10px 0"
           value="Continue"
+          disable={this.state.isValid}
           onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
         />
 

@@ -8,6 +8,7 @@ import { FontAwesome } from "@expo/vector-icons";
 ///////////////////////////////// Shared Styled ReactNative Component ////////////////////////////////////////////
 
 export const InputText = styled.TextInput`
+  text-align: center;
   height: 42px;
   color: white;
 `;
@@ -83,6 +84,8 @@ export class InputField extends React.Component {
             autoCorrect={false}
             ref="mail"
             style={{
+              fontFamily: "msyi",
+              fontSize: 18,
               width: "85%",
               marginLeft: "5%" /*,*/
               /*color: getColorByIconType(type)*/

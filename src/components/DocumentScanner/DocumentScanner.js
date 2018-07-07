@@ -19,6 +19,14 @@ export class DocumentScanner extends React.Component {
     this.setState({ hasCameraPermission: status === 'granted' });
   }
 
+  takePicture = () => {
+    console.log('TSD1')
+    if (this.camera) {
+      console.log('TSD2')
+        this.camera.takePictureAsync()
+            .then(data => console.log('TSD3'))
+    }
+}
 
     render() {
       const { hasCameraPermission } = this.state;
@@ -30,6 +38,7 @@ export class DocumentScanner extends React.Component {
         return (
           <View style={{ flex: 1 }}>
             <Camera style={{ flex: 1 }} type={this.state.type}>
+            
               <View
                 style={{
                   flex: 1,
@@ -53,9 +62,16 @@ export class DocumentScanner extends React.Component {
                     style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
                     {' '}Flip{' '}
                   </Text>
-                </TouchableOpacity>
-                
+                  
+                </TouchableOpacity>  
               </View>
+
+                  <TextButton
+                    margin="10px 0  10px 0"
+                    value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    onPress={() => this.takePicture()}
+                    />
+              
             </Camera>
           </View>
         );

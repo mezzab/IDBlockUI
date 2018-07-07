@@ -17,7 +17,7 @@ export class PhoneCheck extends React.Component {
       return this.setState({ code: value, isValid: false });
     else {
       this.setState({ code: value, isValid: true });
-      return this.props.navigation.navigate(Pages.HomeScreen);
+      return this.props.navigation.navigate(Pages.DocumentScanner);
     }
   };
 
@@ -42,7 +42,7 @@ export class PhoneCheck extends React.Component {
           margin="10px 0  10px 0"
           value="Continue"
           disable={!this.state.isValid}
-          onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
+          onPress={() => this.props.navigation.navigate(Pages.DocumentScanner)}
         />
 
         <TextButton

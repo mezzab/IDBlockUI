@@ -26,7 +26,8 @@ export const Pages = Object.freeze({
   PhoneCheck: "PhoneCheck",
   FrontalDNIScanner: "FrontalDNIScanner",
   BackDNIScanner: "BackDNIScanner",
-  SelfiePhoto: "SelfiePhoto"
+  SelfiePhoto: "SelfiePhoto",
+  DocumentScanner: "DocumentScanner"
 });
 
 export const Keys = Object.freeze({

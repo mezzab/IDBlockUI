@@ -39,7 +39,7 @@ class HomeScreen extends Component {
               margin="10px 10px 0px 10px"
               value="ESCANEAR CODIGO"
               // onPress={() => this.props.navigation.navigate(Pages.QRScanner)}
-              onPress={() => this.props.navigation.navigate(Pages.MailInput)} //this is how we can avoid do all the cicle in development
+              onPress={() => this.props.navigation.navigate(Pages.DocumentScanner)} //this is how we can avoid do all the cicle in development
             />
           ) : null}
         </Container>

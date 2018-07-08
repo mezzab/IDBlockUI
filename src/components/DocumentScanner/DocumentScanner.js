@@ -37,7 +37,7 @@ export class DocumentScanner extends React.Component {
       } else {
         return (
           <View style={{ flex: 1 }}>
-            <Camera style={{ flex: 1 }} type={this.state.type}>
+            <Camera ref={ref => this.camera = ref} style={{ flex: 1 }} type={this.state.type}>
             
               <View
                 style={{

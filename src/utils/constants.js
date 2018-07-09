@@ -34,7 +34,8 @@ export const Keys = Object.freeze({
   EntityJSON: "EntityJSON",
   Mail: "Mail",
   Phone: "Phone",
-  Name: "Name"
+  Name: "Name",
+  DocumentoFrontal: null
 });
 
 export const IconsType = Object.freeze({

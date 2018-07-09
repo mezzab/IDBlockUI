@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, InputText, InputField } from "../shared";
 import TextButton from "../Button";
+import { AsyncStorage } from "react-native";
 import { Pages, Keys, IconsType } from "../../utils/constants";
 import { Text, View, TouchableOpacity } from "react-native";
 import { Camera, Permissions } from "expo";
@@ -17,25 +18,20 @@ const TopLimits = styled.Text`
   color: #fff;
   font-size: 18px;
   font-weight: bold;
-  text-align: center;
-  align-self: center;
-  margin-top: 5%;
-  margin-left: -12%;
 `;
 
 const BottomLimits = styled.Text`
   color: #fff;
   font-size: 18px;
   font-weight: bold;
-  text-align: center;
-  margin-top: 20%;
-  margin-left: -12%;
+  margin-top:26%;
 `;
 
 export class DocumentScanner extends React.Component {
   state = {
     hasCameraPermission: null,
-    type: Camera.Constants.Type.back
+    type: Camera.Constants.Type.back,
+    path: null
   };
 
   async componentWillMount() {
@@ -46,8 +42,14 @@ export class DocumentScanner extends React.Component {
   takePicture = () => {
     if (this.camera) {
       Vibration.vibrate(30);
-      this.camera.takePictureAsync().then(data => console.log("TSD3")); //TODO guardar foto
+      this.camera.takePictureAsync().then(data => {console.log("Foto tomada");
+      this.setState({ path: data });
+      //AsyncStorage.setItem(Keys.DocumentoFrontal, this.state.path);
+      //console.log(this.state.path);
+      //console.log(AsyncStorage.getItem(Keys.DocumentoFrontal));
+      //console.log(data);
     }
+      )}
   };
 
   render() {
@@ -79,8 +81,8 @@ export class DocumentScanner extends React.Component {
                 {" "}
                 Picture your frontal DNI
               </Text>
-              <TopLimits>┌ ┐</TopLimits>
-              <BottomLimits>└ ┘</BottomLimits>
+              <TopLimits>┌                                                                                       ┐</TopLimits>
+              <BottomLimits>└                                                                                       ┘</BottomLimits>
             </StyledView>
             <View
               style={{
@@ -115,7 +117,8 @@ export class DocumentScanner extends React.Component {
                 width: 70,
                 height: 70,
                 backgroundColor: "#fff",
-                borderRadius: 100
+                borderRadius: 100,
+                marginBottom: 20
               }}
               onPress={() => this.takePicture()}
             />

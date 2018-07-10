@@ -17,9 +17,8 @@ export class PhoneInput extends React.Component {
   };
 
   onChange = phone => {
-    if (false)
-      //Add validation
-      return this.setState({ phone: phone, isValid: false });
+    //TODO: Add validation function.
+    if (false) return this.setState({ phone: phone, isValid: false });
     else return this.setState({ phone: phone, isValid: true });
   };
 

@@ -120,7 +120,7 @@ export default class QRScanner extends Component {
   };
 
   checkValidJson = scannedData => {
-    //Todo: check if the scannedData is a valid json
+    //Todo: Check if the scannedData is a valid json
     return true;
   };
 

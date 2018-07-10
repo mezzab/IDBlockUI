@@ -36,8 +36,6 @@ export class Button extends React.Component {
     flex: undefined
   };
 
-  //TODO: use the disable prop to disable the button.
-
   render() {
     if (!this.props.disable) {
       return (

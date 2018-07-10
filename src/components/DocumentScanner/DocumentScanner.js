@@ -24,7 +24,7 @@ const BottomLimits = styled.Text`
   color: #fff;
   font-size: 18px;
   font-weight: bold;
-  margin-top:26%;
+  margin-top: 26%;
 `;
 
 export class DocumentScanner extends React.Component {
@@ -42,18 +42,30 @@ export class DocumentScanner extends React.Component {
   takePicture = () => {
     if (this.camera) {
       Vibration.vibrate(30);
-      this.camera.takePictureAsync().then(data => {console.log("Foto tomada");
-      this.setState({ path: data });
-      //AsyncStorage.setItem(Keys.DocumentoFrontal, this.state.path);
-      //console.log(this.state.path);
-      //console.log(AsyncStorage.getItem(Keys.DocumentoFrontal));
-      //console.log(data);
+      this.camera.takePictureAsync().then(data => {
+        console.log("Foto tomada");
+        this.setState({ path: data });
+        //AsyncStorage.setItem(Keys.DocumentoFrontal, this.state.path);
+        //console.log(this.state.path);
+        //console.log(AsyncStorage.getItem(Keys.DocumentoFrontal));
+        //console.log(data);
+      });
     }
-      )}
+  };
+
+  componentDidMount = () => {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
+  };
+
+  componentWillUnmount = () => {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
+    /* Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.ALL);
+    We should reset to ALL, but now is crashing because of the styles in the home page.
+    TODO: Make app visible in all Orientations, this means to ajust the styles to porcentajes instead of pixels.
+    */
   };
 
   render() {
-    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
     const { hasCameraPermission } = this.state;
     if (hasCameraPermission === null) {
       return <View />;
@@ -81,8 +93,8 @@ export class DocumentScanner extends React.Component {
                 {" "}
                 Picture your frontal DNI
               </Text>
-              <TopLimits>┌                                                                                       ┐</TopLimits>
-              <BottomLimits>└                                                                                       ┘</BottomLimits>
+              <TopLimits>┌ ┐</TopLimits>
+              <BottomLimits>└ ┘</BottomLimits>
             </StyledView>
             <View
               style={{

@@ -93,8 +93,8 @@ export class DocumentScanner extends React.Component {
                 {" "}
                 Picture your frontal DNI
               </Text>
-              <TopLimits>┌ ┐</TopLimits>
-              <BottomLimits>└ ┘</BottomLimits>
+              <TopLimits>┌                                                                                       ┐</TopLimits>
+              <BottomLimits>└                                                                                       ┘</BottomLimits>
             </StyledView>
             <View
               style={{

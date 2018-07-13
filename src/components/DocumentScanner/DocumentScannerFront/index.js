@@ -1,3 +1,3 @@
-import { DocumentScanner } from "./DocumentScanner";
+import { DocumentScannerFront } from "./DocumentScannerFront";
 
-export default DocumentScanner;
+export default DocumentScannerFront;

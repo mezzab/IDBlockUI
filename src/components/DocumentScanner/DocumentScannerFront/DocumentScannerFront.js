@@ -27,7 +27,7 @@ const BottomLimits = styled.Text`
   margin-top: 26%;
 `;
 
-export class DocumentScanner extends React.Component {
+export class DocumentScannerFront extends React.Component {
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,

@@ -27,7 +27,7 @@ const BottomLimits = styled.Text`
   margin-top: 26%;
 `;
 
-export class DocumentScannerFront extends React.Component {
+export class DocumentScannerBack extends React.Component {
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,
@@ -49,7 +49,6 @@ export class DocumentScannerFront extends React.Component {
         //console.log(this.state.path);
         //console.log(AsyncStorage.getItem(Keys.DocumentoFrontal));
         //console.log(data);
-        this.props.navigation.navigate(Pages.DocumentScannerBack);
       });
     }
   };
@@ -92,7 +91,7 @@ export class DocumentScannerFront extends React.Component {
                 }}
               >
                 {" "}
-                Picture your frontal DNI
+                Picture your back DNI
               </Text>
               <TopLimits>┌                                                                                       ┐</TopLimits>
               <BottomLimits>└                                                                                       ┘</BottomLimits>

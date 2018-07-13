@@ -13,6 +13,7 @@ import MailCheck from "./src/components/Mail/MailCheck";
 import PhoneInput from "./src/components/Phone/PhoneInput";
 import PhoneCheck from "./src/components/Phone/PhoneCheck";
 import DocumentScannerFront from "./src/components/DocumentScanner/DocumentScannerFront";
+import DocumentScannerBack from "./src/components/DocumentScanner/DocumentScannerBack";
 import { Pages } from "./src/utils/constants";
 import { Container } from "./src/components/shared";
 
@@ -72,6 +73,9 @@ const App = StackNavigator(
     },
     [Pages.DocumentScannerFront]: {
       screen: DocumentScannerFront
+    },
+    [Pages.DocumentScannerBack]: {
+      screen: DocumentScannerBack
     }
   },
   {

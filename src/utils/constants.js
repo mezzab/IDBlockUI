@@ -27,7 +27,8 @@ export const Pages = Object.freeze({
   FrontalDNIScanner: "FrontalDNIScanner",
   BackDNIScanner: "BackDNIScanner",
   SelfiePhoto: "SelfiePhoto",
-  DocumentScannerFront: "DocumentScannerFront"
+  DocumentScannerFront: "DocumentScannerFront",
+  DocumentScannerBack: "DocumentScannerBack"
 });
 
 export const Keys = Object.freeze({

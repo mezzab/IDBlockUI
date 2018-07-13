@@ -42,7 +42,7 @@ export class PhoneCheck extends React.Component {
           margin="10px 0  10px 0"
           value="Continue"
           disable={!this.state.isValid}
-          onPress={() => this.props.navigation.navigate(Pages.DocumentScanner)}
+          onPress={() => this.props.navigation.navigate(Pages.DocumentScannerFront)}
         />
 
         <TextButton

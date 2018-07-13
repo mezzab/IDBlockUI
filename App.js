@@ -12,7 +12,7 @@ import MailInput from "./src/components/Mail/MailInput";
 import MailCheck from "./src/components/Mail/MailCheck";
 import PhoneInput from "./src/components/Phone/PhoneInput";
 import PhoneCheck from "./src/components/Phone/PhoneCheck";
-import DocumentScanner from "./src/components/DocumentScanner/DocumentScannerFront";
+import DocumentScannerFront from "./src/components/DocumentScanner/DocumentScannerFront";
 import { Pages } from "./src/utils/constants";
 import { Container } from "./src/components/shared";
 
@@ -40,7 +40,7 @@ class HomeScreen extends Component {
               value="ESCANEAR CODIGO"
               // onPress={() => this.props.navigation.navigate(Pages.QRScanner)}
               onPress={() =>
-                this.props.navigation.navigate(Pages.DocumentScanner)
+                this.props.navigation.navigate(Pages.DocumentScannerFront)
               } //this is how we can avoid do all the cicle in development
             />
           ) : null}
@@ -70,8 +70,8 @@ const App = StackNavigator(
     [Pages.PhoneCheck]: {
       screen: PhoneCheck
     },
-    [Pages.DocumentScanner]: {
-      screen: DocumentScanner
+    [Pages.DocumentScannerFront]: {
+      screen: DocumentScannerFront
     }
   },
   {

@@ -38,6 +38,7 @@
     "react-native": "0.52.0",
     "react-native-indicator": "^0.7.0",
     "react-native-indicators": "^0.13.0",
+    "react-native-easy-toast": "^1.1.0",
     "react-navigation": "^1.5.11",
     "react-redux": "^5.0.6",
     "react-scripts": "^1.1.0",

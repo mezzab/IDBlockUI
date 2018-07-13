@@ -1,8 +1,8 @@
 import React from "react";
-import { Container, InputText, InputField } from "../shared";
-import TextButton from "../Button";
+import { Container, InputText, InputField } from "../../shared";
+import TextButton from "../../Button";
 import { AsyncStorage } from "react-native";
-import { Pages, Keys, IconsType } from "../../utils/constants";
+import { Pages, Keys, IconsType } from "../../../utils/constants";
 import { Text, View, TouchableOpacity } from "react-native";
 import { Camera, Permissions } from "expo";
 import { Vibration } from "react-native";

@@ -7,6 +7,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { Camera, Permissions } from "expo";
 import { Vibration } from "react-native";
 import styled from "styled-components";
+import { FaceDetector } from 'expo';
 
 export const StyledView = styled.View`
   display: flex;
@@ -43,7 +44,7 @@ export class FacePicture extends React.Component {
     if (this.camera) {
       Vibration.vibrate(30);
       this.camera.takePictureAsync().then(data => {
-        console.log("Foto trasera tomada");
+        console.log("Selfie tomada");
         this.setState({ path: data });
         //AsyncStorage.setItem(Keys.DocumentoFrontal, this.state.path);
         //console.log(this.state.path);
@@ -55,11 +56,10 @@ export class FacePicture extends React.Component {
   };
 
   componentDidMount = () => {
-    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE);
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
   };
 
   componentWillUnmount = () => {
-    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
     /* Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.ALL);
     We should reset to ALL, but now is crashing because of the styles in the home page.
     TODO: Make app visible in all Orientations, this means to ajust the styles to porcentajes instead of pixels.
@@ -135,6 +135,24 @@ export class FacePicture extends React.Component {
               }}
               onPress={() => this.takePicture()}
             />
+                          <TouchableOpacity
+                style={{
+                  flex: 0.1,
+                  alignSelf: 'flex-end',
+                  alignItems: 'center',
+                }}
+                onPress={() => {
+                  this.setState({
+                    type: this.state.type === Camera.Constants.Type.back
+                      ? Camera.Constants.Type.front
+                      : Camera.Constants.Type.back,
+                  });
+                }}>
+                <Text
+                  style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
+                  {' '}Flip{' '}
+                </Text>
+              </TouchableOpacity>
           </Camera>
         </View>
       );

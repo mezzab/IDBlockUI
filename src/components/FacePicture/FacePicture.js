@@ -31,7 +31,7 @@ const BottomLimits = styled.Text`
 export class FacePicture extends React.Component {
   state = {
     hasCameraPermission: null,
-    type: Camera.Constants.Type.back,
+    type: Camera.Constants.Type.front,
     path: null
   };
 

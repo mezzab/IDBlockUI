@@ -91,7 +91,6 @@ export class DocumentScannerFront extends React.Component {
                   color: "#fff"
                 }}
               >
-                {" "}
                 Picture your frontal DNI
               </Text>
               <TopLimits>┌                                                                                       ┐</TopLimits>
@@ -104,21 +103,6 @@ export class DocumentScannerFront extends React.Component {
                 flexDirection: "row"
               }}
             >
-              <TouchableOpacity
-                style={{
-                  flex: 0.1,
-                  alignSelf: "flex-end",
-                  alignItems: "center"
-                }}
-                onPress={() => {
-                  this.setState({
-                    type:
-                      this.state.type === Camera.Constants.Type.back
-                        ? Camera.Constants.Type.front
-                        : Camera.Constants.Type.back
-                  });
-                }}
-              />
             </View>
             <TouchableOpacity
               style={{

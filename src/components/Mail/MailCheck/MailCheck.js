@@ -17,7 +17,6 @@ export class MailCheck extends React.Component {
       return this.setState({ code: value, isValid: false });
     else {
       this.setState({ code: value, isValid: true });
-      return this.props.navigation.navigate(Pages.PhoneInput);
     }
   };
 

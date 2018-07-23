@@ -1,2 +1,5 @@
 /src/components/QRScanner/index.js
 /src/components/DocumentScanner/DocumentScanner.js
+/src/components/DocumentScanner/DocumentScannerBack/DocumentScannerBack.js
+/src/components/DocumentScanner/DocumentScannerFront/DocumentScannerFront.js
+/src/components/FacePicture/FacePicture.js

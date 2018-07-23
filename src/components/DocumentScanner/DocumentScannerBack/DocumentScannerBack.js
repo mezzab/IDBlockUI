@@ -91,35 +91,11 @@ export class DocumentScannerBack extends React.Component {
                   color: "#fff"
                 }}
               >
-                {" "}
                 Picture your back DNI
               </Text>
               <TopLimits>┌                                                                                       ┐</TopLimits>
               <BottomLimits>└                                                                                       ┘</BottomLimits>
             </StyledView>
-            <View
-              style={{
-                flex: 1,
-                backgroundColor: "transparent",
-                flexDirection: "row"
-              }}
-            >
-              <TouchableOpacity
-                style={{
-                  flex: 0.1,
-                  alignSelf: "flex-end",
-                  alignItems: "center"
-                }}
-                onPress={() => {
-                  this.setState({
-                    type:
-                      this.state.type === Camera.Constants.Type.back
-                        ? Camera.Constants.Type.front
-                        : Camera.Constants.Type.back
-                  });
-                }}
-              />
-            </View>
             <TouchableOpacity
               style={{
                 borderWidth: 1,

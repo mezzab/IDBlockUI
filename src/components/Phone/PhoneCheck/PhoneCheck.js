@@ -5,6 +5,7 @@ import { Text, View, StyleSheet } from "react-native";
 import { Pages, Keys, IconsType } from "../../../utils/constants";
 import TextButton from "../../Button";
 import { Container, InputText, InputField } from "../../shared";
+import { Keyboard } from "react-native";
 
 export class PhoneCheck extends React.Component {
   state = {
@@ -17,8 +18,12 @@ export class PhoneCheck extends React.Component {
       return this.setState({ code: value, isValid: false });
     else {
       this.setState({ code: value, isValid: true });
-      return this.props.navigation.navigate(Pages.DocumentScanner);
     }
+  };
+
+  goToScannerFront = () => {
+    Keyboard.dismiss();
+    return this.props.navigation.navigate(Pages.DocumentScannerFront);
   };
 
   render() {
@@ -42,7 +47,7 @@ export class PhoneCheck extends React.Component {
           margin="10px 0  10px 0"
           value="Continue"
           disable={!this.state.isValid}
-          onPress={() => this.props.navigation.navigate(Pages.DocumentScannerFront)}
+          onPress={this.goToScannerFront}
         />
 
         <TextButton

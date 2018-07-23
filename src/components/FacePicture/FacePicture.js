@@ -1,8 +1,8 @@
 import React from "react";
-import { Container, InputText, InputField } from "../../shared";
-import TextButton from "../../Button";
+import { Container, InputText, InputField } from "../shared";
+import TextButton from "../Button";
 import { AsyncStorage } from "react-native";
-import { Pages, Keys, IconsType } from "../../../utils/constants";
+import { Pages, Keys, IconsType } from "../../utils/constants";
 import { Text, View, TouchableOpacity } from "react-native";
 import { Camera, Permissions } from "expo";
 import { Vibration } from "react-native";
@@ -27,7 +27,7 @@ const BottomLimits = styled.Text`
   margin-top: 26%;
 `;
 
-export class DocumentScannerBack extends React.Component {
+export class FacePicture extends React.Component {
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,
@@ -92,7 +92,7 @@ export class DocumentScannerBack extends React.Component {
                 }}
               >
                 {" "}
-                Picture your back DNI
+                Take a Selfie
               </Text>
               <TopLimits>┌                                                                                       ┐</TopLimits>
               <BottomLimits>└                                                                                       ┘</BottomLimits>
@@ -113,7 +113,7 @@ export class DocumentScannerBack extends React.Component {
                 onPress={() => {
                   this.setState({
                     type:
-                      this.state.type === Camera.Constants.Type.back
+                      this.state.type === Camera.Constants.Type.front
                         ? Camera.Constants.Type.front
                         : Camera.Constants.Type.back
                   });

@@ -43,7 +43,7 @@ export class DocumentScannerFront extends React.Component {
     if (this.camera) {
       Vibration.vibrate(30);
       this.camera.takePictureAsync().then(data => {
-        console.log("Foto tomada");
+        console.log("Foto delantera tomada");
         this.setState({ path: data });
         //AsyncStorage.setItem(Keys.DocumentoFrontal, this.state.path);
         //console.log(this.state.path);

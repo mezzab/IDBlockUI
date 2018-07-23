@@ -14,6 +14,7 @@ import PhoneInput from "./src/components/Phone/PhoneInput";
 import PhoneCheck from "./src/components/Phone/PhoneCheck";
 import DocumentScannerFront from "./src/components/DocumentScanner/DocumentScannerFront";
 import DocumentScannerBack from "./src/components/DocumentScanner/DocumentScannerBack";
+import FacePicture from "./src/components/FacePicture";
 import { Pages } from "./src/utils/constants";
 import { Container } from "./src/components/shared";
 
@@ -76,6 +77,9 @@ const App = StackNavigator(
     },
     [Pages.DocumentScannerBack]: {
       screen: DocumentScannerBack
+    },
+    [Pages.FacePicture]: {
+      screen: FacePicture
     }
   },
   {

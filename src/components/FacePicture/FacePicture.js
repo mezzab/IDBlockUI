@@ -78,7 +78,7 @@ export class FacePicture extends React.Component {
           <Camera
             ref={ref => (this.camera = ref)}
             style={{ flex: 1 }}
-            type={this.state.type}
+            type={Camera.Constants.Type.front}
           >
             <StyledView>
               <Text
@@ -91,35 +91,9 @@ export class FacePicture extends React.Component {
                   color: "#fff"
                 }}
               >
-                {" "}
                 Take a Selfie
               </Text>
-              <TopLimits>┌                                                                                       ┐</TopLimits>
-              <BottomLimits>└                                                                                       ┘</BottomLimits>
             </StyledView>
-            <View
-              style={{
-                flex: 1,
-                backgroundColor: "transparent",
-                flexDirection: "row"
-              }}
-            >
-              <TouchableOpacity
-                style={{
-                  flex: 0.1,
-                  alignSelf: "flex-end",
-                  alignItems: "center"
-                }}
-                onPress={() => {
-                  this.setState({
-                    type:
-                      this.state.type === Camera.Constants.Type.front
-                        ? Camera.Constants.Type.front
-                        : Camera.Constants.Type.back
-                  });
-                }}
-              />
-            </View>
             <TouchableOpacity
               style={{
                 borderWidth: 1,
@@ -135,24 +109,6 @@ export class FacePicture extends React.Component {
               }}
               onPress={() => this.takePicture()}
             />
-                          <TouchableOpacity
-                style={{
-                  flex: 0.1,
-                  alignSelf: 'flex-end',
-                  alignItems: 'center',
-                }}
-                onPress={() => {
-                  this.setState({
-                    type: this.state.type === Camera.Constants.Type.back
-                      ? Camera.Constants.Type.front
-                      : Camera.Constants.Type.back,
-                  });
-                }}>
-                <Text
-                  style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
-                  {' '}Flip{' '}
-                </Text>
-              </TouchableOpacity>
           </Camera>
         </View>
       );

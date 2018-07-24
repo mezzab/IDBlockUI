@@ -49,6 +49,7 @@ export class DocumentScannerBack extends React.Component {
         //console.log(this.state.path);
         //console.log(AsyncStorage.getItem(Keys.DocumentoFrontal));
         //console.log(data);
+        this.setState({ type: Camera.Constants.Type.front})
         this.props.navigation.navigate(Pages.FacePicture);
       });
     }

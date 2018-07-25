@@ -7,13 +7,17 @@ import TextButton from "../../Button";
 import { Container, InputText, InputField } from "../../shared";
 
 export class MailCheck extends React.Component {
-  state = {
-    code: "",
-    isValid: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      validCode: this.props.navigation.state.params.code,
+      code: "",
+      isValid: false
+    };
+  }
 
   onCodeChange = value => {
-    if (value !== "123123")
+    if (value != this.state.validCode)
       return this.setState({ code: value, isValid: false });
     else {
       this.setState({ code: value, isValid: true });
@@ -37,13 +41,13 @@ export class MailCheck extends React.Component {
           type={type}
           keyboardType="numeric"
         />
+
         <TextButton
           margin="10px 0  10px 0"
           value="Continue"
           disable={!this.state.isValid}
           onPress={() => this.props.navigation.navigate(Pages.PhoneInput)}
         />
-
         <TextButton
           margin="10px 0  10px 0"
           value="Go back to home"

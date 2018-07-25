@@ -6,6 +6,16 @@ import { Pages, Keys, Colors, IconsType } from "../../../utils/constants";
 import TextButton from "../../Button";
 import styled from "styled-components";
 import { InputText, Container, InputField } from "../../shared";
+import Expo from "expo";
+
+const { manifest } = Expo.Constants;
+export const api =
+  typeof manifest.packagerOpts === `object` && manifest.packagerOpts.dev
+    ? manifest.debuggerHost
+        .split(`:`)
+        .shift()
+        .concat(`:8000`)
+    : `api.nuestroherokubackend.com`;
 
 export const getColorByIconType = type =>
   type === IconsType.warning ? Colors.caution : Colors.success;
@@ -13,7 +23,8 @@ export const getColorByIconType = type =>
 export class MailInput extends React.Component {
   state = {
     email: "",
-    isValid: false
+    isValid: false,
+    code: null
   };
 
   validarMail = text => {
@@ -23,11 +34,29 @@ export class MailInput extends React.Component {
     else return this.setState({ email: text, isValid: true });
   };
 
-  handleContinue = () => {
-    //here we'll call the API to send a mail to the user
+  handleContinue = async () => {
+    try {
+      let response = await fetch(`http://${api}/sendEmail`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `mail=${this.state.email}`
+      });
+      let responseJson = await response.json();
+      this.setState({ code: responseJson.code });
+      console.log(responseJson.code);
+    } catch (error) {
+      //todo: we have to show an error notification here.
+      console.error(error);
+    }
 
     AsyncStorage.setItem(Keys.Mail, this.state.email);
-    return this.props.navigation.navigate(Pages.MailCheck);
+    return this.props.navigation.navigate(Pages.MailCheck, {
+      code: this.state.code
+    });
+    // this is how we send data through pages
   };
 
   render() {

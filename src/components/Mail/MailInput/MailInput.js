@@ -46,7 +46,7 @@ export class MailInput extends React.Component {
       });
       let responseJson = await response.json();
       this.setState({ code: responseJson.code });
-      console.log(responseJson.code);
+      console.log("Codigo de verificacion: *** ", responseJson.code, " ***");
     } catch (error) {
       //todo: we have to show an error notification here.
       console.error(error);

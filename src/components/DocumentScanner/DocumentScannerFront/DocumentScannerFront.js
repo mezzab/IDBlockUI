@@ -31,7 +31,7 @@ export class DocumentScannerFront extends React.Component {
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,
-    path: null
+    picture: null
   };
 
   async componentWillMount() {
@@ -39,19 +39,16 @@ export class DocumentScannerFront extends React.Component {
     this.setState({ hasCameraPermission: status === "granted" });
   }
 
-  takePicture = () => {
+  takePicture = async () => {
     if (this.camera) {
       Vibration.vibrate(30);
-      this.camera.takePictureAsync().then(data => {
-        console.log("Foto delantera tomada");
-        this.setState({ path: data });
-        //AsyncStorage.setItem(Keys.DocumentoFrontal, this.state.path);
-        //console.log(this.state.path);
-        //console.log(AsyncStorage.getItem(Keys.DocumentoFrontal));
-        //console.log(data);
-        this.props.navigation.navigate(Pages.DocumentScannerBack);
-      });
+      let photo = await this.camera.takePictureAsync();
+      this.setState({ picture: photo });
+      await AsyncStorage.setItem(Keys.DocumentoFrontal, JSON.stringify(this.state.picture));
+      console.log("Foto delantera tomada");
+      console.log(await AsyncStorage.getItem(Keys.DocumentoFrontal));
     }
+    this.props.navigation.navigate(Pages.DocumentScannerBack);
   };
 
   componentDidMount = () => {

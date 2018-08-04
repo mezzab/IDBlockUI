@@ -37,7 +37,9 @@ export const Keys = Object.freeze({
   Mail: "Mail",
   Phone: "Phone",
   Name: "Name",
-  DocumentoFrontal: "Picture"
+  DocumentoFrontal: "PictureFront",
+  DocumentoAnterior: "PictureBack",
+  Selfie: "PictureSelfie"
 });
 
 export const IconsType = Object.freeze({

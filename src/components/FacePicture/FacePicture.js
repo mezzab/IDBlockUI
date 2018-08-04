@@ -40,19 +40,16 @@ export class FacePicture extends React.Component {
     this.setState({ hasCameraPermission: status === "granted" });
   }
 
-  takePicture = () => {
+  takePicture = async () => {
     if (this.camera) {
       Vibration.vibrate(30);
-      this.camera.takePictureAsync().then(data => {
-        console.log("Selfie tomada");
-        this.setState({ path: data });
-        //AsyncStorage.setItem(Keys.DocumentoFrontal, this.state.path);
-        //console.log(this.state.path);
-        //console.log(AsyncStorage.getItem(Keys.DocumentoFrontal));
-        //console.log(data);
-        this.props.navigation.navigate(Pages.FacePicture);
-      });
+      let photo = await this.camera.takePictureAsync();
+      this.setState({ picture: photo });
+      await AsyncStorage.setItem(Keys.Selfie, JSON.stringify(this.state.picture));
+      console.log("Selfie tomada");
+      console.log(await AsyncStorage.getItem(Keys.Selfie));
     }
+    this.props.navigation.navigate(Pages.FacePicture);
   };
 
   componentDidMount = () => {

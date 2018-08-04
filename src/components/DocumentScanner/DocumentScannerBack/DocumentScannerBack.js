@@ -44,13 +44,12 @@ export class DocumentScannerBack extends React.Component {
       Vibration.vibrate(30);
       this.camera.takePictureAsync().then(data => {
         console.log("Foto trasera tomada");
-        //this.setState({ path: data });
+        this.setState({ path: data });
         //AsyncStorage.setItem(Keys.DocumentoFrontal, this.state.path);
         //console.log(this.state.path);
         //console.log(AsyncStorage.getItem(Keys.DocumentoFrontal));
         //console.log(data);
-        console.log(Platform);
-        if ((Platform.OS == 'android' )){
+         if ((Platform.OS == 'android' )){
         this.setState({ type: Camera.Constants.Type.front})}
         this.props.navigation.navigate(Pages.FacePicture);
       });

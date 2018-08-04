@@ -17,11 +17,16 @@ export class MailCheck extends React.Component {
   }
 
   onCodeChange = value => {
-    if (value != this.state.validCode)
+    if (value != '123123')
       return this.setState({ code: value, isValid: false });
     else {
       this.setState({ code: value, isValid: true });
     }
+    /* if (value != this.state.validCode)
+      return this.setState({ code: value, isValid: false });
+    else {
+      this.setState({ code: value, isValid: true });
+    } */
   };
 
   render() {

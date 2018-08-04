@@ -16,16 +16,20 @@ export class PhoneInput extends React.Component {
     isValid: false
   };
 
+
+
   onChange = phone => {
     //TODO: Add validation function.
     if (false) return this.setState({ phone: phone, isValid: false });
     else return this.setState({ phone: phone, isValid: true });
   };
 
-  handleContinue = () => {
+   handleContinue = async()=> {
     //here we'll call the API to send a sms to the user
 
-    AsyncStorage.setItem(Keys.Phone, this.state.phone);
+    await AsyncStorage.setItem(Keys.Phone, this.state.phone);
+    console.log("El telefono");
+    console.log(await AsyncStorage.getItem(Keys.Phone));
     return this.props.navigation.navigate(Pages.PhoneCheck);
   };
 

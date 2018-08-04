@@ -3,7 +3,7 @@ import { Container, InputText, InputField } from "../../shared";
 import TextButton from "../../Button";
 import { AsyncStorage } from "react-native";
 import { Pages, Keys, IconsType } from "../../../utils/constants";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity,Platform } from "react-native";
 import { Camera, Permissions } from "expo";
 import { Vibration } from "react-native";
 import styled from "styled-components";
@@ -44,12 +44,14 @@ export class DocumentScannerBack extends React.Component {
       Vibration.vibrate(30);
       this.camera.takePictureAsync().then(data => {
         console.log("Foto trasera tomada");
-        this.setState({ path: data });
+        //this.setState({ path: data });
         //AsyncStorage.setItem(Keys.DocumentoFrontal, this.state.path);
         //console.log(this.state.path);
         //console.log(AsyncStorage.getItem(Keys.DocumentoFrontal));
         //console.log(data);
-        this.setState({ type: Camera.Constants.Type.front})
+        console.log(Platform);
+        if ((Platform.OS == 'android' )){
+        this.setState({ type: Camera.Constants.Type.front})}
         this.props.navigation.navigate(Pages.FacePicture);
       });
     }

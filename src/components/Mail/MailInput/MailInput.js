@@ -35,7 +35,7 @@ export class MailInput extends React.Component {
   };
 
   handleContinue = async () => {
-    try {
+/*     try {
       let response = await fetch(`http://${api}/sendEmail`, {
         method: "POST",
         headers: {
@@ -50,9 +50,11 @@ export class MailInput extends React.Component {
     } catch (error) {
       //todo: we have to show an error notification here.
       console.error(error);
-    }
+    } */
 
-    AsyncStorage.setItem(Keys.Mail, this.state.email);
+    await AsyncStorage.setItem(Keys.Mail, this.state.email);
+    console.log("El mail");
+    console.log(await AsyncStorage.getItem(Keys.Mail));
     return this.props.navigation.navigate(Pages.MailCheck, {
       code: this.state.code
     });

@@ -49,7 +49,7 @@ export class FacePicture extends React.Component {
       console.log("Selfie tomada");
       console.log(await AsyncStorage.getItem(Keys.Selfie));
     }
-    this.props.navigation.navigate(Pages.FacePicture);
+    this.props.navigation.navigate(Pages.Legajo);
   };
 
   componentDidMount = () => {

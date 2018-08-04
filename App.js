@@ -15,6 +15,7 @@ import PhoneCheck from "./src/components/Phone/PhoneCheck";
 import DocumentScannerFront from "./src/components/DocumentScanner/DocumentScannerFront";
 import DocumentScannerBack from "./src/components/DocumentScanner/DocumentScannerBack";
 import FacePicture from "./src/components/FacePicture";
+import Legajo from "./src/components/Legajo";
 import { Pages } from "./src/utils/constants";
 import { Container } from "./src/components/shared";
 
@@ -80,6 +81,9 @@ const App = StackNavigator(
     },
     [Pages.FacePicture]: {
       screen: FacePicture
+    },
+    [Pages.Legajo]: {
+      screen: Legajo
     }
   },
   {

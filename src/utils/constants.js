@@ -29,7 +29,8 @@ export const Pages = Object.freeze({
   SelfiePhoto: "SelfiePhoto",
   DocumentScannerFront: "DocumentScannerFront",
   DocumentScannerBack: "DocumentScannerBack",
-  FacePicture: "FacePicture"
+  FacePicture: "FacePicture",
+  Legajo: "Legajo"
 });
 
 export const Keys = Object.freeze({

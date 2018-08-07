@@ -5,78 +5,40 @@ import { Text, View, StyleSheet, TextInput } from "react-native";
 import { Pages, Keys, Colors, IconsType } from "../../utils/constants";
 import TextButton from "../Button";
 import styled from "styled-components";
-import { InputText, Container, InputField } from "../shared";
+import { InputText, Container, InputField,InformativeField } from "../shared";
 import Expo from "expo";
 
-const { manifest } = Expo.Constants;
-export const api =
-  typeof manifest.packagerOpts === `object` && manifest.packagerOpts.dev
-    ? manifest.debuggerHost
-        .split(`:`)
-        .shift()
-        .concat(`:8000`)
-    : `api.nuestroherokubackend.com`;
-
-export const getColorByIconType = type =>
-  type === IconsType.warning ? Colors.caution : Colors.success;
 
 export class Legajo extends React.Component {
   state = {
-    email: "",
+    email: '',
+    phone: '',
     isValid: false,
     code: null
   };
 
-  validarMail = text => {
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (reg.test(text) === false)
-      return this.setState({ email: text, isValid: false });
-    else return this.setState({ email: text, isValid: true });
-  };
+  getMail = async () => {
+      this.setState({email: await AsyncStorage.getItem(Keys.Mail) });
+    }
 
-  handleContinue = async () => {
-/*     try {
-      let response = await fetch(`http://${api}/sendEmail`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: `mail=${this.state.email}`
-      });
-      let responseJson = await response.json();
-      this.setState({ code: responseJson.code });
-      console.log("Codigo de verificacion: *** ", responseJson.code, " ***");
-    } catch (error) {
-      //todo: we have to show an error notification here.
-      console.error(error);
-    } */
+   getPhone = async () => {
+      this.setState({phone: await AsyncStorage.getItem(Keys.Phone) });
+    }
 
-    await AsyncStorage.setItem(Keys.Mail, this.state.email);
-    console.log("El mail");
-    console.log(await AsyncStorage.getItem(Keys.Mail));
-    return this.props.navigation.navigate(Pages.MailCheck, {
-      code: this.state.code
-    }); 
-    // this is how we send data through pages
-  };
-
-  getMail = async() => {
-    return await AsyncStorage.getItem(Keys.Mail);
-  }
 
   render() {
-    AsyncStorage.getItem(Keys.EntityJSON).then(entityJSON =>
-      this.setState({ entityJSON }),
-      this.state.mail = this.getMail(), 
-       );
- 
-    
+    this.getMail();
+    this.getPhone();
     return (
       <Container>
-        <Text
+        <InformativeField
           name="Mail:"
           value={this.state.email}
+        />
+
+        <InformativeField
+          name="Phone:"
+          value={this.state.phone}
         />
 
         <TextButton

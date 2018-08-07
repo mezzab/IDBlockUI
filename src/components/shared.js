@@ -108,6 +108,62 @@ export class InputField extends React.Component {
   }
 }
 
+
+
+export class InformativeField extends React.Component {
+  static propTypes = {
+    value: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    placeholder: PropTypes.string,
+    type: PropTypes.string,
+    keyboardType: PropTypes.string,
+    textContentType: PropTypes.string
+  };
+
+  static defaultProps = {
+    name: "",
+    placeholder: "",
+    type: "",
+    keyboardType: "default",
+    textContentType: "none"
+  };
+
+  render() {
+    return (
+      <InputContainer>
+        <TextBox>
+          <Text
+            style={{
+              fontFamily: "msyi",
+              fontSize: 22,
+              padding: 10,
+              color: "white",
+              paddingTop: "20%",
+              fontStyle: "italic"
+            }}
+          >
+            {this.props.name}
+          </Text>
+          </TextBox>
+        <InputBox>      
+        <Text
+            style={{
+              fontFamily: "msyi",
+              fontSize: 22,
+              padding: 10,
+              paddingTop: "5%",
+              color: "white",
+              fontStyle: "italic"
+            }}
+          >
+           {this.props.value}
+          </Text>
+        </InputBox>
+      </InputContainer>
+    );
+  }
+}
+
 export class InputIcon extends React.Component {
   render() {
     switch (this.props.type) {

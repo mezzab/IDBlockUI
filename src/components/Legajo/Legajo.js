@@ -39,7 +39,18 @@ export class Legajo extends React.Component {
     this.getSelfie();
     return (
       <Container>
-        <InformativeField
+
+          <Text style={{fontWeight: 'bold', marginTop: '20%', fontSize: 25, color: 'white' }}>
+          Confirm your data:
+          </Text>
+
+          <Text style={{fontWeight: 'bold', fontSize: 25, color: 'white' }}>
+          {this.state.email}
+          {this.state.phone}
+          </Text>
+
+          
+{/*         <InformativeField
           name="Mail:"
           value={this.state.email}
         />
@@ -47,22 +58,18 @@ export class Legajo extends React.Component {
         <InformativeField
           name="Phone:"
           value={this.state.phone}
-        />
+        /> */}
 
          <Image
-          style={{width: 66, height: 58}}
+          style={{width: 200, height: 200}}
           source={{uri: this.state.selfieUri.uri}}
         />
 
-
-
-
-        
-{/*         <TextButton
-          disable={!this.state.isValid}
+        <TextButton
           margin="10px 0  10px 0"
-          value="Continue"
-          onPress={this.handleContinue}
+          value="Confirm"
+          disable={false}
+          onPress={() => this.props.navigation.navigate(Pages.Legajo)}
         />
 
         <TextButton
@@ -70,7 +77,8 @@ export class Legajo extends React.Component {
           value="Go back to home"
           disable={false}
           onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
-        /> */}
+        />
+
       </Container>
     );
   }

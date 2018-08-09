@@ -24,7 +24,6 @@ export const Pages = Object.freeze({
   MailCheck: "MailCheck",
   PhoneInput: "PhoneInput",
   PhoneCheck: "PhoneCheck",
-  FrontalDNIScanner: "FrontalDNIScanner",
   BackDNIScanner: "BackDNIScanner",
   SelfiePhoto: "SelfiePhoto",
   DocumentScannerFront: "DocumentScannerFront",

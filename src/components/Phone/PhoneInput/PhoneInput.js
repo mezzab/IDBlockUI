@@ -7,6 +7,15 @@ import TextButton from "../../Button";
 import styled from "styled-components";
 import { InputText, Container, InputField } from "../../shared";
 
+const { manifest } = Expo.Constants;
+export const api =
+  typeof manifest.packagerOpts === `object` && manifest.packagerOpts.dev
+    ? manifest.debuggerHost
+        .split(`:`)
+        .shift()
+        .concat(`:8000`)
+    : `api.nuestroherokubackend.com`;
+
 export const getColorByIconType = type =>
   type === IconsType.warning ? Colors.caution : Colors.success;
 
@@ -25,8 +34,20 @@ export class PhoneInput extends React.Component {
   };
 
    handleContinue = async()=> {
-    //here we'll call the API to send a sms to the user
+    /*   try {
+      let response = await fetch(`http://${api}/sendSMS`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+      });
 
+    } catch (error) {
+      //todo: we have to show an error notification here.
+      console.error(error);
+    } 
+*/
     await AsyncStorage.setItem(Keys.Phone, this.state.phone);
     console.log("El telefono");
     console.log(await AsyncStorage.getItem(Keys.Phone));

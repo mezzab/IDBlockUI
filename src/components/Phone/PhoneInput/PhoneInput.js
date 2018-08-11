@@ -22,7 +22,8 @@ export const getColorByIconType = type =>
 export class PhoneInput extends React.Component {
   state = {
     phone: "",
-    isValid: false
+    isValid: false,
+    codePhone: ""
   };
 
 
@@ -34,24 +35,31 @@ export class PhoneInput extends React.Component {
   };
 
    handleContinue = async()=> {
-    /*   try {
+    console.log(this.state.phone);      
+       try {
       let response = await fetch(`http://${api}/sendSMS`, {
         method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/x-www-form-urlencoded"
         },
+        body: `phone=${this.state.phone}`
       });
+      let responseJson = await response.json();
+      this.setState({ codePhone: responseJson.code });
+      console.log("Codigo de verificacion Phone: *** ", responseJson.code, " ***");
 
     } catch (error) {
       //todo: we have to show an error notification here.
       console.error(error);
     } 
-*/
+
     await AsyncStorage.setItem(Keys.Phone, this.state.phone);
     console.log("El telefono");
     console.log(await AsyncStorage.getItem(Keys.Phone));
-    return this.props.navigation.navigate(Pages.PhoneCheck);
+    return this.props.navigation.navigate(Pages.PhoneCheck, {
+      codePhone: this.state.codePhone
+    });
   };
 
   render() {

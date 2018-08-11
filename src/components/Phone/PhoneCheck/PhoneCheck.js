@@ -8,13 +8,22 @@ import { Container, InputText, InputField } from "../../shared";
 import { Keyboard } from "react-native";
 
 export class PhoneCheck extends React.Component {
-  state = {
+  constructor(props) {
+  super(props);
+  this.state = {
     code: "",
-    isValid: false
+    isValid: false,
+    validCodePhone: this.props.navigation.state.params.codePhone
   };
+}
 
   onCodeChange = value => {
-    if (value !== "123123")
+    /*if (value !== "123123")
+      return this.setState({ code: value, isValid: false });
+    else {
+      this.setState({ code: value, isValid: true });
+    }*/
+    if (value != this.state.validCodePhone)
       return this.setState({ code: value, isValid: false });
     else {
       this.setState({ code: value, isValid: true });

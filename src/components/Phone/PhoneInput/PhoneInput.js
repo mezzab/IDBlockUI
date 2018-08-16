@@ -26,13 +26,17 @@ export class PhoneInput extends React.Component {
     codePhone: ""
   };
 
-
-
-  onChange = phone => {
-    //TODO: Add validation function.
-    if (false) return this.setState({ phone: phone, isValid: false });
-    else return this.setState({ phone: phone, isValid: true });
-  };
+  mobilevalidate = text => {
+    const reg = /^(\+\d{1,3}[- ]?)?\d{10}$/;
+    if (reg.test(text) === false) {
+      return this.setState({
+        isValid: false,
+        phone: text,
+      });
+    } else {
+      return this.setState({ phone: text, isValid: true });
+    }
+  }
 
    handleContinue = async()=> {
     console.log(this.state.phone);      
@@ -78,7 +82,7 @@ export class PhoneInput extends React.Component {
         <InputField
           name="Insert your phone:"
           value={this.state.phone}
-          onChange={this.onChange}
+          onChange={this.mobilevalidate}
           placeholder="11-44445555"
           type={type}
           textContentType="telephoneNumber"

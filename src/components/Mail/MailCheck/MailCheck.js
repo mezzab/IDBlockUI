@@ -10,23 +10,24 @@ export class MailCheck extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      validCode: this.props.navigation.state.params.code,
+      validCode: this.props.navigation.state.params.code || "123123",
       code: "",
       isValid: false
     };
   }
 
   onCodeChange = value => {
-    if (value != "123123")
+    // if (value != "123123")
+    //   return this.setState({ code: value, isValid: false });
+    // else {
+    //   this.setState({ code: value, isValid: true });
+    // }
+
+    if (value != this.state.validCode)
       return this.setState({ code: value, isValid: false });
     else {
       this.setState({ code: value, isValid: true });
     }
-    /* if (value != this.state.validCode)
-      return this.setState({ code: value, isValid: false });
-    else {
-      this.setState({ code: value, isValid: true });
-    } */
   };
 
   render() {

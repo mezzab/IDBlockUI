@@ -17,7 +17,7 @@ export class MailCheck extends React.Component {
   }
 
   onCodeChange = value => {
-    if (value != '123123')
+    if (value != "123123")
       return this.setState({ code: value, isValid: false });
     else {
       this.setState({ code: value, isValid: true });

@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Text, View, TextInput } from "react-native";
 import styled from "styled-components";
-import { Colors, IconsType } from "../utils/constants";
+import {Colors, IconsType, Pages} from "../utils/constants";
 import { FontAwesome } from "@expo/vector-icons";
+import TextButton from "./Button";
 
 ///////////////////////////////// Shared Styled ReactNative Component ////////////////////////////////////////////
 
@@ -72,10 +73,11 @@ export class InputField extends React.Component {
           <Text
             style={{
               fontFamily: "msyi",
-              fontSize: 22,
+              fontSize: 20,
               padding: 10,
               paddingTop: "20%",
               color: "white",
+              width: "100%",
               fontStyle: "italic"
             }}
           >
@@ -109,6 +111,15 @@ export class InputField extends React.Component {
   }
 }
 
+export const BackToHomeButton = ({ goToHome }) => {
+    return  (
+        <TextButton
+            margin="10px 0  10px 0"
+            value="Volver al Inicio"
+            onPress={goToHome}
+        />
+    )
+};
 
 
 export class InformativeField extends React.Component {
@@ -204,11 +215,11 @@ export class FinalField extends React.Component {
 
     render() {
         return (
-            <View style={{ display: 'flex', flexDirection: 'row' }}>
-                <Text style={{fontWeight: 'bold', fontStyle: 'italic', fontSize: 15, color: 'white' }}>
+            <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'flex-start', width: '100%', marginLeft: "10%", marginTop: '1%' }}>
+                <Text style={{fontWeight: 'bold', fontStyle: 'italic', fontSize: 20, color: 'white' }}>
                     {this.props.name}
                 </Text>
-                <Text style={{fontWeight: 'bold', fontSize: 15, color: 'white', marginLeft: 5 }}>
+                <Text style={{fontWeight: 'bold', fontSize: 18, color: '#f2f2f2', marginLeft: 5 }}>
                     {this.props.value}
                 </Text>
             </View>

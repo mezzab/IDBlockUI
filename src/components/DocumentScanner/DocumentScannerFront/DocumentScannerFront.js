@@ -88,7 +88,7 @@ export class DocumentScannerFront extends React.Component {
                   color: "#fff"
                 }}
               >
-                Picture your frontal DNI
+                Cara Frontal de tu DNI
               </Text>
               <TopLimits>┌                                                                                       ┐</TopLimits>
               <BottomLimits>└                                                                                       ┘</BottomLimits>

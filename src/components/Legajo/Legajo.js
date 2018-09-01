@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { AsyncStorage , Image} from "react-native";
-import { Text, View, StyleSheet, TextInput } from "react-native";
+import { Text, View, StyleSheet, TextInput, ScrollView } from "react-native";
 import { Pages, Keys, Colors, IconsType } from "../../utils/constants";
 import TextButton from "../Button";
 import styled from "styled-components";
@@ -40,45 +40,49 @@ export class Legajo extends React.Component {
     return (
       <Container>
 
-          <Text style={{fontWeight: 'bold', marginTop: '15%', fontSize: 25, color: 'white' }}>
-              Confirm your data:
+          <Text style={{fontWeight: 'bold', marginTop: '14%', fontSize: 25, color: 'white' }}>
+              Confirma tus datos:
           </Text>
+          <ScrollView style={{ width: '100%', marginTop: "5%", maxHeight: '70%'}}>
+              <FinalField name={'Mail:'} value={'marcos32m@gmail.com'} />
+              <FinalField name={'Telefono:'} value={'11-44554455'} />
+              <FinalField name={'DNI:'} value={'37859360'} />
+              <FinalField name={'Apellido:'} value={'Mezzabotta'} />
+              <FinalField name={'Nombre:'} value={'Marcos'} />
+              <FinalField name={'Sexo:'} value={'Masculino'} />
+              <FinalField name={'Fecha de Nacimiento:'} value={'05/01/1994'} />
+              <FinalField name={'Fecha tramite DNI:'} value={'06/05/2001'} />
+              <Text style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignContent: 'flex-start',
+                  width: '100%',
+                  marginLeft: "10%",
+                  marginTop: '1%',
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  fontSize: 20,
+                  color: 'white'
+              }}>
+                  Foto de rostro:
+              </Text>
 
-          <FinalField name={'Nombre:'} value={'Marcos'} />
-          <FinalField name={'Apellido:'} value={'Mezzabotta'} />
-          <FinalField name={'DNI:'} value={'37859360'} />
-          <FinalField name={'Direccion:'} value={'Sarmiento 381'} />
-          <FinalField name={'Codigo Postal:'} value={'2760'} />
+          </ScrollView>
+          <View style={{ height: '20%'}}>
+            <TextButton
+              margin="0"
+              value="Continuar"
+              disable={false}
+              onPress={() => this.props.navigation.navigate(Pages.Legajo)}
+            />
 
-          {/*         <InformativeField
-          name="Mail:"
-          value={this.state.email}
-        />
-
-        <InformativeField
-          name="Phone:"
-          value={this.state.phone}
-        />
-
-         <Image
-          style={{width: 200, height: 200}}
-          source={{uri: this.state.selfieUri.uri}}
-        />*/}
-
-        <TextButton
-          margin="10px 0  10px 0"
-          value="Confirm"
-          disable={false}
-          onPress={() => this.props.navigation.navigate(Pages.Legajo)}
-        />
-
-        <TextButton
-          margin="10px 0  10px 0"
-          value="Go back to home"
-          disable={false}
-          onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
-        />
-
+            <TextButton
+              margin="0"
+              value="Volver"
+              disable={false}
+              onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
+            />
+          </View>
       </Container>
     );
   }

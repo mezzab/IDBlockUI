@@ -92,7 +92,7 @@ export class FacePicture extends React.Component {
                 }}
 
               >
-                Take a Selfie
+                Foto de tu rostro
               </Text>
             </StyledView>
               <View

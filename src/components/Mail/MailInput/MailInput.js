@@ -5,7 +5,7 @@ import { Text, View, StyleSheet, TextInput } from "react-native";
 import { Pages, Keys, Colors, IconsType } from "../../../utils/constants";
 import TextButton from "../../Button";
 import styled from "styled-components";
-import { InputText, Container, InputField } from "../../shared";
+import { InputText, Container, InputField, BackToHomeButton } from "../../shared";
 import Expo from "expo";
 
 const { manifest } = Expo.Constants;
@@ -75,26 +75,21 @@ export class MailInput extends React.Component {
     return (
       <Container>
         <InputField
-          name="Insert your mail:"
+          name="Ingresá tu email:"
           value={this.state.email}
           onChange={this.validarMail}
-          placeholder="yourMail@xxxx.com"
+          placeholder="tuemail@ejemplo.com"
           type={type}
         />
 
         <TextButton
           disable={!this.state.isValid}
           margin="10px 0  10px 0"
-          value="Continue"
+          value="Continuar"
           onPress={this.handleContinue}
         />
 
-        <TextButton
-          margin="10px 0  10px 0"
-          value="Go back to home"
-          disable={false}
-          onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
-        />
+        <BackToHomeButton goToHome={() => this.props.navigation.navigate(Pages.HomeScreen)}/>
       </Container>
     );
   }

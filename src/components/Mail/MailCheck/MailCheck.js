@@ -4,7 +4,7 @@ import { AsyncStorage } from "react-native";
 import { Text, View, StyleSheet } from "react-native";
 import { Pages, Keys, IconsType } from "../../../utils/constants";
 import TextButton from "../../Button";
-import { Container, InputText, InputField } from "../../shared";
+import { Container, InputText, InputField, BackToHomeButton } from "../../shared";
 
 export class MailCheck extends React.Component {
   constructor(props) {
@@ -40,7 +40,7 @@ export class MailCheck extends React.Component {
     return (
       <Container>
         <InputField
-          name="Insert the verification code:"
+          name="Ingresá el codigo de verificación:"
           value={this.state.code}
           onChange={this.onCodeChange}
           placeholder="XXXXXX"
@@ -50,15 +50,13 @@ export class MailCheck extends React.Component {
 
         <TextButton
           margin="10px 0  10px 0"
-          value="Continue"
+          value="Continuar"
           disable={!this.state.isValid}
           onPress={() => this.props.navigation.navigate(Pages.PhoneInput)}
         />
-        <TextButton
-          margin="10px 0  10px 0"
-          value="Go back to home"
-          onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
-        />
+
+        <BackToHomeButton goToHome={() => this.props.navigation.navigate(Pages.HomeScreen)}/>
+
       </Container>
     );
   }

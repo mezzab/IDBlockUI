@@ -174,7 +174,7 @@ export default class QRScanner extends Component {
                 color: '#fff',
                 marginTop: '15%'
               }}
-            > Scan QR Code</Text>
+            > Scanea el codigo QR </Text>
             <TopLimits>┌                                                      ┐</TopLimits>
             <BottomLimits>└                                                      ┘</BottomLimits>
           </StyledView>
@@ -192,7 +192,7 @@ export default class QRScanner extends Component {
             marginTop: '20%'
           }}
           onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
-        > Cancel </Text>
+        > Cancelar </Text>
         <StatusBar hidden />
       </Container>
     );

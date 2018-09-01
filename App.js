@@ -16,6 +16,8 @@ import DocumentScannerFront from "./src/components/DocumentScanner/DocumentScann
 import DocumentScannerBack from "./src/components/DocumentScanner/DocumentScannerBack";
 import FacePicture from "./src/components/FacePicture";
 import Legajo from "./src/components/Legajo";
+import Loading from "./src/components/ScanningData/Loading";
+import Results from "./src/components/ScanningData/Results";
 import { Pages } from "./src/utils/constants";
 import { Container } from "./src/components/shared";
 
@@ -33,15 +35,15 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <Container>
+      <Provider  store={store}>
+        <Container style={{ paddingTop: 80 }} >
           <Logo />
           {this.state.fontLoaded ? (
             <TextButton
               flex={0.5}
               margin="10px 10px 0px 10px"
               value="ESCANEAR CODIGO"
-              onPress={() => this.props.navigation.navigate(Pages.Legajo)}
+              onPress={() => this.props.navigation.navigate(Pages.MailInput)}
             />
           ) : null}
         </Container>
@@ -81,6 +83,12 @@ const App = StackNavigator(
     },
     [Pages.Legajo]: {
       screen: Legajo
+    },
+    [Pages.Loading]: {
+      screen: Loading
+    },
+    [Pages.Results]: {
+        screen: Results
     }
   },
   {

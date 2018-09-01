@@ -5,7 +5,7 @@ import { Text, View, StyleSheet, TextInput } from "react-native";
 import { Pages, Keys, Colors, IconsType } from "../../../utils/constants";
 import TextButton from "../../Button";
 import styled from "styled-components";
-import { InputText, Container, InputField } from "../../shared";
+import {InputText, Container, InputField, BackToHomeButton} from "../../shared";
 
 const { manifest } = Expo.Constants;
 export const api =
@@ -80,7 +80,7 @@ export class PhoneInput extends React.Component {
     return (
       <Container>
         <InputField
-          name="Insert your phone:"
+          name="Ingresá tu telefono"
           value={this.state.phone}
           onChange={this.mobilevalidate}
           placeholder="11-44445555"
@@ -92,16 +92,12 @@ export class PhoneInput extends React.Component {
         <TextButton
           disable={!this.state.isValid}
           margin="10px 0  10px 0"
-          value="Continue"
+          value="Continuar"
           onPress={this.handleContinue}
         />
 
-        <TextButton
-          margin="10px 0  10px 0"
-          value="Go back to home"
-          disable={false}
-          onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
-        />
+        <BackToHomeButton goToHome={() => this.props.navigation.navigate(Pages.HomeScreen)}/>
+
       </Container>
     );
   }

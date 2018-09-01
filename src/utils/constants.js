@@ -30,7 +30,9 @@ export const Pages = Object.freeze({
   DocumentScannerFront: "DocumentScannerFront",
   DocumentScannerBack: "DocumentScannerBack",
   FacePicture: "FacePicture",
-  Legajo: "Legajo"
+  Legajo: "Legajo",
+  Loading: "Loading",
+  Results: "Results",
 });
 
 export const Keys = Object.freeze({

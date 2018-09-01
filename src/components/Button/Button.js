@@ -13,7 +13,7 @@ const StyledButton = styled.TouchableHighlight`
   justify-content: center;
   border-radius: 10px;
   max-height: 50px;
-  margin-top: 10%;
+  margin-top: 5%;
   ${({ flex }) =>
     flex &&
     css`
@@ -32,7 +32,7 @@ export class Button extends React.Component {
 
   static defaultProps = {
     color: "white",
-    margin: "10px 0",
+    margin: "0px 0",
     flex: undefined
   };
 

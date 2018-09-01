@@ -96,6 +96,7 @@ export class InputField extends React.Component {
             }}
             autoFocus
             placeholder={this.props.placeholder}
+            placeholderTextColor={Colors.placeholder}
             onChangeText={this.props.onChange}
             value={this.props.value}
             keyboardType={this.props.keyboardType}
@@ -187,4 +188,30 @@ export class InputIcon extends React.Component {
         return <View style={{ width: "15%" }} />;
     }
   }
+}
+
+
+export class FinalField extends React.Component {
+    static propTypes = {
+        name: PropTypes.string.isRequired,
+        value: PropTypes.string,
+    };
+
+    static defaultProps = {
+        name: "Nombre",
+        value: "Marcos",
+    };
+
+    render() {
+        return (
+            <View style={{ display: 'flex', flexDirection: 'row' }}>
+                <Text style={{fontWeight: 'bold', fontStyle: 'italic', fontSize: 15, color: 'white' }}>
+                    {this.props.name}
+                </Text>
+                <Text style={{fontWeight: 'bold', fontSize: 15, color: 'white', marginLeft: 5 }}>
+                    {this.props.value}
+                </Text>
+            </View>
+    );
+    }
 }

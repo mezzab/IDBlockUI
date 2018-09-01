@@ -5,7 +5,7 @@ import { Text, View, StyleSheet, TextInput } from "react-native";
 import { Pages, Keys, Colors, IconsType } from "../../utils/constants";
 import TextButton from "../Button";
 import styled from "styled-components";
-import { InputText, Container, InputField,InformativeField } from "../shared";
+import { InputText, Container, InputField,InformativeField, FinalField } from "../shared";
 import Expo from "expo";
 
 
@@ -34,23 +34,23 @@ export class Legajo extends React.Component {
 
 
   render() {
-    this.getMail();
-    this.getPhone();
-    this.getSelfie();
+    // this.getMail();
+    // this.getPhone();
+    // this.getSelfie();
     return (
       <Container>
 
-          <Text style={{fontWeight: 'bold', marginTop: '20%', fontSize: 25, color: 'white' }}>
-          Confirm your data:
+          <Text style={{fontWeight: 'bold', marginTop: '15%', fontSize: 25, color: 'white' }}>
+              Confirm your data:
           </Text>
 
-          <Text style={{fontWeight: 'bold', fontSize: 25, color: 'white' }}>
-          {this.state.email}
-          {this.state.phone}
-          </Text>
+          <FinalField name={'Nombre:'} value={'Marcos'} />
+          <FinalField name={'Apellido:'} value={'Mezzabotta'} />
+          <FinalField name={'DNI:'} value={'37859360'} />
+          <FinalField name={'Direccion:'} value={'Sarmiento 381'} />
+          <FinalField name={'Codigo Postal:'} value={'2760'} />
 
-          
-{/*         <InformativeField
+          {/*         <InformativeField
           name="Mail:"
           value={this.state.email}
         />
@@ -58,12 +58,12 @@ export class Legajo extends React.Component {
         <InformativeField
           name="Phone:"
           value={this.state.phone}
-        /> */}
+        />
 
          <Image
           style={{width: 200, height: 200}}
           source={{uri: this.state.selfieUri.uri}}
-        />
+        />*/}
 
         <TextButton
           margin="10px 0  10px 0"

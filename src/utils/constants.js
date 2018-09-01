@@ -14,7 +14,8 @@ export const Colors = {
   warning: "#FF915C",
   error: "#D90000",
   success: "#85DB41",
-  caution: "#FFD300"
+  caution: "#FFD300",
+  placeholder: "#f2f2f2",
 };
 
 export const Pages = Object.freeze({

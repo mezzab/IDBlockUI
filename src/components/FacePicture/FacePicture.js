@@ -83,29 +83,40 @@ export class FacePicture extends React.Component {
                   fontFamily: "msyi",
                   fontSize: 30,
                   alignSelf: "center",
+                  marginTop: 30,
                   padding: 10,
                   paddingTop: 7,
-                  color: "#fff"
+                  color: "#fff",
+                  textDecorationColor: 'black',
+                  textDecorationStyle: 'solid',
                 }}
+
               >
                 Take a Selfie
               </Text>
             </StyledView>
-            <TouchableOpacity
-              style={{
-                borderWidth: 1,
-                borderColor: "rgba(0,0,0,0.2)",
-                alignItems: "center",
-                alignSelf: "center",
-                justifyContent: "center",
-                width: 70,
-                height: 70,
-                backgroundColor: "#fff",
-                borderRadius: 100,
-                marginBottom: 20
-              }}
-              onPress={() => this.takePicture()}
-            />
+              <View
+                  style={{
+                      alignSelf: "center",
+                      justifyContent: "flex-end",
+                      width: '88%',
+                      height: '88%',
+                  }}>
+                <TouchableOpacity
+                  style={{
+                      borderWidth: 1,
+                      borderColor: "rgba(0,0,0,0.2)",
+                      alignSelf: "center",
+                      justifyContent: "flex-end",
+                      width: 70,
+                      height: 70,
+                      backgroundColor: "#fff",
+                      borderRadius: 100,
+                      marginBottom: 20
+                  }}
+                  onPress={() => this.takePicture()}
+                />
+              </View>
           </Camera>
         </View>
       );

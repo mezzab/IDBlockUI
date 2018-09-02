@@ -215,11 +215,11 @@ export class FinalField extends React.Component {
 
     render() {
         return (
-            <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'flex-start', width: '100%', marginLeft: "10%", marginTop: '1%' }}>
-                <Text style={{fontWeight: 'bold', fontStyle: 'italic', fontSize: 20, color: 'white' }}>
+            <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'flex-start', width: '100%', marginLeft: "7%", marginTop: '1%' }}>
+                <Text style={{ fontWeight: 'bold', fontStyle: 'italic', fontSize: 20, color: 'white' }}>
                     {this.props.name}
                 </Text>
-                <Text style={{fontWeight: 'bold', fontSize: 18, color: '#f2f2f2', marginLeft: 5 }}>
+                <Text style={{ fontSize: 20, color: '#f2f2f2', marginLeft: 5 }}>
                     {this.props.value}
                 </Text>
             </View>

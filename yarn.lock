@@ -8125,6 +8125,12 @@ react-native-gesture-handler@1.0.0-alpha.39:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
+react-native-indicator@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-indicator/-/react-native-indicator-0.7.0.tgz#b6ea952a1e362dccfa9143d676f12583f0785de0"
+  dependencies:
+    prop-types "^15.6.0"
+
 react-native-maps@0.19.0:
   version "0.19.0"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.19.0.tgz#ce94fad1cf360e335cb4338a68c95f791e869074"

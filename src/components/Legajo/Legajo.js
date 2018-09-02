@@ -40,7 +40,7 @@ export class Legajo extends React.Component {
     return (
       <Container>
 
-          <Text style={{fontWeight: 'bold', marginTop: '14%', fontSize: 25, color: 'white' }}>
+          <Text style={{fontWeight: 'bold', marginTop: '18%', fontSize: 25, color: 'white' }}>
               Confirma tus datos:
           </Text>
           <ScrollView style={{ width: '100%', marginTop: "5%", maxHeight: '70%'}}>
@@ -57,7 +57,7 @@ export class Legajo extends React.Component {
                   flexDirection: 'row',
                   alignContent: 'flex-start',
                   width: '100%',
-                  marginLeft: "10%",
+                  marginLeft: "7%",
                   marginTop: '1%',
                   fontWeight: 'bold',
                   fontStyle: 'italic',

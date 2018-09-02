@@ -13,10 +13,10 @@ export class Results extends Component {
                     size={200}
                     style={{ color: Colors.blue, width: "60%", marginLeft: 40 }}
                 />
-                <Text style={{ marginTop: '14%',fontFamily: "msyi", fontSize: 25, color: 'white' }}>
+                <Text style={{ marginTop: '14%', fontFamily: "msyi", fontSize: 25, color: 'white' }}>
                     Felicitaciones!
                 </Text>
-                <Text style={{ marginTop: '7%',fontFamily: "msyi", fontSize: 25, color: 'white' }}>
+                <Text style={{ marginTop: '7%', fontFamily: "msyi", fontSize: 25, color: 'white' }}>
                     Identidad verificada un 74%
                 </Text>
             </Container>

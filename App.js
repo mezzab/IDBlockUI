@@ -43,7 +43,7 @@ class HomeScreen extends Component {
               flex={0.5}
               margin="10px 10px 0px 10px"
               value="ESCANEAR CODIGO"
-              onPress={() => this.props.navigation.navigate(Pages.QRScanner)}
+              onPress={() => this.props.navigation.navigate(Pages.Legajo)}
             />
           ) : null}
         </Container>

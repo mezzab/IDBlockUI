@@ -19,29 +19,28 @@ export class Legajo extends React.Component {
   };
 
   getMail = async () => {
-      this.setState({email: await AsyncStorage.getItem(Keys.Mail) });
-    }
+    this.setState({email: await AsyncStorage.getItem(Keys.Mail) });
+  }
 
-   getPhone = async () => {
-      this.setState({phone: await AsyncStorage.getItem(Keys.Phone) });
-      //console.log(await AsyncStorage.getItem(Keys.Selfie));
-    }
+  getPhone = async () => {
+    this.setState({phone: await AsyncStorage.getItem(Keys.Phone) });
+    //console.log(await AsyncStorage.getItem(Keys.Selfie));
+  }
 
-    getSelfie = async() =>{
-      var uriSelfie = JSON.parse(await AsyncStorage.getItem(Keys.Selfie));
-      this.setState({selfieUri: uriSelfie });
-    }
-
+  getSelfie = async() =>{
+    var uriSelfie = JSON.parse(await AsyncStorage.getItem(Keys.Selfie));
+    this.setState({selfieUri: uriSelfie });
+  }
 
   render() {
     // this.getMail();
     // this.getPhone();
-    // this.getSelfie();
+    this.getSelfie();
     return (
       <Container>
 
-          <Text style={{fontWeight: 'bold', marginTop: '18%', fontSize: 25, color: 'white' }}>
-              Confirma tus datos:
+          <Text style={{fontFamily: "msyi", marginTop: '18%', fontSize: 35, color: 'white' }}>
+              Confirma tus datos
           </Text>
           <ScrollView style={{ width: '100%', marginTop: "5%", maxHeight: '70%'}}>
               <FinalField name={'Mail:'} value={'marcos32m@gmail.com'} />
@@ -55,18 +54,20 @@ export class Legajo extends React.Component {
               <Text style={{
                   display: 'flex',
                   flexDirection: 'row',
+                  fontFamily: "msyi",
                   alignContent: 'flex-start',
                   width: '100%',
                   marginLeft: "7%",
                   marginTop: '1%',
-                  fontWeight: 'bold',
-                  fontStyle: 'italic',
-                  fontSize: 20,
+                  fontSize: 25,
                   color: 'white'
               }}>
                   Foto de rostro:
               </Text>
-
+              <Image
+                style={{width: 200, height: 200}}
+                source={{uri: this.state.selfieUri.uri}}
+              />
           </ScrollView>
           <View style={{ height: '20%'}}>
             <TextButton

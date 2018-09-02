@@ -1,10 +1,14 @@
 import React, { Component } from "react";
-import {Colors, IconsType } from "../../../utils/constants";
+import {Colors, IconsType, Pages } from "../../../utils/constants";
 import { Container } from "../../../components/shared";
 import { Text } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 export class Results extends Component {
+    componentDidMount = () => {
+        setTimeout(() => this.props.navigation.navigate(Pages.Legajo), 4000);
+    };
+
     render() {
         return (
             <Container style={{ paddingTop: 200 }} >

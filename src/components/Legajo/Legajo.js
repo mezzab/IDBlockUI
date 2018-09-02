@@ -14,6 +14,8 @@ export class Legajo extends React.Component {
     email: 'prueba',
     phone: 'prueba',
     selfieUri: '',
+    dniFrontalUri: '',
+    dniBackUri: '',
     isValid: false,
     code: null
   };
@@ -29,12 +31,25 @@ export class Legajo extends React.Component {
 
   getSelfie = async() =>{
     var uriSelfie = JSON.parse(await AsyncStorage.getItem(Keys.Selfie));
-    this.setState({selfieUri: uriSelfie });
+    this.setState({ selfieUri: uriSelfie });
   }
+
+  getFrontalDNI= async() =>{
+    var dniFrontalUri = JSON.parse(await AsyncStorage.getItem(Keys.DocumentoFrontal));
+    this.setState({ dniFrontalUri});
+  }
+
+  getBackDNI= async() =>{
+    var dniBackUri = JSON.parse(await AsyncStorage.getItem(Keys.DocumentoAnterior));
+    this.setState({ dniBackUri});
+  }
+
 
   render() {
     // this.getMail();
     // this.getPhone();
+    this.getFrontalDNI();
+    this.getBackDNI();
     this.getSelfie();
     return (
       <Container>
@@ -65,8 +80,44 @@ export class Legajo extends React.Component {
                   Foto de rostro:
               </Text>
               <Image
-                style={{width: 200, height: 200}}
+                style={{ width: '86%', height: 400, marginLeft: '7%', marginTop: '1%'}}
                 source={{uri: this.state.selfieUri.uri}}
+              />
+
+             <Text style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  fontFamily: "msyi",
+                  alignContent: 'flex-start',
+                  width: '100%',
+                  marginLeft: "7%",
+                  marginTop: '1%',
+                  fontSize: 25,
+                  color: 'white'
+              }}>
+                  Foto Frontal DNI:
+              </Text>
+              <Image
+                style={{ width: '86%', height: 400, marginLeft: '7%', marginTop: '1%'}}
+                source={{uri: this.state.dniFrontalUri.uri}}
+              />
+
+              <Text style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  fontFamily: "msyi",
+                  alignContent: 'flex-start',
+                  width: '100%',
+                  marginLeft: "7%",
+                  marginTop: '1%',
+                  fontSize: 25,
+                  color: 'white'
+              }}>
+                  Foto Tracera DNI:
+              </Text>
+              <Image
+                style={{ width: '86%', height: 400, marginLeft: '7%', marginTop: '1%'}}
+                source={{uri: this.state.dniBackUri.uri}}
               />
           </ScrollView>
           <View style={{ height: '20%'}}>

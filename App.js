@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { Font } from "expo";
-import { View } from "react-native";
 import Logo from "./src/components/Logo";
 import QRScanner from "./src/components/QRScanner";
 import store from "./store";
@@ -43,7 +42,7 @@ class HomeScreen extends Component {
               flex={0.5}
               margin="10px 10px 0px 10px"
               value="ESCANEAR CODIGO"
-              onPress={() => this.props.navigation.navigate(Pages.Legajo)}
+              onPress={() => this.props.navigation.navigate(Pages.QRScanner)}
             />
           ) : null}
         </Container>

@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { Container } from "../../../components/shared";
 import { Text, View } from "react-native";
+import { Pages } from "../../../utils/constants";
 import { NineCubesLoader } from 'react-native-indicator';
 
 
 export class Loading extends Component {
+    componentDidMount = () => {
+        setTimeout(() => this.props.navigation.navigate(Pages.Results), 4000);
+    };
 
     render() {
         return (

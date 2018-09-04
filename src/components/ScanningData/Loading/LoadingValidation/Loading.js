@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Container } from "../../../components/shared";
+import { Container } from "../../../shared";
 import { Text, View } from "react-native";
-import { Pages } from "../../../utils/constants";
+import { Pages } from "../../../../utils/constants";
 import { NineCubesLoader } from 'react-native-indicator';
 
 
-export class Loading extends Component {
+export class LoadingValidation extends Component {
     componentDidMount = () => {
         setTimeout(() => this.props.navigation.navigate(Pages.Results), 4000);
     };
@@ -17,7 +17,7 @@ export class Loading extends Component {
                     <NineCubesLoader size={70} color={'white'} betweenSpace={10}/>
                 </View>
 
-                <Text style={{ fontFamily: "msyi", marginTop: '28%', fontSize: 25, color: 'white', margin: 35, display: 'flex' }}>
+                <Text style={{ fontFamily: "msyi", marginTop: '28%', fontSize: 28, color: 'white', margin: 35, display: 'flex' }}>
                     Verificando identidad, por favor aguarde un instante.
                 </Text>
             </Container>
@@ -25,4 +25,4 @@ export class Loading extends Component {
     }
 }
 
-export default Loading;
+export default LoadingValidation;

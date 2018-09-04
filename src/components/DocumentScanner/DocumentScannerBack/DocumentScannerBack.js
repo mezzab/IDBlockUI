@@ -91,7 +91,7 @@ export class DocumentScannerBack extends React.Component {
                   color: "#fff"
                 }}
               >
-                Picture your back DNI
+                Cara Posterior de tu DNI
               </Text>
               <TopLimits>┌                                                                                       ┐</TopLimits>
               <BottomLimits>└                                                                                       ┘</BottomLimits>

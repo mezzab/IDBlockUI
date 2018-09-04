@@ -75,7 +75,7 @@ export class MailInput extends React.Component {
     return (
       <Container>
         <InputField
-          name="Ingresá tu email:"
+          name="Ingresá tu email"
           value={this.state.email}
           onChange={this.validarMail}
           placeholder="tuemail@ejemplo.com"

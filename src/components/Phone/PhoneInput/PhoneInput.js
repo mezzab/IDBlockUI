@@ -62,7 +62,7 @@ export class PhoneInput extends React.Component {
     console.log("El telefono");
     console.log(await AsyncStorage.getItem(Keys.Phone));
     return this.props.navigation.navigate(Pages.PhoneCheck, {
-      codePhone: this.state.codePhone
+      codePhone: this.state.codePhone || 123123
     });
   };
 

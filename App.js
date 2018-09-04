@@ -4,7 +4,6 @@ import { Font } from "expo";
 import Logo from "./src/components/Logo";
 import QRScanner from "./src/components/QRScanner";
 import store from "./store";
-import styled from "styled-components";
 import { StackNavigator } from "react-navigation";
 import TextButton from "./src/components/Button";
 import MailInput from "./src/components/Mail/MailInput";
@@ -15,8 +14,10 @@ import DocumentScannerFront from "./src/components/DocumentScanner/DocumentScann
 import DocumentScannerBack from "./src/components/DocumentScanner/DocumentScannerBack";
 import FacePicture from "./src/components/FacePicture";
 import Legajo from "./src/components/Legajo";
-import Loading from "./src/components/ScanningData/Loading";
-import Results from "./src/components/ScanningData/Results";
+import LoadingValidation from "./src/components/ScanningData/Loading/LoadingValidation";
+import LoadingFinal from "./src/components/ScanningData/Loading/LoadingFinal";
+import Results from "./src/components/ScanningData/Results/ValidationResults";
+import Final from "./src/components/ScanningData/Results/Final";
 import { Pages } from "./src/utils/constants";
 import { Container } from "./src/components/shared";
 
@@ -81,13 +82,19 @@ const App = StackNavigator(
       screen: FacePicture
     },
     [Pages.Legajo]: {
-      screen: Legajo
+      screen: Legajo 
     },
-    [Pages.Loading]: {
-      screen: Loading
+    [Pages.LoadingValidation]: {
+      screen: LoadingValidation
     },
     [Pages.Results]: {
         screen: Results
+    },
+    [Pages.LoadingFinal]: {
+      screen: LoadingFinal
+    },
+    [Pages.Final]: {
+        screen: Final
     }
   },
   {

@@ -11,11 +11,11 @@ export class PhoneCheck extends React.Component {
   constructor(props) {
   super(props);
   this.state = {
-    code: "",
-    isValid: false,
-    validCodePhone: this.props.navigation.state.params.codePhone
-  };
-}
+      code: "",
+      isValid: false,
+      validCodePhone: this.props.navigation.state.params.codePhone,
+    };
+  }
 
   onCodeChange = value => {
     /*if (value !== "123123")

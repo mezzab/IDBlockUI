@@ -10,7 +10,7 @@ export class MailCheck extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      validCode: this.props.navigation.state.params.code || "123123",
+      validCode: this.props.navigation.state.params.code,
       code: "",
       isValid: false
     };
@@ -40,7 +40,7 @@ export class MailCheck extends React.Component {
     return (
       <Container>
         <InputField
-          name="Ingresá el codigo de verificación:"
+          name="Ingresá el codigo de verificación"
           value={this.state.code}
           onChange={this.onCodeChange}
           placeholder="XXXXXX"

@@ -28,6 +28,7 @@ export const InputContainer = styled.View`
   align-items: center;
   width: 100%;
   height: 30%;
+  margin-top: 10%;
 `;
 
 export const InputBox = styled.View`
@@ -35,14 +36,14 @@ export const InputBox = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
+  width: 82%;
   height: 42px;
   border: 1px solid white;
   border-radius: 10px;
 `;
 
 export const TextBox = styled.View`
-  width: 80%;
+  width: 82%;
 `;
 
 ///////////////////////////////// Shared Custom Components ////////////////////////////////////////////
@@ -73,12 +74,11 @@ export class InputField extends React.Component {
           <Text
             style={{
               fontFamily: "msyi",
-              fontSize: 20,
-              padding: 10,
-              paddingTop: "20%",
+              fontSize: 26,
+              padding: 5,
+              paddingTop: "25%",
               color: "white",
               width: "100%",
-              fontStyle: "italic"
             }}
           >
             {this.props.name}
@@ -215,7 +215,7 @@ export class FinalField extends React.Component {
 
     render() {
         return (
-            <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', alignItems:'center', height: 30, width: '100%', marginLeft: "7%", marginTop: '1%' }}>
+            <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', alignItems:'center', height: 30, width: '100%', marginLeft: "7%", marginTop: '0%' }}>
                 <Text style={{  fontFamily: "msyi", fontSize: 25, color: '#fff' }}>
                     {this.props.name}
                 </Text>

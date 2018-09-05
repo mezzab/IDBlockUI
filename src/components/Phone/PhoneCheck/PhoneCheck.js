@@ -4,16 +4,21 @@ import { AsyncStorage } from "react-native";
 import { Text, View, StyleSheet } from "react-native";
 import { Pages, Keys, IconsType } from "../../../utils/constants";
 import TextButton from "../../Button";
-import {Container, InputText, InputField, BackToHomeButton} from "../../shared";
+import {
+  Container,
+  InputText,
+  InputField,
+  BackToHomeButton
+} from "../../shared";
 import { Keyboard } from "react-native";
 
 export class PhoneCheck extends React.Component {
   constructor(props) {
-  super(props);
-  this.state = {
+    super(props);
+    this.state = {
       code: "",
       isValid: false,
-      validCodePhone: this.props.navigation.state.params.codePhone,
+      validCodePhone: this.props.navigation.state.params.codePhone
     };
   }
 
@@ -58,8 +63,9 @@ export class PhoneCheck extends React.Component {
           disable={!this.state.isValid}
           onPress={this.goToScannerFront}
         />
-        <BackToHomeButton goToHome={() => this.props.navigation.navigate(Pages.HomeScreen)}/>
-
+        <BackToHomeButton
+          goToHome={() => this.props.navigation.navigate(Pages.HomeScreen)}
+        />
       </Container>
     );
   }

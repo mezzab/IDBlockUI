@@ -35,8 +35,8 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <Provider  store={store}>
-        <Container style={{ paddingTop: 80 }} >
+      <Provider store={store}>
+        <Container style={{ paddingTop: 80 }}>
           <Logo />
           {this.state.fontLoaded ? (
             <TextButton
@@ -82,19 +82,19 @@ const App = StackNavigator(
       screen: FacePicture
     },
     [Pages.Legajo]: {
-      screen: Legajo 
+      screen: Legajo
     },
     [Pages.LoadingValidation]: {
       screen: LoadingValidation
     },
     [Pages.Results]: {
-        screen: Results
+      screen: Results
     },
     [Pages.LoadingFinal]: {
       screen: LoadingFinal
     },
     [Pages.Final]: {
-        screen: Final
+      screen: Final
     }
   },
   {

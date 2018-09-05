@@ -5,7 +5,12 @@ import { Text, View, StyleSheet, TextInput } from "react-native";
 import { Pages, Keys, Colors, IconsType } from "../../../utils/constants";
 import TextButton from "../../Button";
 import styled from "styled-components";
-import { InputText, Container, InputField, BackToHomeButton } from "../../shared";
+import {
+  InputText,
+  Container,
+  InputField,
+  BackToHomeButton
+} from "../../shared";
 import Expo from "expo";
 
 const { manifest } = Expo.Constants;
@@ -89,7 +94,9 @@ export class MailInput extends React.Component {
           onPress={this.handleContinue}
         />
 
-        <BackToHomeButton goToHome={() => this.props.navigation.navigate(Pages.HomeScreen)}/>
+        <BackToHomeButton
+          goToHome={() => this.props.navigation.navigate(Pages.HomeScreen)}
+        />
       </Container>
     );
   }

@@ -1,21 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { AsyncStorage , Image} from "react-native";
+import { AsyncStorage, Image } from "react-native";
 import { Text, View, StyleSheet, TextInput, ScrollView } from "react-native";
 import { Pages, Keys, Colors, IconsType } from "../../utils/constants";
 import TextButton from "../Button";
 import styled from "styled-components";
-import { InputText, Container, InputField,InformativeField, FinalField } from "../shared";
+import {
+  InputText,
+  Container,
+  InputField,
+  InformativeField,
+  FinalField
+} from "../shared";
 import Expo from "expo";
-
 
 export class Legajo extends React.Component {
   state = {
-    email: 'prueba',
-    phone: 'prueba',
-    selfieUri: '',
-    dniFrontalUri: '',
-    dniBackUri: '',
+    email: "prueba",
+    phone: "prueba",
+    selfieUri: "",
+    dniFrontalUri: "",
+    dniBackUri: "",
     isValid: false,
     code: null
   };
@@ -29,24 +34,28 @@ export class Legajo extends React.Component {
     //console.log(await AsyncStorage.getItem(Keys.Selfie));
   }*/
 
-  getSelfie = async() =>{
+  getSelfie = async () => {
     var uriSelfie = JSON.parse(await AsyncStorage.getItem(Keys.Selfie));
     return this.setState({ selfieUri: uriSelfie });
-  }
+  };
 
-  getFrontalDNI= async() =>{
-    var dniFrontalUri = JSON.parse(await AsyncStorage.getItem(Keys.DocumentoFrontal));
-    return this.setState({ dniFrontalUri});
-  }
+  getFrontalDNI = async () => {
+    var dniFrontalUri = JSON.parse(
+      await AsyncStorage.getItem(Keys.DocumentoFrontal)
+    );
+    return this.setState({ dniFrontalUri });
+  };
 
-  getBackDNI= async() =>{
-    var dniBackUri = JSON.parse(await AsyncStorage.getItem(Keys.DocumentoAnterior));
-    return this.setState({ dniBackUri});
-  }
+  getBackDNI = async () => {
+    var dniBackUri = JSON.parse(
+      await AsyncStorage.getItem(Keys.DocumentoAnterior)
+    );
+    return this.setState({ dniBackUri });
+  };
 
   onNextPress = () => {
-    return this.props.navigation.navigate(Pages.LoadingFinal)
-  }
+    return this.props.navigation.navigate(Pages.LoadingFinal);
+  };
 
   render() {
     // this.getMail();
@@ -56,19 +65,28 @@ export class Legajo extends React.Component {
     this.getSelfie();
     return (
       <Container>
-          <Text style={{fontFamily: "msyi", marginTop: '7%', fontSize: 35, color: 'white' }}>
-              Confirma tus datos
-          </Text>
-          <ScrollView style={{ width: '100%', marginTop: "1%", maxHeight: '80%'}}>
-              <FinalField name={'Mail:'} value={'marcos32m@gmail.com'} />
-              <FinalField name={'Telefono:'} value={'11 5883-3086'} />
-              <FinalField name={'DNI:'} value={'37859360'} />
-              <FinalField name={'Apellido:'} value={'Mezzabotta'} />
-              <FinalField name={'Nombre:'} value={'Marcos'} />
-              <FinalField name={'Sexo:'} value={'Masculino'} />
-              <FinalField name={'Fecha de Nacimiento:'} value={'05/01/1994'} />
-              {/* <FinalField name={'Fecha tramite DNI:'} value={'06/05/2001'} /> */}
-              {/* <Text style={{
+        <Text
+          style={{
+            fontFamily: "msyi",
+            marginTop: "7%",
+            fontSize: 35,
+            color: "white"
+          }}
+        >
+          Confirma tus datos
+        </Text>
+        <ScrollView
+          style={{ width: "100%", marginTop: "1%", maxHeight: "80%" }}
+        >
+          <FinalField name={"Mail:"} value={"marcos32m@gmail.com"} />
+          <FinalField name={"Telefono:"} value={"11 5883-3086"} />
+          <FinalField name={"DNI:"} value={"37859360"} />
+          <FinalField name={"Apellido:"} value={"Mezzabotta"} />
+          <FinalField name={"Nombre:"} value={"Marcos"} />
+          <FinalField name={"Sexo:"} value={"Masculino"} />
+          <FinalField name={"Fecha de Nacimiento:"} value={"05/01/1994"} />
+          {/* <FinalField name={'Fecha tramite DNI:'} value={'06/05/2001'} /> */}
+          {/* <Text style={{
                   display: 'flex',
                   flexDirection: 'row',
                   fontFamily: "msyi",
@@ -81,12 +99,17 @@ export class Legajo extends React.Component {
               }}>
                   Foto de rostro:
               </Text> */}
-              <Image
-                style={{ width: 300, height: 310, marginLeft: '7%', marginTop: '3%'}}
-                source={{uri: this.state.selfieUri.uri}}
-              />
+          <Image
+            style={{
+              width: 300,
+              height: 310,
+              marginLeft: "7%",
+              marginTop: "3%"
+            }}
+            source={{ uri: this.state.selfieUri.uri }}
+          />
 
-             {/* <Text style={{
+          {/* <Text style={{
                   display: 'flex',
                   flexDirection: 'row',
                   fontFamily: "msyi",
@@ -121,22 +144,22 @@ export class Legajo extends React.Component {
                 style={{ width: '86%', height: 400, marginLeft: '7%', marginTop: '1%'}}
                 source={{uri: this.state.dniBackUri.uri}}
               /> */}
-          </ScrollView>
+        </ScrollView>
 
-          <View style={{ height: '18%'}} onPress={this.onNextPress} >
-            <TextButton
-              margin="0"
-              value="Acepto"
-              disable={false}
-              onPress={this.onNextPress}
-            />
-           <TextButton
-              margin="0"
-              value="Volver"  
-              disable={false}
-              onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
-            />
-          </View>
+        <View style={{ height: "18%" }} onPress={this.onNextPress}>
+          <TextButton
+            margin="0"
+            value="Acepto"
+            disable={false}
+            onPress={this.onNextPress}
+          />
+          <TextButton
+            margin="0"
+            value="Volver"
+            disable={false}
+            onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
+          />
+        </View>
       </Container>
     );
   }

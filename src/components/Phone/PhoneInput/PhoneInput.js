@@ -5,7 +5,12 @@ import { Text, View, StyleSheet, TextInput } from "react-native";
 import { Pages, Keys, Colors, IconsType } from "../../../utils/constants";
 import TextButton from "../../Button";
 import styled from "styled-components";
-import {InputText, Container, InputField, BackToHomeButton} from "../../shared";
+import {
+  InputText,
+  Container,
+  InputField,
+  BackToHomeButton
+} from "../../shared";
 
 const { manifest } = Expo.Constants;
 export const api =
@@ -31,16 +36,16 @@ export class PhoneInput extends React.Component {
     if (reg.test(text) === false) {
       return this.setState({
         isValid: false,
-        phone: text,
+        phone: text
       });
     } else {
       return this.setState({ phone: text, isValid: true });
     }
-  }
+  };
 
-   handleContinue = async()=> {
-    console.log(this.state.phone);      
-       try {
+  handleContinue = async () => {
+    console.log(this.state.phone);
+    try {
       let response = await fetch(`http://${api}/sendSMS`, {
         method: "POST",
         headers: {
@@ -51,12 +56,15 @@ export class PhoneInput extends React.Component {
       });
       let responseJson = await response.json();
       this.setState({ codePhone: responseJson.code });
-      console.log("Codigo de verificacion Phone: *** ", responseJson.code, " ***");
-
+      console.log(
+        "Codigo de verificacion Phone: *** ",
+        responseJson.code,
+        " ***"
+      );
     } catch (error) {
       //todo: we have to show an error notification here.
       console.error(error);
-    } 
+    }
 
     await AsyncStorage.setItem(Keys.Phone, this.state.phone);
     console.log("El telefono");
@@ -96,8 +104,9 @@ export class PhoneInput extends React.Component {
           onPress={this.handleContinue}
         />
 
-        <BackToHomeButton goToHome={() => this.props.navigation.navigate(Pages.HomeScreen)}/>
-
+        <BackToHomeButton
+          goToHome={() => this.props.navigation.navigate(Pages.HomeScreen)}
+        />
       </Container>
     );
   }

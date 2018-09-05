@@ -4,7 +4,12 @@ import { AsyncStorage } from "react-native";
 import { Text, View, StyleSheet } from "react-native";
 import { Pages, Keys, IconsType } from "../../../utils/constants";
 import TextButton from "../../Button";
-import { Container, InputText, InputField, BackToHomeButton } from "../../shared";
+import {
+  Container,
+  InputText,
+  InputField,
+  BackToHomeButton
+} from "../../shared";
 
 export class MailCheck extends React.Component {
   constructor(props) {
@@ -55,8 +60,9 @@ export class MailCheck extends React.Component {
           onPress={() => this.props.navigation.navigate(Pages.PhoneInput)}
         />
 
-        <BackToHomeButton goToHome={() => this.props.navigation.navigate(Pages.HomeScreen)}/>
-
+        <BackToHomeButton
+          goToHome={() => this.props.navigation.navigate(Pages.HomeScreen)}
+        />
       </Container>
     );
   }

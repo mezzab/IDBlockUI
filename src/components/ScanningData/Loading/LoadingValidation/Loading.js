@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container } from "../../../shared";
-import { Text, View } from "react-native";
+import { Text, View, ActivityIndicator } from "react-native";
 import { Pages } from "../../../../utils/constants";
 import { NineCubesLoader } from "react-native-indicator";
 
@@ -14,6 +14,11 @@ export class LoadingValidation extends Component {
       <Container>
         <View style={{ margin: 50, paddingTop: 100 }}>
           <NineCubesLoader size={70} color={"white"} betweenSpace={10} />
+          {/* <ActivityIndicator
+            style={{ paddingTop: 50 }}
+            size={170}
+            color="white"
+          /> */}
         </View>
 
         <Text

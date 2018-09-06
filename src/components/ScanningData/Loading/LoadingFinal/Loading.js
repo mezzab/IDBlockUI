@@ -13,12 +13,16 @@ export class LoadingFinal extends Component {
     return (
       <Container>
         <View style={{ margin: 50, paddingTop: 100 }}>
-          <NineCubesLoader size={70} color={"white"} betweenSpace={10} />
-          {/* <ActivityIndicator
-            style={{ paddingTop: 50 }}
-            size={170}
+          {/* <NineCubesLoader size={70} color={"white"} betweenSpace={10} /> */}
+          <ActivityIndicator
+            style={{
+              paddingTop: 50,
+              paddingBottom: 30,
+              transform: [{ scale: 4 }]
+            }}
+            size="large"
             color="white"
-          /> */}
+          />
         </View>
 
         <Text

@@ -97,6 +97,7 @@ export default class QRScanner extends Component {
     if (result.data !== this.state.lastScannedData) {
       LayoutAnimation.spring();
       this.setState({ lastScannedData: result.data });
+      console.log('INFORMACION ESCANEADA:  ', result.data)
     }
   };
 

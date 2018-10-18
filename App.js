@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import { Font } from "expo";
 import Logo from "./src/components/Logo";
 import QRScanner from "./src/components/QRScanner";
+import QRScannerDni from "./src/components/QRScannerDni";
 import store from "./store";
 import { StackNavigator } from "react-navigation";
 import TextButton from "./src/components/Button";
@@ -71,6 +72,9 @@ const App = StackNavigator(
     },
     [Pages.PhoneCheck]: {
       screen: PhoneCheck
+    },
+    [Pages.QRScannerDni]: {
+      screen: QRScannerDni
     },
     [Pages.DocumentScannerFront]: {
       screen: DocumentScannerFront

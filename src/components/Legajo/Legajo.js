@@ -18,6 +18,11 @@ export class Legajo extends React.Component {
   state = {
     email: "prueba",
     phone: "prueba",
+    nombre: "",
+    apellido: "",
+    fecha_nacimiento: "",
+    dni: "",
+    sexo: "",
     selfieUri: "",
     dniFrontalUri: "",
     dniBackUri: "",
@@ -25,14 +30,14 @@ export class Legajo extends React.Component {
     code: null
   };
 
-  /*getMail = async () => {
-    this.setState({email: await AsyncStorage.getItem(Keys.Mail) });
-  }
+  getMail = async () => {
+    this.setState({ email: await AsyncStorage.getItem(Keys.Mail) });
+  };
 
   getPhone = async () => {
-    this.setState({phone: await AsyncStorage.getItem(Keys.Phone) });
+    this.setState({ phone: await AsyncStorage.getItem(Keys.Phone) });
     //console.log(await AsyncStorage.getItem(Keys.Selfie));
-  }*/
+  };
 
   getSelfie = async () => {
     var uriSelfie = JSON.parse(await AsyncStorage.getItem(Keys.Selfie));
@@ -53,16 +58,31 @@ export class Legajo extends React.Component {
     return this.setState({ dniBackUri });
   };
 
+  getQRCodeDni = async () => {
+    var dniInfo = await AsyncStorage.getItem(Keys.DniQR);
+    const dataDni = dniInfo.split("@");
+    return this.setState({
+      apellido: dataDni[1],
+      nombre: dataDni[2],
+      sexo: dataDni[3] == "M" ? "Masculino" : "Femenino",
+      dni: dataDni[4],
+      fecha_nacimiento: dataDni[6]
+    });
+  };
+
   onNextPress = () => {
     return this.props.navigation.navigate(Pages.LoadingFinal);
   };
 
   render() {
-    // this.getMail();
-    // this.getPhone();
-    // this.getFrontalDNI();
-    // this.getBackDNI();
+    this.getMail();
+    this.getPhone();
+    this.getQRCodeDni();
     this.getSelfie();
+    // this.getBackDNI();
+    // this.getFrontalDNI();
+    // This should be in the componentWillMount(), but I'm not going to move it. ¯\_(ツ)_/¯
+
     return (
       <Container>
         <Text
@@ -78,13 +98,16 @@ export class Legajo extends React.Component {
         <ScrollView
           style={{ width: "100%", marginTop: "1%", maxHeight: "80%" }}
         >
-          <FinalField name={"Mail:"} value={"marcos32m@gmail.com"} />
-          <FinalField name={"Telefono:"} value={"11 5883-3086"} />
-          <FinalField name={"DNI:"} value={"37859360"} />
-          <FinalField name={"Apellido:"} value={"Mezzabotta"} />
-          <FinalField name={"Nombre:"} value={"Marcos"} />
-          <FinalField name={"Sexo:"} value={"Masculino"} />
-          <FinalField name={"Fecha de Nacimiento:"} value={"05/01/1994"} />
+          <FinalField name={"Mail:"} value={this.state.email} />
+          <FinalField name={"Telefono:"} value={this.state.phone} />
+          <FinalField name={"DNI:"} value={this.state.dni} />
+          <FinalField name={"Apellido:"} value={this.state.apellido} />
+          <FinalField name={"Nombre:"} value={this.state.nombre} />
+          <FinalField name={"Sexo:"} value={this.state.sexo} />
+          <FinalField
+            name={"Fecha de Nacimiento:"}
+            value={this.state.fecha_nacimiento}
+          />
           {/* <FinalField name={'Fecha tramite DNI:'} value={'06/05/2001'} /> */}
           {/* <Text style={{
                   display: 'flex',

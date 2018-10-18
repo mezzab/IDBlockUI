@@ -21,6 +21,7 @@ export const Colors = {
 export const Pages = Object.freeze({
   HomeScreen: "HomeScreen",
   QRScanner: "QRScanner",
+  QRScannerDni: "QRScannerDni",
   MailInput: "MailInput",
   MailCheck: "MailCheck",
   PhoneInput: "PhoneInput",
@@ -42,6 +43,7 @@ export const Keys = Object.freeze({
   Mail: "Mail",
   Phone: "Phone",
   Name: "Name",
+  DniQR: "DniQR",
   DocumentoFrontal: "PictureFront",
   DocumentoAnterior: "PictureBack",
   Selfie: "PictureSelfie"

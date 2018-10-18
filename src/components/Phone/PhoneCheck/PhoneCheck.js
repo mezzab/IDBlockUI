@@ -35,9 +35,9 @@ export class PhoneCheck extends React.Component {
     }
   };
 
-  goToScannerFront = () => {
+  goToScannerDni = () => {
     Keyboard.dismiss();
-    return this.props.navigation.navigate(Pages.DocumentScannerFront);
+    return this.props.navigation.navigate(Pages.QRScannerDni);
   };
 
   render() {
@@ -61,7 +61,7 @@ export class PhoneCheck extends React.Component {
           margin="10px 0  10px 0"
           value="Continuar"
           disable={!this.state.isValid}
-          onPress={this.goToScannerFront}
+          onPress={this.goToScannerDni}
         />
         <BackToHomeButton
           goToHome={() => this.props.navigation.navigate(Pages.HomeScreen)}

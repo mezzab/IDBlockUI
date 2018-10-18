@@ -21,8 +21,8 @@ export class Legajo extends React.Component {
     nombre: "",
     apellido: "",
     fecha_nacimiento: "",
-    dni:"",
-    sexo:"",
+    dni: "",
+    sexo: "",
     selfieUri: "",
     dniFrontalUri: "",
     dniBackUri: "",
@@ -31,13 +31,13 @@ export class Legajo extends React.Component {
   };
 
   getMail = async () => {
-    this.setState({email: await AsyncStorage.getItem(Keys.Mail) });
-  }
+    this.setState({ email: await AsyncStorage.getItem(Keys.Mail) });
+  };
 
   getPhone = async () => {
-    this.setState({phone: await AsyncStorage.getItem(Keys.Phone) });
+    this.setState({ phone: await AsyncStorage.getItem(Keys.Phone) });
     //console.log(await AsyncStorage.getItem(Keys.Selfie));
-  }
+  };
 
   getSelfie = async () => {
     var uriSelfie = JSON.parse(await AsyncStorage.getItem(Keys.Selfie));
@@ -60,29 +60,29 @@ export class Legajo extends React.Component {
 
   getQRCodeDni = async () => {
     var dniInfo = await AsyncStorage.getItem(Keys.DniQR);
-    const dataDni = dniInfo.split("@")
-    this.setState({apellido: dataDni[1]})
-    this.setState({dni: dataDni[4]})
-    this.setState({fecha_nacimiento: dataDni[6]})
-    if(dataDni[3] == 'M'){
-      this.setState({sexo: "Masculino"})
-    }else{
-      this.setState({sexo: "Femenino"})
-    }
-    return this.setState({ nombre : dataDni[2] });
-  }
+    const dataDni = dniInfo.split("@");
+    return this.setState({
+      apellido: dataDni[1],
+      nombre: dataDni[2],
+      sexo: dataDni[3] == "M" ? "Masculino" : "Femenino",
+      dni: dataDni[4],
+      fecha_nacimiento: dataDni[6]
+    });
+  };
 
   onNextPress = () => {
     return this.props.navigation.navigate(Pages.LoadingFinal);
   };
 
   render() {
-     this.getMail();
-     this.getPhone();
-    // this.getFrontalDNI();
-    // this.getBackDNI();
-    this.getQRCodeDni()
+    this.getMail();
+    this.getPhone();
+    this.getQRCodeDni();
     this.getSelfie();
+    // this.getBackDNI();
+    // this.getFrontalDNI();
+    // This should be in the componentWillMount(), but I'm not going to move it. ¯\_(ツ)_/¯
+
     return (
       <Container>
         <Text
@@ -104,7 +104,10 @@ export class Legajo extends React.Component {
           <FinalField name={"Apellido:"} value={this.state.apellido} />
           <FinalField name={"Nombre:"} value={this.state.nombre} />
           <FinalField name={"Sexo:"} value={this.state.sexo} />
-          <FinalField name={"Fecha de Nacimiento:"} value={this.state.fecha_nacimiento} />
+          <FinalField
+            name={"Fecha de Nacimiento:"}
+            value={this.state.fecha_nacimiento}
+          />
           {/* <FinalField name={'Fecha tramite DNI:'} value={'06/05/2001'} /> */}
           {/* <Text style={{
                   display: 'flex',

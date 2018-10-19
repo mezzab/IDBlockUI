@@ -57,6 +57,7 @@ export class Legajo extends React.Component {
 
   saveLegajo = async () => {
     console.log("saveIPFS");
+    stateJSON = JSON.stringify(this.state);
     try {
       let response = await fetch(`http://${api}/saveIPFS`, {
         method: "POST",
@@ -64,7 +65,7 @@ export class Legajo extends React.Component {
           Accept: "application/json",
           "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: ``
+        body: `legajo=${stateJSON}`
       });
     } catch (error) {
       //todo: we have to show an error notification here.
@@ -75,7 +76,7 @@ export class Legajo extends React.Component {
   onNextPress = () => {
     console.log('CLICK ON NEXT');
     this.saveLegajo();
-    return this.props.navigation.navigate(Pages.LoadingFinal);
+    //return this.props.navigation.navigate(Pages.LoadingFinal);
   };
 
   render() {

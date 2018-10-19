@@ -1,15 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { AsyncStorage, Image } from "react-native";
-import { Text, View, StyleSheet, TextInput, ScrollView } from "react-native";
-import { Pages, Keys, Colors, IconsType } from "../../utils/constants";
+import { Text, ScrollView } from "react-native";
+import { Pages, Keys } from "../../utils/constants";
 import TextButton from "../Button";
-import styled from "styled-components";
 import {
-  InputText,
   Container,
-  InputField,
-  InformativeField,
   FinalField
 } from "../shared";
 import Expo from "expo";
@@ -39,8 +34,29 @@ export class Legajo extends React.Component {
     code: null
   };
 
+  componentDidMount =  async() => {
+    // fixme: Hay un metodo para pedir varios items de una... 
+    const email = await AsyncStorage.getItem(Keys.Mail);
+    const phone = await AsyncStorage.getItem(Keys.Phone) ;
+    const selfieUri = JSON.parse(await AsyncStorage.getItem(Keys.Selfie));
+    
+    const dniInfo = await AsyncStorage.getItem(Keys.DniQR);
+    const dataDni = dniInfo.split("@");
+    
+    return this.setState({
+      email,
+      phone,
+      selfieUri,
+      apellido: dataDni[1],
+      nombre: dataDni[2],
+      sexo: dataDni[3] == "M" ? "Masculino" : "Femenino",
+      dni: dataDni[4],
+      fecha_nacimiento: dataDni[6]
+    });
+  }
+
   saveLegajo = async () => {
-    console.log("IPSSSSSSSSSSS");
+    console.log("saveIPFS");
     try {
       let response = await fetch(`http://${api}/saveIPFS`, {
         method: "POST",
@@ -56,63 +72,13 @@ export class Legajo extends React.Component {
     }
   };
 
-  commitea = () => {
-    console.log("BERMEJO GATO");
-  };
-
-  getMail = async () => {
-    this.setState({ email: await AsyncStorage.getItem(Keys.Mail) });
-  };
-
-  getPhone = async () => {
-    this.setState({ phone: await AsyncStorage.getItem(Keys.Phone) });
-    //console.log(await AsyncStorage.getItem(Keys.Selfie));
-  };
-
-  getSelfie = async () => {
-    var uriSelfie = JSON.parse(await AsyncStorage.getItem(Keys.Selfie));
-    return this.setState({ selfieUri: uriSelfie });
-  };
-
-  getFrontalDNI = async () => {
-    var dniFrontalUri = JSON.parse(
-      await AsyncStorage.getItem(Keys.DocumentoFrontal)
-    );
-    return this.setState({ dniFrontalUri });
-  };
-
-  getBackDNI = async () => {
-    var dniBackUri = JSON.parse(
-      await AsyncStorage.getItem(Keys.DocumentoAnterior)
-    );
-    return this.setState({ dniBackUri });
-  };
-
-  getQRCodeDni = async () => {
-    var dniInfo = await AsyncStorage.getItem(Keys.DniQR);
-    const dataDni = dniInfo.split("@");
-    return this.setState({
-      apellido: dataDni[1],
-      nombre: dataDni[2],
-      sexo: dataDni[3] == "M" ? "Masculino" : "Femenino",
-      dni: dataDni[4],
-      fecha_nacimiento: dataDni[6]
-    });
-  };
-
   onNextPress = () => {
+    console.log('CLICK ON NEXT');
+    this.saveLegajo();
     return this.props.navigation.navigate(Pages.LoadingFinal);
   };
 
   render() {
-    this.getMail();
-    this.getPhone();
-    this.getQRCodeDni();
-    this.getSelfie();
-    // this.getBackDNI();
-    // this.getFrontalDNI();
-    // This should be in the componentWillMount(), but I'm not going to move it. ¯\_(ツ)_/¯
-
     return (
       <Container>
         <Text
@@ -198,13 +164,11 @@ export class Legajo extends React.Component {
                 source={{uri: this.state.dniBackUri.uri}}
               /> */}
         </ScrollView>
-
-
         <TextButton
           disable={this.state.isValid}
           margin="10px 0  10px 0"
           value="Continuar"
-          onPress={() => this.commitea() }
+          onPress={() => this.onNextPress() }
         />
           <TextButton
             margin="0"
@@ -216,3 +180,58 @@ export class Legajo extends React.Component {
     );
   }
 }
+
+
+  /* 
+  ////////////////////////////////////////////////////////////////
+  ///////                  DEPRECATED                     ////////
+  ////////////////////////////////////////////////////////////////
+
+  componentDidMount = () => {
+    this.getMail();
+    this.getPhone();
+    this.getSelfie();
+    this.getQRCodeDni();
+    this.getBackDNI();
+    this.getFrontalDNI();
+  }
+
+  getMail = async () => {
+    this.setState({ email: await AsyncStorage.getItem(Keys.Mail) });
+  };
+
+  getPhone = async () => {
+    this.setState({ phone: await AsyncStorage.getItem(Keys.Phone) });
+  };
+
+  getSelfie = async () => {
+    var uriSelfie = JSON.parse(await AsyncStorage.getItem(Keys.Selfie));
+    return this.setState({ selfieUri: uriSelfie });
+  };
+  
+  getQRCodeDni = async () => {
+    var dniInfo = await AsyncStorage.getItem(Keys.DniQR);
+    const dataDni = dniInfo.split("@");
+    return this.setState({
+      apellido: dataDni[1],
+      nombre: dataDni[2],
+      sexo: dataDni[3] == "M" ? "Masculino" : "Femenino",
+      dni: dataDni[4],
+      fecha_nacimiento: dataDni[6]
+    });
+  };
+  
+  getFrontalDNI = async () => {
+    var dniFrontalUri = JSON.parse(
+      await AsyncStorage.getItem(Keys.DocumentoFrontal)
+    );
+    return this.setState({ dniFrontalUri });
+  };
+
+  getBackDNI = async () => {
+    var dniBackUri = JSON.parse(
+      await AsyncStorage.getItem(Keys.DocumentoAnterior)
+    );
+    return this.setState({ dniBackUri });
+  };
+  */

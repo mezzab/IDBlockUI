@@ -22,6 +22,17 @@ import Final from "./src/components/ScanningData/Results/Final";
 import { Pages } from "./src/utils/constants";
 import { Container } from "./src/components/shared";
 
+
+
+const { manifest } = Expo.Constants;
+export const api =
+  typeof manifest.packagerOpts === `object` && manifest.packagerOpts.dev
+    ? manifest.debuggerHost
+        .split(`:`)
+        .shift()
+        .concat(`:8000`)
+    : `api.nuestroherokubackend.com`;
+    
 class HomeScreen extends Component {
   state = {
     fontLoaded: false
@@ -34,6 +45,28 @@ class HomeScreen extends Component {
     this.setState({ fontLoaded: true });
   }
 
+  commitea = () => {
+    console.log("BERMEJO GATO");
+  };
+
+
+  saveLegajo = async () => {
+    console.log("IPSSSSSSSSSSS");
+    try {
+      let response = await fetch(`http://${api}/saveIPFS`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: ``
+      });
+    } catch (error) {
+      //todo: we have to show an error notification here.
+      console.error(error);
+    }
+  };
+
   render() {
     return (
       <Provider store={store}>
@@ -45,6 +78,7 @@ class HomeScreen extends Component {
               margin="10px 10px 0px 10px"
               value="ESCANEAR CODIGO"
               onPress={() => this.props.navigation.navigate(Pages.QRScanner)}
+              // onPress={() => this.saveLegajo()}
             />
           ) : null}
         </Container>

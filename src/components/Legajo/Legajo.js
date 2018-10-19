@@ -14,6 +14,15 @@ import {
 } from "../shared";
 import Expo from "expo";
 
+const { manifest } = Expo.Constants;
+export const api =
+  typeof manifest.packagerOpts === `object` && manifest.packagerOpts.dev
+    ? manifest.debuggerHost
+        .split(`:`)
+        .shift()
+        .concat(`:8000`)
+    : `api.nuestroherokubackend.com`;
+
 export class Legajo extends React.Component {
   state = {
     email: "prueba",
@@ -28,6 +37,27 @@ export class Legajo extends React.Component {
     dniBackUri: "",
     isValid: false,
     code: null
+  };
+
+  saveLegajo = async () => {
+    console.log("IPSSSSSSSSSSS");
+    try {
+      let response = await fetch(`http://${api}/saveIPFS`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: ``
+      });
+    } catch (error) {
+      //todo: we have to show an error notification here.
+      console.error(error);
+    }
+  };
+
+  commitea = () => {
+    console.log("BERMEJO GATO");
   };
 
   getMail = async () => {
@@ -169,20 +199,19 @@ export class Legajo extends React.Component {
               /> */}
         </ScrollView>
 
-        <View style={{ height: "18%" }} onPress={this.onNextPress}>
-          <TextButton
-            margin="0"
-            value="Acepto"
-            disable={false}
-            onPress={this.onNextPress}
-          />
+
+        <TextButton
+          disable={this.state.isValid}
+          margin="10px 0  10px 0"
+          value="Continuar"
+          onPress={() => this.commitea() }
+        />
           <TextButton
             margin="0"
             value="Volver"
             disable={false}
             onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
           />
-        </View>
       </Container>
     );
   }

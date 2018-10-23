@@ -1,71 +1,65 @@
-import React from "react";
-import { AsyncStorage, Image } from "react-native";
-import { Text, ScrollView } from "react-native";
-import { Pages, Keys } from "../../utils/constants";
-import TextButton from "../Button";
-import {
-  Container,
-  FinalField
-} from "../shared";
-import Expo from "expo";
+import React from 'react';
+import { AsyncStorage, Image } from 'react-native';
+import { Text, ScrollView } from 'react-native';
+import { Pages, Keys } from '../../utils/constants';
+import TextButton from '../Button';
+import { Container, FinalField } from '../shared';
+import Expo from 'expo';
 
 const { manifest } = Expo.Constants;
 export const api =
   typeof manifest.packagerOpts === `object` && manifest.packagerOpts.dev
-    ? manifest.debuggerHost
-        .split(`:`)
-        .shift()
-        .concat(`:8000`)
+    ? manifest.debuggerHost.split(`:`).shift().concat(`:8000`)
     : `api.nuestroherokubackend.com`;
 
 export class Legajo extends React.Component {
   state = {
-    email: "prueba",
-    phone: "prueba",
-    nombre: "",
-    apellido: "",
-    fecha_nacimiento: "",
-    dni: "",
-    sexo: "",
-    selfieUri: "",
-    dniFrontalUri: "",
-    dniBackUri: "",
+    email: 'prueba',
+    phone: 'prueba',
+    nombre: '',
+    apellido: '',
+    fecha_nacimiento: '',
+    dni: '',
+    sexo: '',
+    selfieUri: '',
+    dniFrontalUri: '',
+    dniBackUri: '',
     isValid: false,
-    code: null
+    code: null,
   };
 
-  componentDidMount =  async() => {
-    // fixme: Hay un metodo para pedir varios items de una... 
+  componentDidMount = async () => {
+    // fixme: Hay un metodo para pedir varios items de una...
     const email = await AsyncStorage.getItem(Keys.Mail);
-    const phone = await AsyncStorage.getItem(Keys.Phone) ;
+    const phone = await AsyncStorage.getItem(Keys.Phone);
     const selfieUri = JSON.parse(await AsyncStorage.getItem(Keys.Selfie));
-    
+
     const dniInfo = await AsyncStorage.getItem(Keys.DniQR);
-    const dataDni = dniInfo.split("@");
-    
+    const dataDni = dniInfo.split('@');
+
     return this.setState({
       email,
       phone,
       selfieUri,
       apellido: dataDni[1],
       nombre: dataDni[2],
-      sexo: dataDni[3] == "M" ? "Masculino" : "Femenino",
+      sexo: dataDni[3] == 'M' ? 'Masculino' : 'Femenino',
       dni: dataDni[4],
-      fecha_nacimiento: dataDni[6]
+      fecha_nacimiento: dataDni[6],
     });
-  }
+  };
 
   saveLegajo = async () => {
-    console.log("saveIPFS");
+    console.log('saveIPFS');
     stateJSON = JSON.stringify(this.state);
     try {
       let response = await fetch(`http://${api}/saveIPFS`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded"
+          Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `legajo=${stateJSON}`
+        body: `legajo=${stateJSON}`,
       });
     } catch (error) {
       //todo: we have to show an error notification here.
@@ -84,25 +78,25 @@ export class Legajo extends React.Component {
       <Container>
         <Text
           style={{
-            fontFamily: "msyi",
-            marginTop: "7%",
+            fontFamily: 'msyi',
+            marginTop: '7%',
             fontSize: 35,
-            color: "white"
+            color: 'white',
           }}
         >
           Confirma tus datos
         </Text>
         <ScrollView
-          style={{ width: "100%", marginTop: "1%", maxHeight: "80%" }}
+          style={{ width: '100%', marginTop: '1%', maxHeight: '80%' }}
         >
-          <FinalField name={"Mail:"} value={this.state.email} />
-          <FinalField name={"Telefono:"} value={this.state.phone} />
-          <FinalField name={"DNI:"} value={this.state.dni} />
-          <FinalField name={"Apellido:"} value={this.state.apellido} />
-          <FinalField name={"Nombre:"} value={this.state.nombre} />
-          <FinalField name={"Sexo:"} value={this.state.sexo} />
+          <FinalField name={'Mail:'} value={this.state.email} />
+          <FinalField name={'Telefono:'} value={this.state.phone} />
+          <FinalField name={'DNI:'} value={this.state.dni} />
+          <FinalField name={'Apellido:'} value={this.state.apellido} />
+          <FinalField name={'Nombre:'} value={this.state.nombre} />
+          <FinalField name={'Sexo:'} value={this.state.sexo} />
           <FinalField
-            name={"Fecha de Nacimiento:"}
+            name={'Fecha de Nacimiento:'}
             value={this.state.fecha_nacimiento}
           />
           {/* <FinalField name={'Fecha tramite DNI:'} value={'06/05/2001'} /> */}
@@ -123,8 +117,8 @@ export class Legajo extends React.Component {
             style={{
               width: 300,
               height: 310,
-              marginLeft: "7%",
-              marginTop: "3%"
+              marginLeft: '7%',
+              marginTop: '3%',
             }}
             source={{ uri: this.state.selfieUri.uri }}
           />
@@ -169,21 +163,20 @@ export class Legajo extends React.Component {
           disable={this.state.isValid}
           margin="10px 0  10px 0"
           value="Continuar"
-          onPress={() => this.onNextPress() }
+          onPress={() => this.onNextPress()}
         />
-          <TextButton
-            margin="0"
-            value="Volver"
-            disable={false}
-            onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
-          />
+        <TextButton
+          margin="0"
+          value="Volver"
+          disable={false}
+          onPress={() => this.props.navigation.navigate(Pages.HomeScreen)}
+        />
       </Container>
     );
   }
 }
 
-
-  /* 
+/* 
   ////////////////////////////////////////////////////////////////
   ///////                  DEPRECATED                     ////////
   ////////////////////////////////////////////////////////////////

@@ -7,15 +7,12 @@ import {
     Text,
     View,
     StatusBar,
-    StyleSheet,
     TouchableOpacity
 } from "react-native";
 import styled from "styled-components";
 import { BarCodeScanner, Permissions } from "expo";
-import { StackNavigator } from "react-navigation";
 import { Pages, Keys } from "../../utils/constants";
 import { AsyncStorage } from "react-native";
-import { headerLogoImage } from "../Logo/logo.png";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
@@ -71,7 +68,8 @@ const BottomLimits = styled.Text`
 export default class QRScanner extends Component {
     state = {
         hasCameraPermission: null,
-        lastScannedData: null
+        lastScannedData: null,
+        isInvalid: false,
     };
 
     componentDidMount() {
@@ -121,29 +119,32 @@ export default class QRScanner extends Component {
     };
 
     checkValidJson = scannedData => {
-        return true;
-        // return Object.Keys(scannedData) && Object.Keys(scannedData) == EntityQRKeys;
+        console.log('Informacion escaneada: ', scannedData)
+        try {
+            scannedObject = JSON.parse(scannedData);
+        } catch (e) {
+            return false;
+        }
+        return scannedObject && Object.Keys(scannedObject) == EntityQRKeys;
     };
 
     maybeRenderData = () => {
-        const scannedData = this.state.lastScannedData;
-        if (!scannedData) {
-            return;
+        if (this.state.isInvalid) {
+            return (
+                <View style={styles.bottomBar}>
+                    <Text numberOfLines={1} style={styles.DataText}>
+                        Invalid QR
+                    </Text>
+                    <TouchableOpacity
+                        style={styles.cancelButton}
+                        onPress={this.handlePressCancel}
+                    >
+                        <Text style={styles.cancelButtonText}> Cancel</Text>
+                    </TouchableOpacity>
+                </View>
+            );
         }
-
-        // return (
-        //   <View style={styles.bottomBar}>
-        //     <Text numberOfLines={1} style={styles.DataText}>
-        //       Invalid QR
-        //     </Text>
-        //     <TouchableOpacity
-        //       style={styles.cancelButton}
-        //       onPress={this.handlePressCancel}
-        //     >
-        //       <Text style={styles.cancelButtonText}>Cancel</Text>
-        //     </TouchableOpacity>
-        //   </View>
-        // );
+        return null;
     };
 
     render() {

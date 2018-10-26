@@ -1,3 +1,5 @@
+<img  width="150" align="center" src="./src/components/Logo/logo.png"><img align="center" width="450" src="./src/components/Logo/logo-texto.png">
+
 ## Available Scripts
 
 If Yarn was installed when the project was initialized, then dependencies will have been installed via Yarn, and you should probably use it to run these commands as well. Unlike dependency installation, command running syntax is identical for Yarn and yarn at the time of this writing.

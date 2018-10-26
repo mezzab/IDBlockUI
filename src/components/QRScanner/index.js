@@ -5,13 +5,12 @@ import {
     Dimensions,
     LayoutAnimation,
     Text,
-    View,
     StatusBar,
     TouchableOpacity
 } from "react-native";
 import styled from "styled-components";
 import { BarCodeScanner, Permissions } from "expo";
-import { Pages, Keys } from "../../utils/constants";
+import { Pages, Keys, EntityQRKeys } from "../../utils/constants";
 import { AsyncStorage } from "react-native";
 
 const windowHeight = Dimensions.get("window").height;
@@ -69,7 +68,7 @@ export default class QRScanner extends Component {
     state = {
         hasCameraPermission: null,
         lastScannedData: null,
-        isInvalid: false,
+        isInvalid: true,
     };
 
     componentDidMount() {
@@ -78,7 +77,7 @@ export default class QRScanner extends Component {
 
     componentWillUpdate(nextProps, nextState) {
         const scannedData = nextState.lastScannedData;
-        if (scannedData && this.checkValidJson(scannedData)) {
+        if (!nextState.isInvalid) {
             AsyncStorage.setItem(Keys.EntityJSON, scannedData);
             return this.props.navigation.navigate(Pages.MailInput);
         }
@@ -94,8 +93,11 @@ export default class QRScanner extends Component {
     handleBarCodeRead = result => {
         if (result.data !== this.state.lastScannedData) {
             LayoutAnimation.spring();
-            this.setState({ lastScannedData: result.data });
-            console.log('INFORMACION ESCANEADA:  ', result.data)
+            const isInvalid = !this.isValidData(result.data);
+            console.log('La informacion que contenia el QR es la siguiente: ')
+            console.log(result.data)
+            console.log('El QR es', isInvalid ? 'Invalido' : 'Valido')
+            this.setState({ lastScannedData: result.data, isInvalid });
         }
     };
 
@@ -114,34 +116,33 @@ export default class QRScanner extends Component {
         );
     };
 
-    handlePressCancel = () => {
-        this.setState({ lastScannedData: null });
-    };
-
-    checkValidJson = scannedData => {
-        console.log('Informacion escaneada: ', scannedData)
+    isValidData = scannedData => {
         try {
             scannedObject = JSON.parse(scannedData);
         } catch (e) {
+            this.setState({ isInvalid: true })
             return false;
         }
-        return scannedObject && Object.Keys(scannedObject) == EntityQRKeys;
+        return scannedObject && Object.keys(scannedObject).sort().toString() == EntityQRKeys.sort().toString();
     };
 
     maybeRenderData = () => {
-        if (this.state.isInvalid) {
+        if (this.state.isInvalid && this.state.lastScannedData) {
             return (
-                <View style={styles.bottomBar}>
-                    <Text numberOfLines={1} style={styles.DataText}>
-                        Invalid QR
+                <StyledView >
+                    <Text style={{
+                        fontFamily: "msyi",
+                        fontSize: 25,
+                        alignSelf: "center",
+                        padding: 10,
+                        paddingTop: 7,
+                        color: 'red',
+                        marginTop: '15%'
+                    }}
+                        onClick={this.onCancelErrorClick} numberOfLines={1} >
+                        Codigo Invalido. Vuelve a intentarlo!
                     </Text>
-                    <TouchableOpacity
-                        style={styles.cancelButton}
-                        onPress={this.handlePressCancel}
-                    >
-                        <Text style={styles.cancelButtonText}> Cancel</Text>
-                    </TouchableOpacity>
-                </View>
+                </StyledView>
             );
         }
         return null;

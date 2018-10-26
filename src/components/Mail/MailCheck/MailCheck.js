@@ -1,15 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { AsyncStorage } from "react-native";
-import { Text, View, StyleSheet } from "react-native";
-import { Pages, Keys, IconsType } from "../../../utils/constants";
+import { Pages, IconsType, Colors } from "../../../utils/constants";
 import TextButton from "../../Button";
-import {
-  Container,
-  InputText,
-  InputField,
-  BackToHomeButton
-} from "../../shared";
+import { Container, InputField } from "../../shared";
+// import Toast, { DURATION } from "react-native-easy-toast";
 
 export class MailCheck extends React.Component {
   constructor(props) {
@@ -32,6 +25,8 @@ export class MailCheck extends React.Component {
       return this.setState({ code: value, isValid: false });
     else {
       this.setState({ code: value, isValid: true });
+      // this.refs.toast.show("Success!");
+      // return this.props.navigation.navigate(Pages.PhoneInput);
     }
   };
 
@@ -63,6 +58,17 @@ export class MailCheck extends React.Component {
         <BackToHomeButton
           goToHome={() => this.props.navigation.navigate(Pages.HomeScreen)}
         />
+
+        {/* <Toast
+          ref="toast"
+          style={{ backgroundColor: Colors.blue }}
+          position="top"
+          positionValue={200}
+          fadeInDuration={750}
+          fadeOutDuration={1000}
+          opacity={0.8}
+          textStyle={{ color: Colors.grey }}
+        /> */}
       </Container>
     );
   }

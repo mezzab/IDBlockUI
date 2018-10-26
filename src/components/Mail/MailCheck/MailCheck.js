@@ -2,7 +2,7 @@ import React from "react";
 import { Pages, IconsType, Colors } from "../../../utils/constants";
 import TextButton from "../../Button";
 import { Container, InputField } from "../../shared";
-import Toast, { DURATION } from "react-native-easy-toast";
+// import Toast, { DURATION } from "react-native-easy-toast";
 
 export class MailCheck extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ export class MailCheck extends React.Component {
       return this.setState({ code: value, isValid: false });
     else {
       this.setState({ code: value, isValid: true });
-      this.refs.toast.show("Success!");
+      // this.refs.toast.show("Success!");
       // return this.props.navigation.navigate(Pages.PhoneInput);
     }
   };
@@ -59,7 +59,7 @@ export class MailCheck extends React.Component {
           goToHome={() => this.props.navigation.navigate(Pages.HomeScreen)}
         />
 
-        <Toast
+        {/* <Toast
           ref="toast"
           style={{ backgroundColor: Colors.blue }}
           position="top"
@@ -68,7 +68,7 @@ export class MailCheck extends React.Component {
           fadeOutDuration={1000}
           opacity={0.8}
           textStyle={{ color: Colors.grey }}
-        />
+        /> */}
       </Container>
     );
   }

@@ -10,8 +10,9 @@ import {
 } from "react-native";
 import styled from "styled-components";
 import { BarCodeScanner, Permissions } from "expo";
-import { Pages, Keys, EntityQRKeys } from "../../utils/constants";
+import { Pages, Keys, EntityQRKeys, Colors } from "../../utils/constants";
 import { AsyncStorage } from "react-native";
+import Toast, { DURATION } from "react-native-easy-toast";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
@@ -77,6 +78,7 @@ export default class QRScanner extends Component {
 
     componentWillUpdate(nextProps, nextState) {
         const scannedData = nextState.lastScannedData;
+        if (nextState.isInvalid && scannedData) this.refs.toast.show("El codigo escaneado es invalido. Vuelve a intentarlo!");
         if (!nextState.isInvalid) {
             AsyncStorage.setItem(Keys.EntityJSON, scannedData);
             return this.props.navigation.navigate(Pages.MailInput);
@@ -96,7 +98,7 @@ export default class QRScanner extends Component {
             const isInvalid = !this.isValidData(result.data);
             console.log('La informacion que contenia el QR es la siguiente: ')
             console.log(result.data)
-            console.log('El QR es', isInvalid ? 'Invalido' : 'Valido')
+            console.log('Por lo tanto, el QR es ', isInvalid ? 'Invalido' : 'Valido')
             this.setState({ lastScannedData: result.data, isInvalid });
         }
     };
@@ -124,28 +126,6 @@ export default class QRScanner extends Component {
             return false;
         }
         return scannedObject && Object.keys(scannedObject).sort().toString() == EntityQRKeys.sort().toString();
-    };
-
-    maybeRenderData = () => {
-        if (this.state.isInvalid && this.state.lastScannedData) {
-            return (
-                <StyledView >
-                    <Text style={{
-                        fontFamily: "msyi",
-                        fontSize: 25,
-                        alignSelf: "center",
-                        padding: 10,
-                        paddingTop: 7,
-                        color: 'red',
-                        marginTop: '15%'
-                    }}
-                        onClick={this.onCancelErrorClick} numberOfLines={1} >
-                        Codigo Invalido. Vuelve a intentarlo!
-                    </Text>
-                </StyledView>
-            );
-        }
-        return null;
     };
 
     render() {
@@ -182,8 +162,16 @@ export default class QRScanner extends Component {
                                 <BottomLimits>└                                                      ┘</BottomLimits>
                             </StyledView>
                         )}
-
-                {this.maybeRenderData()}
+                <Toast
+                    ref="toast"
+                    style={{ backgroundColor: 'red' }}
+                    position="top"
+                    positionValue={10}
+                    fadeInDuration={800}
+                    fadeOutDuration={1000}
+                    opacity={0.8}
+                    textStyle={{ color: Colors.grey }}
+                />
                 <Text
                     style={{
                         fontFamily: "msyi",

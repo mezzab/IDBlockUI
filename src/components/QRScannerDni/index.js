@@ -5,17 +5,12 @@ import {
   Dimensions,
   LayoutAnimation,
   Text,
-  View,
   StatusBar,
-  StyleSheet,
-  TouchableOpacity
 } from "react-native";
 import styled from "styled-components";
 import { BarCodeScanner, Permissions } from "expo";
-import { StackNavigator } from "react-navigation";
 import { Pages, Keys } from "../../utils/constants";
 import { AsyncStorage } from "react-native";
-import { headerLogoImage } from "../Logo/logo.png";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
@@ -110,7 +105,7 @@ export default class QRScannerDni extends Component {
           text: "Yes",
           onPress: () => Linking.openData(this.state.lastScannedDataDni)
         },
-        { text: "No", onPress: () => {} }
+        { text: "No", onPress: () => { } }
       ],
       { cancellable: false }
     );
@@ -156,30 +151,30 @@ export default class QRScannerDni extends Component {
             Camera permission is not granted
           </Text>
         ) : (
-          <StyledView>
-            <BarCodeScanner
-              onBarCodeRead={this.handleBarCodeRead}
-              style={{
-                position: "absolute",
-                height: windowHeight,
-                width: windowWidth
-              }}
-            />
-            <Text
-              style={{
-                fontFamily: "msyi",
-                fontSize: 30,
-                alignSelf: "center",
-                padding: 10,
-                paddingTop: 7,
-                color: '#fff',
-                marginTop: '15%'
-              }}
-            > Scanea el codigo QR </Text>
-            <TopLimits>┌                                                      ┐</TopLimits>
-            <BottomLimits>└                                                      ┘</BottomLimits>
-          </StyledView>
-        )}
+              <StyledView>
+                <BarCodeScanner
+                  onBarCodeRead={this.handleBarCodeRead}
+                  style={{
+                    position: "absolute",
+                    height: windowHeight,
+                    width: windowWidth
+                  }}
+                />
+                <Text
+                  style={{
+                    fontFamily: "msyi",
+                    fontSize: 30,
+                    alignSelf: "center",
+                    padding: 10,
+                    paddingTop: 7,
+                    color: '#fff',
+                    marginTop: '15%'
+                  }}
+                > Scanea el codigo QR </Text>
+                <TopLimits>┌                                                      ┐</TopLimits>
+                <BottomLimits>└                                                      ┘</BottomLimits>
+              </StyledView>
+            )}
 
         {this.maybeRenderData()}
         <Text

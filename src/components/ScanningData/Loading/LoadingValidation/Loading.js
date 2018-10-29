@@ -5,9 +5,85 @@ import { Pages } from "../../../../utils/constants";
 import { NineCubesLoader } from "react-native-indicator";
 
 export class LoadingValidation extends Component {
-  componentDidMount = () => {
-    setTimeout(() => this.props.navigation.navigate(Pages.Results), 4000);
+  componentDidMount = async () => {
+  
+  const faceIDSelfie = await this.checkFaceIdSelfie();
+  const faceIdDni = await this.checkFaceIdDNI();
+  
+  this.checkFaceIds(faceIDSelfie,faceIdDni);
+  
   };
+
+//Selfie
+checkFaceIdSelfie = async () => {
+  console.log("Face - Detect de Selfie");
+  try {
+    let response = await fetch("https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Ocp-Apim-Subscription-Key":"7f3c4dd4d787446f9bc45bcbaa2efb68"
+      },
+      body: JSON.stringify({
+        "url": "https://image.shutterstock.com/image-photo/piraeus-greece-october-31-2017-450w-752955112.jpg"
+      })
+    });
+
+    console.log(response);
+    return response;
+    
+  } catch (error) {
+    //todo: we have to show an error notification here.
+    console.error(error);
+  }
+};
+
+
+//Foto DNI
+checkFaceIdDNI = async () => { 
+  console.log("Face - Detect de Foto DNI");
+  try {
+    let response = await fetch(`https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Ocp-Apim-Subscription-Key":"7f3c4dd4d787446f9bc45bcbaa2efb68"
+      },
+      body: JSON.stringify({
+        "url": "https://image.shutterstock.com/image-photo/piraeus-greece-october-31-2017-450w-752955112.jpg"
+      })
+    });
+    console.log(response);
+    return response;
+  } catch (error) {
+    //todo: we have to show an error notification here.
+    console.error(error);
+  }
+};
+
+
+//Face Verify (FaceId Selfie vs FaceId Dni)
+checkFaceIds = async (faceIDSelfie,faceIdDni) => {
+  console.log("Comparando FaceId Selfie vs FaceId Dni");
+  try {
+    let response = await fetch(`https://westcentralus.api.cognitive.microsoft.com/face/v1.0/verify`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Ocp-Apim-Subscription-Key":"7f3c4dd4d787446f9bc45bcbaa2efb68"
+      },
+      body: JSON.stringify({
+        "faceId1": JSON.parse(faceIDSelfie._bodyText)[0].faceId,
+        "faceId2": JSON.parse(faceIdDni._bodyText)[0].faceId
+    })
+     });
+    console.log(response);
+    this.props.navigation.navigate(Pages.Results);
+  } catch (error) {
+    //todo: we have to show an error notification here.
+    console.error(error);
+  }
+};
 
   render() {
     return (

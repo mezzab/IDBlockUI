@@ -14,18 +14,17 @@ export const api =
 
 export class Legajo extends React.Component {
   state = {
-    email: 'prueba',
-    phone: 'prueba',
-    nombre: '',
-    apellido: '',
-    fecha_nacimiento: '',
-    dni: '',
-    sexo: '',
+    email: 'marcos32m@gmail.com',
+    phone: '1158833086',
+    nombre: 'Marcos',
+    apellido: 'Mezzabotta',
+    fecha_nacimiento: '05/01/1994',
+    dni: '37859360',
+    sexo: 'Masculino',
     selfieUri: '',
     dniFrontalUri: '',
     dniBackUri: '',
     isValid: false,
-    code: null,
   };
 
   componentDidMount = async () => {
@@ -52,6 +51,9 @@ export class Legajo extends React.Component {
   saveLegajo = async () => {
     console.log('saveIPFS');
     stateJSON = JSON.stringify(this.state);
+    console.log('Se guardara el siguiente legajo: ')
+    console.log(stateJSON)
+    console.log('')
     try {
       let response = await fetch(`http://${api}/saveIPFS`, {
         method: 'POST',
@@ -61,6 +63,9 @@ export class Legajo extends React.Component {
         },
         body: `legajo=${stateJSON}`,
       });
+
+      console.log('El legajo se guardo correctamente en IPFS')
+      console.log('El hash es:', JSON.parse(response._bodyText)[0].hash)
     } catch (error) {
       //todo: we have to show an error notification here.
       console.error(error);
@@ -68,9 +73,8 @@ export class Legajo extends React.Component {
   };
 
   onNextPress = () => {
-    console.log('CLICK ON NEXT');
     this.saveLegajo();
-    //return this.props.navigation.navigate(Pages.LoadingFinal);
+    return this.props.navigation.navigate(Pages.LoadingFinal);
   };
 
   render() {
@@ -162,7 +166,7 @@ export class Legajo extends React.Component {
         <TextButton
           disable={this.state.isValid}
           margin="10px 0  10px 0"
-          value="Continuar"
+          value="Compartir mi legajo!"
           onPress={() => this.onNextPress()}
         />
         <TextButton
@@ -175,57 +179,3 @@ export class Legajo extends React.Component {
     );
   }
 }
-
-/* 
-  ////////////////////////////////////////////////////////////////
-  ///////                  DEPRECATED                     ////////
-  ////////////////////////////////////////////////////////////////
-
-  componentDidMount = () => {
-    this.getMail();
-    this.getPhone();
-    this.getSelfie();
-    this.getQRCodeDni();
-    this.getBackDNI();
-    this.getFrontalDNI();
-  }
-
-  getMail = async () => {
-    this.setState({ email: await AsyncStorage.getItem(Keys.Mail) });
-  };
-
-  getPhone = async () => {
-    this.setState({ phone: await AsyncStorage.getItem(Keys.Phone) });
-  };
-
-  getSelfie = async () => {
-    var uriSelfie = JSON.parse(await AsyncStorage.getItem(Keys.Selfie));
-    return this.setState({ selfieUri: uriSelfie });
-  };
-  
-  getQRCodeDni = async () => {
-    var dniInfo = await AsyncStorage.getItem(Keys.DniQR);
-    const dataDni = dniInfo.split("@");
-    return this.setState({
-      apellido: dataDni[1],
-      nombre: dataDni[2],
-      sexo: dataDni[3] == "M" ? "Masculino" : "Femenino",
-      dni: dataDni[4],
-      fecha_nacimiento: dataDni[6]
-    });
-  };
-  
-  getFrontalDNI = async () => {
-    var dniFrontalUri = JSON.parse(
-      await AsyncStorage.getItem(Keys.DocumentoFrontal)
-    );
-    return this.setState({ dniFrontalUri });
-  };
-
-  getBackDNI = async () => {
-    var dniBackUri = JSON.parse(
-      await AsyncStorage.getItem(Keys.DocumentoAnterior)
-    );
-    return this.setState({ dniBackUri });
-  };
-  */

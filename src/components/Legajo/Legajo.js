@@ -49,23 +49,22 @@ export class Legajo extends React.Component {
   };
 
   saveLegajo = async () => {
-    console.log('saveIPFS');
+    console.log('* * * * * * * * saveBlock * * * * * * * *');
     stateJSON = JSON.stringify(this.state);
-    console.log('Se guardara el siguiente legajo: ')
-    console.log(stateJSON)
-    console.log('')
+    console.log('Se guardara el siguiente legajo: ' + '\n' + stateJSON + '\n');
+    const entityAddr = null; //esto viene del QR y esta guardado en el async
     try {
-      let response = await fetch(`http://${api}/saveIPFS`, {
+      let response = await fetch(`http://${api}/saveBlock`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `legajo=${stateJSON}`,
+        body: `legajo=${stateJSON}&&entityAddr${entityAddr}`,
       });
 
-      console.log('El legajo se guardo correctamente en IPFS')
-      console.log('El hash es:', JSON.parse(response._bodyText)[0].hash)
+      console.log('Se guardo el legajo y se genero correctamente la relacion entidad-usuario')
+      // console.log('El hash es:', JSON.parse(response._bodyText)[0].hash)
     } catch (error) {
       //todo: we have to show an error notification here.
       console.error(error);

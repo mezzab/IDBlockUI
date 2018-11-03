@@ -1,5 +1,5 @@
 import React from "react";
-import { Pages, IconsType, Colors } from "../../../utils/constants";
+import { Pages, IconsType } from "../../../utils/constants";
 import TextButton from "../../Button";
 import { Container, InputField } from "../../shared";
 // import Toast, { DURATION } from "react-native-easy-toast";

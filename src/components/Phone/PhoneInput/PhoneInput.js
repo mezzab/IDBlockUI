@@ -16,9 +16,9 @@ const { manifest } = Expo.Constants;
 export const api =
   typeof manifest.packagerOpts === `object` && manifest.packagerOpts.dev
     ? manifest.debuggerHost
-        .split(`:`)
-        .shift()
-        .concat(`:8000`)
+      .split(`:`)
+      .shift()
+      .concat(`:8000`)
     : `api.nuestroherokubackend.com`;
 
 export const getColorByIconType = type =>
@@ -44,7 +44,8 @@ export class PhoneInput extends React.Component {
   };
 
   handleContinue = async () => {
-    console.log(this.state.phone);
+    console.log('* * * * * * * * sendSMS * * * * * * * *');
+    console.log('Se enviara un codigo de verificacion al siguiente telefono: ' + '\n' + this.state.phone);
     try {
       let response = await fetch(`http://${api}/sendSMS`, {
         method: "POST",

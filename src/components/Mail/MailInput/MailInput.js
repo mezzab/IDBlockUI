@@ -1,12 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { AsyncStorage } from "react-native";
-import { Text, View, StyleSheet, TextInput } from "react-native";
 import { Pages, Keys, Colors, IconsType } from "../../../utils/constants";
 import TextButton from "../../Button";
-import styled from "styled-components";
 import {
-  InputText,
   Container,
   InputField,
   BackToHomeButton
@@ -17,9 +13,9 @@ const { manifest } = Expo.Constants;
 export const api =
   typeof manifest.packagerOpts === `object` && manifest.packagerOpts.dev
     ? manifest.debuggerHost
-        .split(`:`)
-        .shift()
-        .concat(`:8000`)
+      .split(`:`)
+      .shift()
+      .concat(`:8000`)
     : `api.nuestroherokubackend.com`;
 
 export const getColorByIconType = type =>
@@ -40,6 +36,8 @@ export class MailInput extends React.Component {
   };
 
   handleContinue = async () => {
+    console.log('* * * * * * * * sendEmail * * * * * * * *');
+    console.log('Se enviara un codigo de verificacion al siguiente mail: ' + '\n' + this.state.email);
     try {
       let response = await fetch(`http://${api}/sendEmail`, {
         method: "POST",
@@ -58,8 +56,6 @@ export class MailInput extends React.Component {
     }
 
     await AsyncStorage.setItem(Keys.Mail, this.state.email);
-    console.log("El mail");
-    console.log(await AsyncStorage.getItem(Keys.Mail));
     return this.props.navigation.navigate(Pages.MailCheck, {
       code: this.state.code
     });

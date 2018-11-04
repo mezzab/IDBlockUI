@@ -51,8 +51,8 @@ const TopLimits = styled.Text`
   font-size: 18px;
   font-weight: bold;
   text-align: center;
-  margin-top: 22%;
-  margin-bottom: 30%;
+  margin-top: 40%;
+  margin-bottom: 10%;
 `;
 
 const BottomLimits = styled.Text`
@@ -60,7 +60,8 @@ const BottomLimits = styled.Text`
   font-size: 18px;
   font-weight: bold;
   text-align: center;
-  margin-top: 30%;
+  margin-top: 10%;
+  margin-bottom: 10%;
 `;
 
 export default class QRScannerDni extends Component {
@@ -165,14 +166,22 @@ export default class QRScannerDni extends Component {
                     fontFamily: "msyi",
                     fontSize: 30,
                     alignSelf: "center",
-                    padding: 10,
                     paddingTop: 7,
                     color: '#fff',
                     marginTop: '15%'
                   }}
-                > Scanea el codigo QR </Text>
-                <TopLimits>┌                                                      ┐</TopLimits>
-                <BottomLimits>└                                                      ┘</BottomLimits>
+                >Escanea el codigo</Text>
+                <Text
+                  style={{
+                    fontFamily: "msyi",
+                    fontSize: 30,
+                    alignSelf: "center",
+                    paddingTop: 7,
+                    color: '#fff',
+                  }}
+                > QR de tu DNI </Text>
+                <TopLimits>┌                                                                ┐</TopLimits>
+                <BottomLimits>└                                                                ┘</BottomLimits>
               </StyledView>
             )}
 

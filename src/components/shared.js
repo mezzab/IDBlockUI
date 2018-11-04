@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Text, View, TextInput } from "react-native";
 import styled from "styled-components";
-import {Colors, IconsType, Pages} from "../utils/constants";
+import { Colors, IconsType, Pages } from "../utils/constants";
 import { FontAwesome } from "@expo/vector-icons";
 import TextButton from "./Button";
 
@@ -74,7 +74,7 @@ export class InputField extends React.Component {
           <Text
             style={{
               fontFamily: "msyi",
-              fontSize: 26,
+              fontSize: 22,
               padding: 5,
               paddingTop: "25%",
               color: "white",
@@ -112,13 +112,13 @@ export class InputField extends React.Component {
 }
 
 export const BackToHomeButton = ({ goToHome }) => {
-    return  (
-        <TextButton
-            margin="10px 0  10px 0"
-            value="Volver al Inicio"
-            onPress={goToHome}
-        />
-    )
+  return (
+    <TextButton
+      margin="10px 0  10px 0"
+      value="Volver al Inicio"
+      onPress={goToHome}
+    />
+  )
 };
 
 
@@ -156,9 +156,9 @@ export class InformativeField extends React.Component {
           >
             {this.props.name}
           </Text>
-          </TextBox>
-        <InputBox>      
-        <Text
+        </TextBox>
+        <InputBox>
+          <Text
             style={{
               fontFamily: "msyi",
               fontSize: 22,
@@ -168,7 +168,7 @@ export class InformativeField extends React.Component {
               fontStyle: "italic"
             }}
           >
-           {this.props.value}
+            {this.props.value}
           </Text>
         </InputBox>
       </InputContainer>
@@ -203,26 +203,26 @@ export class InputIcon extends React.Component {
 
 
 export class FinalField extends React.Component {
-    static propTypes = {
-        name: PropTypes.string.isRequired,
-        value: PropTypes.string,
-    };
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    value: PropTypes.string,
+  };
 
-    static defaultProps = {
-        name: "Nombre",
-        value: "Marcos",
-    };
+  static defaultProps = {
+    name: "Nombre",
+    value: "Marcos",
+  };
 
-    render() {
-        return (
-            <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', alignItems:'center', height: 30, width: '100%', marginLeft: "7%", marginTop: '0%' }}>
-                <Text style={{  fontFamily: "msyi", fontSize: 25, color: '#fff' }}>
-                    {this.props.name}
-                </Text>
-                <Text style={{ fontSize: 22, fontFamily: "msyi", color: '#ccc', marginLeft: 5, height: 20 }}>
-                    {this.props.value}
-                </Text>
-            </View>
+  render() {
+    return (
+      <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', alignItems: 'center', height: 30, width: '100%', marginLeft: "7%", marginTop: '0%' }}>
+        <Text style={{ fontFamily: "msyi", fontSize: 25, color: '#fff' }}>
+          {this.props.name}
+        </Text>
+        <Text style={{ fontSize: 22, fontFamily: "msyi", color: '#ccc', marginLeft: 5, height: 20 }}>
+          {this.props.value}
+        </Text>
+      </View>
     );
-    }
+  }
 }

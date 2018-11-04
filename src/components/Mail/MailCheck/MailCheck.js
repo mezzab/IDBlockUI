@@ -1,7 +1,7 @@
 import React from "react";
 import { Pages, IconsType } from "../../../utils/constants";
 import TextButton from "../../Button";
-import { Container, InputField } from "../../shared";
+import { Container, InputField, BackToHomeButton } from "../../shared";
 // import Toast, { DURATION } from "react-native-easy-toast";
 
 export class MailCheck extends React.Component {

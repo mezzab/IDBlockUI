@@ -55,4 +55,4 @@ export const IconsType = Object.freeze({
 });
 
 // estas son las keys que esperamos que tenga el QR de la entidad como minimo
-export const EntityQRKeys = ['entidad', 'operacion', 'endpoint'];
+export const EntityQRKeys = ['id', 'nombreEntidad', 'operacion', 'url',];

@@ -10,6 +10,10 @@ export class LoadingValidation extends Component {
   // this.checkFaceIds(faceIDSelfie,faceIdDni);
   // };
 
+  componentDidMount() {
+    setTimeout(this.props.navigation.navigate(Pages.Results), 10000);
+  }
+
   //Selfie
   checkFaceIdSelfie = async () => {
     console.log("Face - Detect de Selfie");

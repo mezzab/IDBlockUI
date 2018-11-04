@@ -152,12 +152,20 @@ export default class QRScanner extends Component {
                                         fontFamily: "msyi",
                                         fontSize: 30,
                                         alignSelf: "center",
-                                        padding: 10,
                                         paddingTop: 7,
                                         color: '#fff',
                                         marginTop: '15%'
                                     }}
-                                > Scanea el codigo QR </Text>
+                                > Escanea el codigo QR </Text>
+                                <Text
+                                    style={{
+                                        fontFamily: "msyi",
+                                        fontSize: 30,
+                                        alignSelf: "center",
+                                        paddingTop: 7,
+                                        color: '#fff',
+                                    }}
+                                > de la web de la entidad </Text>
                                 <TopLimits>┌                                                      ┐</TopLimits>
                                 <BottomLimits>└                                                      ┘</BottomLimits>
                             </StyledView>

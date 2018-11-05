@@ -11,7 +11,7 @@ export class LoadingValidation extends Component {
   // };
 
   componentDidMount() {
-    setTimeout(this.props.navigation.navigate(Pages.Results), 10000);
+    setTimeout(() => this.props.navigation.navigate(Pages.Results), 7000);
   }
 
   //Selfie
@@ -22,7 +22,7 @@ export class LoadingValidation extends Component {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Ocp-Apim-Subscription-Key": "7f3c4dd4d787446f9bc45bcbaa2efb68"
+          "Ocp-Apim-Subscription-Key": "747b1996849f4b5f9ee8fb1a1d23420c"
         },
         body: JSON.stringify({
           "url": "https://image.shutterstock.com/image-photo/piraeus-greece-october-31-2017-450w-752955112.jpg"
@@ -47,7 +47,7 @@ export class LoadingValidation extends Component {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Ocp-Apim-Subscription-Key": "7f3c4dd4d787446f9bc45bcbaa2efb68"
+          "Ocp-Apim-Subscription-Key": "747b1996849f4b5f9ee8fb1a1d23420c"
         },
         body: JSON.stringify({
           "url": "https://image.shutterstock.com/image-photo/piraeus-greece-october-31-2017-450w-752955112.jpg"
@@ -70,7 +70,7 @@ export class LoadingValidation extends Component {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Ocp-Apim-Subscription-Key": "7f3c4dd4d787446f9bc45bcbaa2efb68"
+          "Ocp-Apim-Subscription-Key": "747b1996849f4b5f9ee8fb1a1d23420c"
         },
         body: JSON.stringify({
           "faceId1": JSON.parse(faceIDSelfie._bodyText)[0].faceId,

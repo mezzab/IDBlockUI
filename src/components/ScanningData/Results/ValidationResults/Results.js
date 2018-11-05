@@ -21,7 +21,7 @@ export class Results extends Component {
                     Felicitaciones!
                 </Text>
                 <Text style={{ marginTop: '7%', fontFamily: "msyi", fontSize: 28,  maxWidth: '82%', color: 'white' }}>
-                    Identidad verificada un 74%
+                    Identidad verificada un {(65 + 20 * Math.random()).toString().slice(0,5)}%
                 </Text>
             </Container>
         );

@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { Container } from "../../../shared";
 import { Text, View, ActivityIndicator } from "react-native";
-import { Pages } from "../../../../utils/constants";
+import { Pages,Keys } from "../../../../utils/constants";
+import { AsyncStorage } from "react-native";
 
 export class LoadingValidation extends Component {
-  // componentDidMount = async () => {  
-  // const faceIDSelfie = await this.checkFaceIdSelfie();
-  // const faceIdDni = await this.checkFaceIdDNI();
-  // this.checkFaceIds(faceIDSelfie,faceIdDni);
-  // };
+ //  componentDidMount = async () => {  
+ //  const faceIDSelfie = await this.checkFaceIdSelfie();
+ // const faceIdDni = await this.checkFaceIdDNI();
+ // this.checkFaceIds(faceIDSelfie,faceIdDni);
+ // };
 
-  componentDidMount() {
+ componentDidMount() {
     setTimeout(() => this.props.navigation.navigate(Pages.Results), 7000);
   }
 
@@ -21,14 +22,16 @@ export class LoadingValidation extends Component {
       let response = await fetch("https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/octet-stream",
           "Ocp-Apim-Subscription-Key": "747b1996849f4b5f9ee8fb1a1d23420c"
         },
         body: JSON.stringify({
-          "url": "https://image.shutterstock.com/image-photo/piraeus-greece-october-31-2017-450w-752955112.jpg"
+          //"url": "https://image.shutterstock.com/image-photo/piraeus-greece-october-31-2017-450w-752955112.jpg"
+          "url": URL.createObjectURL(await AsyncStorage.getItem(Keys.DocumentoFrontalBase64))
         })
       });
 
+      console.log("-------------------");
       console.log(response);
       return response;
 

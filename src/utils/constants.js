@@ -47,6 +47,8 @@ export const Keys = Object.freeze({
   DocumentoFrontal: 'PictureFront',
   DocumentoAnterior: 'PictureBack',
   Selfie: 'PictureSelfie',
+  DocumentoFrontalBase64 :'PictureFrontBase64',
+  SelfieBase64: 'SelfieBase64'
 });
 
 export const IconsType = Object.freeze({

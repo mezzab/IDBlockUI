@@ -42,9 +42,11 @@ export class DocumentScannerBack extends React.Component {
   takePicture = async () => {
     if (this.camera) {
       Vibration.vibrate(30);
-      let photo = await this.camera.takePictureAsync();
-      this.setState({ picture: photo });
+      const options = { base64: true };
+      let data = await this.camera.takePictureAsync(options);
+      this.setState({ picture: data.uri , pictureBase64: data.base64 });
       await AsyncStorage.setItem(Keys.DocumentoAnterior, JSON.stringify(this.state.picture));
+      await AsyncStorage.setItem(Keys.DocumentoAnteriorBase64, JSON.stringify(this.state.pictureBase64));
       console.log("Foto anterior tomada");
       console.log(await AsyncStorage.getItem(Keys.DocumentoAnterior));
     }

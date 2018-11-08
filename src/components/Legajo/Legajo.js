@@ -24,6 +24,7 @@ export class Legajo extends React.Component {
     selfieUri: '',
     dniFrontalUri: '',
     dniBackUri: '',
+    docFron64: '',
     isValid: false,
   };
 
@@ -32,7 +33,7 @@ export class Legajo extends React.Component {
     const email = await AsyncStorage.getItem(Keys.Mail);
     const phone = await AsyncStorage.getItem(Keys.Phone);
     const selfieUri = JSON.parse(await AsyncStorage.getItem(Keys.Selfie));
-
+    const docFron64 = JSON.parse(await AsyncStorage.getItem(Keys.DocumentoFrontalBase64));
     const dniInfo = await AsyncStorage.getItem(Keys.DniQR);
     const dataDni = dniInfo.split('@');
 
@@ -40,6 +41,7 @@ export class Legajo extends React.Component {
       email,
       phone,
       selfieUri,
+      docFron64,
       apellido: dataDni[1],
       nombre: dataDni[2],
       sexo: dataDni[3] == 'M' ? 'Masculino' : 'Femenino',

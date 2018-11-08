@@ -15,7 +15,7 @@ export const api =
     ? manifest.debuggerHost
       .split(`:`)
       .shift()
-      .concat(`:8000`)
+      .concat(`:80`)
     : `api.nuestroherokubackend.com`;
 
 export const getColorByIconType = type =>

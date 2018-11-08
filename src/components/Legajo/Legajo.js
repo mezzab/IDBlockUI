@@ -9,7 +9,7 @@ import Expo from 'expo';
 const { manifest } = Expo.Constants;
 export const api =
   typeof manifest.packagerOpts === `object` && manifest.packagerOpts.dev
-    ? manifest.debuggerHost.split(`:`).shift().concat(`:8000`)
+    ? manifest.debuggerHost.split(`:`).shift().concat(`:80`)
     : `api.nuestroherokubackend.com`;
 
 export class Legajo extends React.Component {
@@ -22,8 +22,8 @@ export class Legajo extends React.Component {
     dni: '37859360',
     sexo: 'Masculino',
     selfieUri: '',
-    dniFrontalUri: '',
-    dniBackUri: '',
+    // dniFrontalUri: '',
+    // dniBackUri: '',
     docFron64: '',
     isValid: false,
   };

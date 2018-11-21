@@ -13,6 +13,7 @@ import PhoneInput from './src/components/Phone/PhoneInput';
 import PhoneCheck from './src/components/Phone/PhoneCheck';
 import DocumentScannerFront from './src/components/DocumentScanner/DocumentScannerFront';
 import DocumentScannerBack from './src/components/DocumentScanner/DocumentScannerBack';
+import AfipDocumentScanner from './src/components/DocumentScanner/AfipDocumentScanner';
 import FacePicture from './src/components/FacePicture';
 import Legajo from './src/components/Legajo';
 import LoadingValidation from './src/components/ScanningData/Loading/LoadingValidation';
@@ -45,9 +46,6 @@ class HomeScreen extends Component {
               margin="10px 10px 0px 10px"
               value="ESCANEAR CODIGO"
               onPress={() => this.props.navigation.navigate(Pages.QRScanner)}
-            // onPress={() =>
-            //   this.props.navigation.navigate(Pages.DocumentScanner)
-            // } //this is how we can avoid do all the cicle in development
             />
           ) : null}
         </Container>
@@ -84,6 +82,9 @@ const App = StackNavigator(
     },
     [Pages.DocumentScannerBack]: {
       screen: DocumentScannerBack,
+    },
+    [Pages.AfipDocumentScanner]: {
+      screen: AfipDocumentScanner,
     },
     [Pages.FacePicture]: {
       screen: FacePicture,

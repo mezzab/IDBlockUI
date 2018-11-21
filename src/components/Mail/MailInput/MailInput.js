@@ -36,7 +36,7 @@ export class MailInput extends React.Component {
   };
 
   handleContinue = async () => {
-    console.log('* * * * * * * * sendEmail * * * * * * * *');
+    console.log('> > > Enviar Email.');
     console.log('Se enviara un codigo de verificacion al siguiente mail: ' + '\n' + this.state.email);
     try {
       let response = await fetch(`http://${api}/sendEmail`, {
@@ -49,7 +49,7 @@ export class MailInput extends React.Component {
       });
       let responseJson = await response.json();
       this.setState({ code: responseJson.code });
-      console.log("Codigo de verificacion: *** ", responseJson.code, " ***");
+      console.log("Codigo de verificacion: *** ", responseJson.code, " ***" + '\n');
     } catch (error) {
       //todo: we have to show an error notification here.
       console.error(error);

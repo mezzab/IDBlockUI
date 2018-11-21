@@ -30,6 +30,7 @@ export const Pages = Object.freeze({
   SelfiePhoto: 'SelfiePhoto',
   DocumentScannerFront: 'DocumentScannerFront',
   DocumentScannerBack: 'DocumentScannerBack',
+  AfipDocumentScanner: 'AfipDocumentScanner',
   FacePicture: 'FacePicture',
   Legajo: 'Legajo',
   LoadingValidation: 'LoadingValidation',

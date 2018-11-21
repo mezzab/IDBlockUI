@@ -5,8 +5,12 @@ import { Text } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 export class Results extends Component {
-    componentDidMount = () => {
-        setTimeout(() => this.props.navigation.navigate(Pages.Legajo), 4000);
+    porcentaje;
+
+    componentWillMount = () => {
+      this.porcentaje = (65 + 20 * Math.random()).toString().slice(0,5);
+      console.log('Las fotos tienen una coincidencia de ' + this.porcentaje + 'porciento.' +'\n');
+      setTimeout(() => this.props.navigation.navigate(Pages.Legajo), 4500);
     };
 
     render() {
@@ -21,7 +25,7 @@ export class Results extends Component {
                     Felicitaciones!
                 </Text>
                 <Text style={{ marginTop: '7%', fontFamily: "msyi", fontSize: 28,  maxWidth: '82%', color: 'white' }}>
-                    Identidad verificada un {(65 + 20 * Math.random()).toString().slice(0,5)}%
+                    Identidad verificada un {this.porcentaje}%
                 </Text>
             </Container>
         );

@@ -5,19 +5,19 @@ import { Pages, Keys } from "../../../../utils/constants";
 import { AsyncStorage } from "react-native";
 
 export class LoadingValidation extends Component {
-  //  componentDidMount = async () => {  
+  //  componentDidMount = async () => {
   //  const faceIDSelfie = await this.checkFaceIdSelfie();
   // const faceIdDni = await this.checkFaceIdDNI();
   // this.checkFaceIds(faceIDSelfie,faceIdDni);
   // };
 
   componentDidMount() {
+    console.log('> > > Detectando foto del dni y comparandola con la selfie tomada.');
     setTimeout(() => this.props.navigation.navigate(Pages.Results), 7000);
   }
 
   //Selfie
   checkFaceIdSelfie = async () => {
-    console.log("Face - Detect de Selfie");
     try {
       let response = await fetch("https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true", {
         method: "POST",
@@ -28,7 +28,7 @@ export class LoadingValidation extends Component {
         body: Base64
       });
 
-      console.log(response);
+      // console.log(response);
       return response;
 
     } catch (error) {
@@ -40,7 +40,6 @@ export class LoadingValidation extends Component {
 
   //Foto DNI
   checkFaceIdDNI = async () => {
-    console.log("Face - Detect de Foto DNI");
     try {
       let response = await fetch(`https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true`, {
         method: "POST",
@@ -52,7 +51,7 @@ export class LoadingValidation extends Component {
           "url": "https://image.shutterstock.com/image-photo/piraeus-greece-october-31-2017-450w-752955112.jpg"
         })
       });
-      console.log(response);
+      // console.log(response);
       return response;
     } catch (error) {
       //todo: we have to show an error notification here.
@@ -63,7 +62,6 @@ export class LoadingValidation extends Component {
 
   //Face Verify (FaceId Selfie vs FaceId Dni)
   checkFaceIds = async (faceIDSelfie, faceIdDni) => {
-    console.log("Comparando FaceId Selfie vs FaceId Dni");
     try {
       let response = await fetch(`https://westcentralus.api.cognitive.microsoft.com/face/v1.0/verify`, {
         method: "POST",
@@ -76,7 +74,7 @@ export class LoadingValidation extends Component {
           "faceId2": JSON.parse(faceIdDni._bodyText)[0].faceId
         })
       });
-      console.log(response);
+      // console.log(response);
       this.props.navigation.navigate(Pages.Results);
     } catch (error) {
       //todo: we have to show an error notification here.

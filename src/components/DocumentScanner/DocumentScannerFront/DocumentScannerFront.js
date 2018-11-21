@@ -49,8 +49,8 @@ export class DocumentScannerFront extends React.Component {
       this.setState({frontBase64: data.base64})
       await AsyncStorage.setItem(Keys.DocumentoFrontal, JSON.stringify(this.state.picture));
       await AsyncStorage.setItem(Keys.DocumentoFrontalBase64, JSON.stringify(this.state.frontBase64));
-      console.log("Foto delantera tomada");
-      console.log(await AsyncStorage.getItem(Keys.DocumentoFrontal));
+      console.log("Foto delantera del DNI tomada y guardada." + "\n");
+      // console.log(await AsyncStorage.getItem(Keys.DocumentoFrontal));
     }
     this.props.navigation.navigate(Pages.DocumentScannerBack);
   };

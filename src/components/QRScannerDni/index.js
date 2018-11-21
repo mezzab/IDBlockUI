@@ -93,7 +93,7 @@ export default class QRScannerDni extends Component {
     if (result.data !== this.state.lastScannedDataDni) {
       LayoutAnimation.spring();
       this.setState({ lastScannedDataDni: result.data });
-      console.log('INFORMACION ESCANEADA:  ', result.data)
+      console.log('La informacion escaneada del DNI es la siguiente: ' + '\n' + result.data + '\n');
     }
   };
 

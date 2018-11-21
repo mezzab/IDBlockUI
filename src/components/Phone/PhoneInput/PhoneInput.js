@@ -44,8 +44,9 @@ export class PhoneInput extends React.Component {
   };
 
   handleContinue = async () => {
-    console.log('* * * * * * * * sendSMS * * * * * * * *');
+    console.log('> > > Enviar SMS.');
     console.log('Se enviara un codigo de verificacion al siguiente telefono: ' + '\n' + this.state.phone);
+
     try {
       let response = await fetch(`http://${api}/sendSMS`, {
         method: "POST",
@@ -60,7 +61,7 @@ export class PhoneInput extends React.Component {
       console.log(
         "Codigo de verificacion Phone: *** ",
         responseJson.code,
-        " ***"
+        " ***" + '\n'
       );
     } catch (error) {
       //todo: we have to show an error notification here.
@@ -68,8 +69,6 @@ export class PhoneInput extends React.Component {
     }
 
     await AsyncStorage.setItem(Keys.Phone, this.state.phone);
-    console.log("El telefono");
-    console.log(await AsyncStorage.getItem(Keys.Phone));
     return this.props.navigation.navigate(Pages.PhoneCheck, {
       codePhone: this.state.codePhone || 123123
     });

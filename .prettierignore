@@ -2,4 +2,6 @@
 /src/components/DocumentScanner/DocumentScanner.js
 /src/components/DocumentScanner/DocumentScannerBack/DocumentScannerBack.js
 /src/components/DocumentScanner/DocumentScannerFront/DocumentScannerFront.js
+/src/components/DocumentScanner/AfipDocumentScanner/AfipScanner.js
 /src/components/FacePicture/FacePicture.js
+*.js

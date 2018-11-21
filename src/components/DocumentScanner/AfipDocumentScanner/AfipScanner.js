@@ -3,7 +3,7 @@ import { Container, InputText, InputField } from "../../shared";
 import TextButton from "../../Button";
 import { AsyncStorage } from "react-native";
 import { Pages, Keys, IconsType } from "../../../utils/constants";
-import { Text, View, TouchableOpacity,Platform } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import { Camera, Permissions } from "expo";
 import { Vibration } from "react-native";
 import styled from "styled-components";
@@ -27,11 +27,12 @@ const BottomLimits = styled.Text`
   margin-top: 26%;
 `;
 
-export class DocumentScannerBack extends React.Component {
+export class AfipDocumentScanner extends React.Component {
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,
-    path: null
+    picture: null,
+    frontBase64: null
   };
 
   async componentWillMount() {
@@ -44,16 +45,9 @@ export class DocumentScannerBack extends React.Component {
       Vibration.vibrate(30);
       const options = { base64: true };
       let data = await this.camera.takePictureAsync(options);
-      this.setState({ picture: data.uri , pictureBase64: data.base64 });
-      await AsyncStorage.setItem(Keys.DocumentoAnterior, JSON.stringify(this.state.picture));
-      await AsyncStorage.setItem(Keys.DocumentoAnteriorBase64, JSON.stringify(this.state.pictureBase64));
-      console.log("Foto Posterior del DNI tomada y guardada." + "\n");
-      // console.log(await AsyncStorage.getItem(Keys.DocumentoAnterior));
+      console.log("Foto constancia AFIP tomada y guardada." + "\n");
     }
-    if ((Platform.OS == 'android' )){
-      this.setState({ type: Camera.Constants.Type.front})
-    }
-    this.props.navigation.navigate(Pages.AfipDocumentScanner);
+    this.props.navigation.navigate(Pages.FacePicture);
   };
 
   componentDidMount = () => {
@@ -93,11 +87,18 @@ export class DocumentScannerBack extends React.Component {
                   color: "#fff"
                 }}
               >
-                Cara Posterior de tu DNI
+                Constancia AFIP
               </Text>
               <TopLimits>┌                                                                                       ┐</TopLimits>
               <BottomLimits>└                                                                                       ┘</BottomLimits>
             </StyledView>
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: "transparent",
+                flexDirection: "row"
+              }}
+            />
             <TouchableOpacity
               style={{
                 borderWidth: 1,

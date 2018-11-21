@@ -96,9 +96,8 @@ export default class QRScanner extends Component {
         if (result.data !== this.state.lastScannedData) {
             LayoutAnimation.spring();
             const isInvalid = !this.isValidData(result.data);
-            console.log('La informacion que contenia el QR es la siguiente: ')
-            console.log(result.data)
-            console.log('Por lo tanto, el QR es ', isInvalid ? 'Invalido' : 'Valido')
+            console.log('La informacion que contenia el QR es la siguiente: ' + '\n' + result.data)
+            console.log('Por lo tanto, el QR es ', isInvalid ? 'Invalido' + '\n': 'Valido' + '\n')
             this.setState({ lastScannedData: result.data, isInvalid });
         }
     };

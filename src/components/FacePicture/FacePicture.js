@@ -46,8 +46,8 @@ export class FacePicture extends React.Component {
       let photo = await this.camera.takePictureAsync();
       this.setState({ picture: photo });
       await AsyncStorage.setItem(Keys.Selfie, JSON.stringify(this.state.picture));
-      console.log("Selfie tomada");
-      console.log(await AsyncStorage.getItem(Keys.Selfie));
+      console.log("Foto del rostro tomada y guardada."+ "\n");
+      // console.log(await AsyncStorage.getItem(Keys.Selfie));
     }
     this.props.navigation.navigate(Pages.LoadingValidation);
   };

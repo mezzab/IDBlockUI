@@ -24,16 +24,16 @@ export class Legajo extends React.Component {
     selfieUri: '',
     // dniFrontalUri: '',
     // dniBackUri: '',
-    docFron64: '',
+    u64DniImage: '',
     isValid: false,
   };
 
-  componentDidMount = async () => {
+  componentWillMount = async () => {
     // fixme: Hay un metodo para pedir varios items de una...
     const email = await AsyncStorage.getItem(Keys.Mail);
     const phone = await AsyncStorage.getItem(Keys.Phone);
     const selfieUri = JSON.parse(await AsyncStorage.getItem(Keys.Selfie));
-    const docFron64 = JSON.parse(await AsyncStorage.getItem(Keys.DocumentoFrontalBase64));
+    const u64DniImage = JSON.parse(await AsyncStorage.getItem(Keys.DocumentoFrontalBase64));
     const dniInfo = await AsyncStorage.getItem(Keys.DniQR);
     const dataDni = dniInfo.split('@');
 
@@ -41,7 +41,7 @@ export class Legajo extends React.Component {
       email,
       phone,
       selfieUri,
-      docFron64,
+      u64DniImage,
       apellido: dataDni[1],
       nombre: dataDni[2],
       sexo: dataDni[3] == 'M' ? 'Masculino' : 'Femenino',
@@ -51,9 +51,9 @@ export class Legajo extends React.Component {
   };
 
   saveLegajo = async () => {
-    console.log('* * * * * * * * saveBlock * * * * * * * *');
+    console.log('* * * * * * * * Guardando legajo en el smart contract. * * * * * * * *');
     stateJSON = JSON.stringify(this.state);
-    console.log('Se guardara el siguiente legajo: ' + '\n' + stateJSON + '\n');
+    console.log('Se guardara el siguiente legajo: ' + '\n' + stateJSON.slice(0, 5000) +'...' + '\n');
     const entityAddr = null; //esto viene del QR y esta guardado en el async
     try {
       let response = await fetch(`http://${api}/saveBlock`, {
@@ -65,7 +65,7 @@ export class Legajo extends React.Component {
         body: `legajo=${stateJSON}&&entityAddr${entityAddr}`,
       });
 
-      console.log('Se guardo el legajo y se genero correctamente la relacion entidad-usuario')
+      console.log('Se guardo el legajo y se genero correctamente la relacion entidad-usuario.')
       // console.log('El hash es:', JSON.parse(response._bodyText)[0].hash)
     } catch (error) {
       //todo: we have to show an error notification here.

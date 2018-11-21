@@ -15,13 +15,13 @@ export const api =
 export class Legajo extends React.Component {
   state = {
     email: 'marcos32m@gmail.com',
-    phone: '1158833086',
+    telefono: '1158833086',
     nombre: 'Marcos',
     apellido: 'Mezzabotta',
     fecha_nacimiento: '05/01/1994',
     dni: '37859360',
     sexo: 'Masculino',
-    selfieUri: '',
+    zelfie: '',
     // dniFrontalUri: '',
     // dniBackUri: '',
     u64DniImage: '',
@@ -31,16 +31,16 @@ export class Legajo extends React.Component {
   componentWillMount = async () => {
     // fixme: Hay un metodo para pedir varios items de una...
     const email = await AsyncStorage.getItem(Keys.Mail);
-    const phone = await AsyncStorage.getItem(Keys.Phone);
-    const selfieUri = JSON.parse(await AsyncStorage.getItem(Keys.Selfie));
+    const telefono = await AsyncStorage.getItem(Keys.Phone);
+    const zelfie = JSON.parse(await AsyncStorage.getItem(Keys.Selfie));
     const u64DniImage = JSON.parse(await AsyncStorage.getItem(Keys.DocumentoFrontalBase64));
     const dniInfo = await AsyncStorage.getItem(Keys.DniQR);
     const dataDni = dniInfo.split('@');
 
     return this.setState({
       email,
-      phone,
-      selfieUri,
+      telefono,
+      zelfie,
       u64DniImage,
       apellido: dataDni[1],
       nombre: dataDni[2],
@@ -95,7 +95,7 @@ export class Legajo extends React.Component {
           style={{ width: '100%', marginTop: '1%', maxHeight: '80%' }}
         >
           <FinalField name={'Mail:'} value={this.state.email} />
-          <FinalField name={'Telefono:'} value={this.state.phone} />
+          <FinalField name={'Telefono:'} value={this.state.telefono} />
           <FinalField name={'DNI:'} value={this.state.dni} />
           <FinalField name={'Apellido:'} value={this.state.apellido} />
           <FinalField name={'Nombre:'} value={this.state.nombre} />
@@ -125,7 +125,7 @@ export class Legajo extends React.Component {
               marginLeft: '7%',
               marginTop: '3%',
             }}
-            source={{ uri: this.state.selfieUri.uri }}
+            source={{ uri: this.state.zelfie.uri }}
           />
 
           {/* <Text style={{

@@ -53,7 +53,7 @@ export class DocumentScannerBack extends React.Component {
     if ((Platform.OS == 'android' )){
       this.setState({ type: Camera.Constants.Type.front})
     }
-    this.props.navigation.navigate(Pages.AfipDocumentScanner);
+    this.props.navigation.navigate(Pages.FacePicture);
   };
 
   componentDidMount = () => {

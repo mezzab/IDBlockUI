@@ -36,7 +36,7 @@ export class LoadingFinal extends Component {
             display: "flex"
           }}
         >
-          Estamos compartiendo su legajo con CAR DEALER, por favor aguarde un
+          Estamos compartiendo su legajo con AVANTA, por favor aguarde un
           instante.
         </Text>
       </Container>

@@ -1,31 +1,34 @@
-import React from 'react';
-import { AsyncStorage, Image } from 'react-native';
-import { Text, ScrollView } from 'react-native';
-import { Pages, Keys } from '../../utils/constants';
-import TextButton from '../Button';
-import { Container, FinalField } from '../shared';
-import Expo from 'expo';
+import React from "react";
+import { AsyncStorage, Image } from "react-native";
+import { Text, ScrollView } from "react-native";
+import { Pages, Keys } from "../../utils/constants";
+import TextButton from "../Button";
+import { Container, FinalField } from "../shared";
+import Expo from "expo";
 
 const { manifest } = Expo.Constants;
 export const api =
   typeof manifest.packagerOpts === `object` && manifest.packagerOpts.dev
-    ? manifest.debuggerHost.split(`:`).shift().concat(`:80`)
+    ? manifest.debuggerHost
+        .split(`:`)
+        .shift()
+        .concat(`:80`)
     : `api.nuestroherokubackend.com`;
 
 export class Legajo extends React.Component {
   state = {
-    email: 'marcos32m@gmail.com',
-    telefono: '1158833086',
-    nombre: 'Marcos',
-    apellido: 'Mezzabotta',
-    fecha_nacimiento: '05/01/1994',
-    dni: '37859360',
-    sexo: 'Masculino',
-    zelfie: '',
-    // dniFrontalUri: '',
+    email: "marcos32m@gmail.com",
+    telefono: "1158833086",
+    nombre: "Marcos",
+    apellido: "Mezzabotta",
+    fecha_nacimiento: "05/01/1994",
+    dni: "37859360",
+    sexo: "Masculino",
+    zelfie: "",
+    dniFrontalUri: "",
     // dniBackUri: '',
-    u64DniImage: '',
-    isValid: false,
+    u64DniImage: "",
+    isValid: false
   };
 
   componentWillMount = async () => {
@@ -33,9 +36,14 @@ export class Legajo extends React.Component {
     const email = await AsyncStorage.getItem(Keys.Mail);
     const telefono = await AsyncStorage.getItem(Keys.Phone);
     const zelfie = JSON.parse(await AsyncStorage.getItem(Keys.Selfie));
-    const u64DniImage = JSON.parse(await AsyncStorage.getItem(Keys.DocumentoFrontalBase64));
+    const dniFrontalUri = JSON.parse(
+      await AsyncStorage.getItem(Keys.DocumentoFrontal)
+    );
+    const u64DniImage = JSON.parse(
+      await AsyncStorage.getItem(Keys.DocumentoFrontalBase64)
+    );
     const dniInfo = await AsyncStorage.getItem(Keys.DniQR);
-    const dataDni = dniInfo.split('@');
+    const dataDni = dniInfo.split("@");
 
     return this.setState({
       email,
@@ -44,28 +52,39 @@ export class Legajo extends React.Component {
       u64DniImage,
       apellido: dataDni[1],
       nombre: dataDni[2],
-      sexo: dataDni[3] == 'M' ? 'Masculino' : 'Femenino',
+      sexo: dataDni[3] == "M" ? "Masculino" : "Femenino",
       dni: dataDni[4],
       fecha_nacimiento: dataDni[6],
+      dniFrontalUri
     });
   };
 
   saveLegajo = async () => {
-    console.log('* * * * * * * * Guardando legajo en el smart contract. * * * * * * * *');
+    console.log(
+      "* * * * * * * * Guardando legajo en el smart contract. * * * * * * * *"
+    );
     stateJSON = JSON.stringify(this.state);
-    console.log('Se guardara el siguiente legajo: ' + '\n' + stateJSON.slice(0, 5000) +'...' + '\n');
+    console.log(
+      "Se guardara el siguiente legajo: " +
+        "\n" +
+        stateJSON.slice(0, 5000) +
+        "..." +
+        "\n"
+    );
     const entityAddr = null; //esto viene del QR y esta guardado en el async
     try {
       let response = await fetch(`http://${api}/saveBlock`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
+          Accept: "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: `legajo=${stateJSON}&&entityAddr${entityAddr}`,
+        body: `legajo=${stateJSON}&&entityAddr${entityAddr}`
       });
 
-      console.log('Se guardo el legajo y se genero correctamente la relacion entidad-usuario.')
+      console.log(
+        "Se guardo el legajo y se genero correctamente la relacion entidad-usuario."
+      );
       // console.log('El hash es:', JSON.parse(response._bodyText)[0].hash)
     } catch (error) {
       //todo: we have to show an error notification here.
@@ -83,27 +102,31 @@ export class Legajo extends React.Component {
       <Container>
         <Text
           style={{
-            fontFamily: 'msyi',
-            marginTop: '7%',
+            fontFamily: "msyi",
+            marginTop: "7%",
             fontSize: 35,
-            color: 'white',
+            color: "white"
           }}
         >
           Confirma tus datos
         </Text>
         <ScrollView
-          style={{ width: '100%', marginTop: '1%', maxHeight: '80%' }}
+          style={{ width: "100%", marginTop: "1%", maxHeight: "80%" }}
         >
-          <FinalField name={'Mail:'} value={this.state.email} />
-          <FinalField name={'Telefono:'} value={this.state.telefono} />
-          <FinalField name={'DNI:'} value={this.state.dni} />
-          <FinalField name={'Apellido:'} value={this.state.apellido} />
-          <FinalField name={'Nombre:'} value={this.state.nombre} />
-          <FinalField name={'Sexo:'} value={this.state.sexo} />
+          <FinalField name={"DNI:"} value={this.state.dni} />
+          <FinalField name={"Nombre:"} value={this.state.nombre} />
+          <FinalField name={"Apellido:"} value={this.state.apellido} />
+
           <FinalField
-            name={'Fecha de Nacimiento:'}
+            name={"Fecha de Nacimiento:"}
             value={this.state.fecha_nacimiento}
           />
+          <FinalField name={"Sexo:"} value={this.state.sexo} />
+          <FinalField name={"Ejemplar DNI:"} value={"B"} />
+          <FinalField name={"CUIT:"} value={"20-37859360-4"} />
+          <FinalField name={"Telefono:"} value={this.state.telefono} />
+          <FinalField name={"Mail:"} value={this.state.email} />
+
           {/* <FinalField name={'Fecha tramite DNI:'} value={'06/05/2001'} /> */}
           {/* <Text style={{
                   display: 'flex',
@@ -122,8 +145,8 @@ export class Legajo extends React.Component {
             style={{
               width: 300,
               height: 310,
-              marginLeft: '7%',
-              marginTop: '3%',
+              marginLeft: "7%",
+              marginTop: "3%"
             }}
             source={{ uri: this.state.zelfie.uri }}
           />
